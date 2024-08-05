@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.techelevator.dao;
 
 import com.techelevator.model.RegisterUserDto;
@@ -42,3 +43,35 @@ public abstract class CustomerDao {
      */
     public abstract User createUser(RegisterUserDto user);
 }
+=======
+//package com.techelevator.dao;
+//
+//import com.techelevator.model.Customer;
+//import com.techelevator.model.RegisterUserDto;
+//import com.techelevator.model.User;
+//
+//import java.util.List;
+//
+//public abstract class CustomerDao {
+//    public abstract Customer getCustomerById(int userId);
+//
+//    public abstract Customer getCustomerById(int userId);
+//
+//    public abstract List<Customer> getCustomers();
+//
+//    public abstract List<Customer> getCustomers();
+//
+//    public abstract User getUserByUsername(String username);
+//
+//    public abstract User createUser(RegisterUserDto user);
+//}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+>>>>>>> 8257b3cc8daa7d6656f64b67d899635424fffcb9
