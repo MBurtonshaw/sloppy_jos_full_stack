@@ -1,6 +1,14 @@
 package com.techelevator.dao;
 
-public class FoodOrderDao {
-    //TO-DO
+import java.util.List;
 
-}
+public interface FoodOrderDao {
+    List<FoodOrderDao> getAllSpecialtyPizzas();
+    FoodOrderDao getPizzaById(int id);
+        void addPizza(FoodOrderDao pizza);
+        void updatePizza(FoodOrderDao pizza);
+        void deletePizza(int id);
+    }
+
+
+
