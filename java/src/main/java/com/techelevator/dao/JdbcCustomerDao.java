@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.techelevator.dao;
 
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ public abstract class JdbcCustomerDao extends CustomerDao {
         return user;
     }
 }
-=======
+
 //package com.techelevator.dao;
 //
 //import java.util.ArrayList;
@@ -202,4 +202,4 @@ public abstract class JdbcCustomerDao extends CustomerDao {
 //        return user;
 //    }
 //}
->>>>>>> 8257b3cc8daa7d6656f64b67d899635424fffcb9
+

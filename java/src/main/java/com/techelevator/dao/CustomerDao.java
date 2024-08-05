@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.techelevator.dao;
 
 import com.techelevator.model.RegisterUserDto;
@@ -43,7 +43,7 @@ public abstract class CustomerDao {
      */
     public abstract User createUser(RegisterUserDto user);
 }
-=======
+
 //package com.techelevator.dao;
 //
 //import com.techelevator.model.Customer;
@@ -74,4 +74,4 @@ public abstract class CustomerDao {
 //
 //
 //
->>>>>>> 8257b3cc8daa7d6656f64b67d899635424fffcb9
+
