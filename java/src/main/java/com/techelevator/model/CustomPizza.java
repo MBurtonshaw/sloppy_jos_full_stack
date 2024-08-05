@@ -1,6 +1,8 @@
 package com.techelevator.model;
 
-public class CustomPizza {
+public class CustomPizza extends Food {
+
+
 
 
 }

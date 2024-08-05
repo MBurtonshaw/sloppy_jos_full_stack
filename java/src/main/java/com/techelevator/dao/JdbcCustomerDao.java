@@ -88,6 +88,8 @@ public abstract class JdbcCustomerDao extends CustomerDao {
         return newUser;
     }
 
+    protected abstract User getUserById(int newUserId);
+
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getInt("user_id"));

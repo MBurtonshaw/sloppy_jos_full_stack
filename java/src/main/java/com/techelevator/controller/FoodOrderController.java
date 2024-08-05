@@ -20,11 +20,11 @@ import com.techelevator.security.jwt.TokenProvider;
 public class FoodOrderController {
 
     private FoodOrderDao foodOrderDao;
-    private FoodOrderService foodOrderService;
+
 
     private final String API_BASE_URL = "http://localhost:9000/";
 
-    public FoodOrderController(FoodOrderDao foodOrderDao, FoodOrderService foodOrderService) {
+    public FoodOrderController(FoodOrderDao foodOrderDao) {
 
     }
     @RequestMapping(path = "/", method = RequestMethod.GET)
