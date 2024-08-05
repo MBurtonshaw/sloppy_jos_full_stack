@@ -15,19 +15,26 @@ import com.techelevator.dao.UserDao;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class FoodOrderController {
 
     private FoodOrderDao foodOrderDao;
-    private FoodOrderService foodOrderService;
+
 
     private final String API_BASE_URL = "http://localhost:9000/";
+
 
     public FoodOrderController(FoodOrderDao foodOrderDao, FoodOrderService foodOrderService) {
         this.foodOrderDao = foodOrderDao;
         this.foodOrderService = foodOrderService;
-    }
+
+    public FoodOrderController(FoodOrderDao foodOrderDao) {
+
+        this.foodOrderDao = foodOrderDao;
+
 
     @RequestMapping(path = "/menu/pizzas", method = RequestMethod.GET)
     public List<Food> getPizzas() {
@@ -84,8 +91,14 @@ public class FoodOrderController {
         }
     }
 
+
     @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
     public Order getOrder(@PathVariable int id) {
+
+
+    @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
+    public FoodOrder getOrder(@PathVariable int id) {
+
         try {
             return foodOrderDao.getOrder(id);
         } catch (DaoException e) {
