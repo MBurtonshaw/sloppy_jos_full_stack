@@ -3,6 +3,7 @@ package com.techelevator.dao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Food;
 import com.techelevator.model.SpecialtyPizza;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -34,6 +35,23 @@ public class JdbcFoodDao implements FoodOrderDao {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return specialtyPizzas;
+    }
+
+    public SpecialtyPizza getSpecialtyPizza(int id) {
+        SpecialtyPizza specialtyPizza = null; // Initialize as null
+        String sql = "SELECT * FROM specialty_pizza WHERE specialty_pizza_id = ?;";
+        try {
+            // Execute the query and fetch the results
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            if (results.next()) { // Check if a result was returned
+                specialtyPizza = mapRowToSpecialtyPizza(results); // Map the row to SpecialtyPizza
+            }
+            return specialtyPizza; // Return the specialty pizza or null if not found
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e); // Catch other DB-related exceptions
+        }
     }
 
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {

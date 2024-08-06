@@ -73,14 +73,14 @@ public class FoodOrderController {
     }
 
 
-//    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
-//    public Food getSpecialtyPizza(@PathVariable int id) {
-//        try {
-//            return foodOrderDao.getSpecialtyPizza(id);
-//        } catch (DaoException e) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
-//        }
-//    }
+    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
+    public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
+        try {
+            return foodOrderDao.getSpecialtyPizza(id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
+        }
+    }
 
 //    @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
 //    public List<Food> getSides() {
