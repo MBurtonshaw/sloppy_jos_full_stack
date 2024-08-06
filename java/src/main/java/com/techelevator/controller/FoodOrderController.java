@@ -72,7 +72,6 @@ public class FoodOrderController {
         }
     }
 
-
     @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
     public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
         try {
@@ -90,11 +89,7 @@ public class FoodOrderController {
 //            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve sides", e);
 //        }
 //    }
-
-
-
 //
-
 //    @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.GET)
 //    public Food getSide(@PathVariable int id) {
 //        try {
@@ -107,7 +102,7 @@ public class FoodOrderController {
 
 //    @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
 //    public FoodOrder getOrder(@PathVariable int id) {
-
+//
 //        try {
 //            return foodOrderDao.getOrder(id);
 //        } catch (DaoException e) {
@@ -123,6 +118,7 @@ public class FoodOrderController {
 //            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve order status", e);
 //        }
 //    }
+
 //
 //    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
 //    public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
@@ -173,6 +169,7 @@ public class FoodOrderController {
 //        } catch (DaoException e) {
 //            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve order status", e);
 //        }
+
 
 
 }

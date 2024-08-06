@@ -7,14 +7,23 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+<<<<<<< HEAD
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+=======
 
 import org.springframework.stereotype.Component;
+>>>>>>> 090e21314d3249caac5db010100705d93d54092a
 
 import java.util.ArrayList;
 import java.util.List;
 @Component
+<<<<<<< HEAD
+// Add this annotation
+=======
 
 
+>>>>>>> 090e21314d3249caac5db010100705d93d54092a
 public class JdbcFoodDao implements FoodOrderDao {
     private final JdbcTemplate jdbcTemplate;
 
@@ -61,4 +70,10 @@ public class JdbcFoodDao implements FoodOrderDao {
         specialtyPizza.setPrice(rowSet.getDouble("base_price"));
         return specialtyPizza;
     }
+    public SpecialtyPizza getSpecialtyPizza(int id){
+        SpecialtyPizza specialtyPizza = new SpecialtyPizza();
+        String sql ="SELECT * FROM specialty_pizza WHERE id = ?";
+        return  specialtyPizza;
+    }
+
 }
