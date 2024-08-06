@@ -46,5 +46,5 @@ VALUES ('Sloppy Joe Pizza', 25.00), ('The Supreme', 23.00), ('Meatlovers', 22.00
 
 COMMIT TRANSACTION;
 
-select * from specialty_pizza
+SELECT specialty_pizza_id, name, base_price FROM specialty_pizza
 
