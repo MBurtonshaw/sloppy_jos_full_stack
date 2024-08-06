@@ -7,7 +7,7 @@ package com.techelevator.model;
 public abstract class  Food {
     private int id; // Unique identifier for the food item
     private String name; // Name of the food item
-    private double price; // Price of the food item
+    private double price; // Price of the food itemgti 
     private String[] ingredients; // Ingredients used in the food item
 
 
