@@ -42,8 +42,6 @@ public class FoodOrderController {
 //    }
 
 
-
-
 //    @RequestMapping(path = "/menu/pizzas", method = RequestMethod.GET)
 //    public List<Food> getPizzas() {
 //        try {
@@ -53,31 +51,27 @@ public class FoodOrderController {
 //        }
 //    }
 
-    // MAY HAVE TO USE QUERY PARAMETERS INSTEAD
-//    @RequestMapping(path = "/menu/pizzas/{id}", method = RequestMethod.GET)
-//    public Food getPizza(@PathVariable int id) {
-//        try {
-//            return foodOrderDao.getPizza(id);
-//        } catch (DaoException e) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza not found", e);
-//        }
+
+//    @RequestMapping(path = "/menu/byo", method = RequestMethod.GET)
+//    public Item addPizza(@RequestBody String pizza) {
+//
 //    }
 
-    @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
-    public Item addPizza(@RequestBody Item pizza) {
-        Item newPizza = new Item();
-        try {
-            newPizza.setSauce(pizza.sauce);
-            newPizza.setCrust(pizza.crust);
-            newPizza.setDiameter(pizza.diameter);
-            for ( int i = 0; i < pizza.toppings.length; i++ ) {
-                newPizza.setToppings(pizza.toppings[i]);
-            }
-            return foodOrderDao.addPizza(newPizza);
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
+//    public Item addPizza(@RequestBody Item pizza) {
+//        Item newPizza = new Item();
+//        try {
+//            newPizza.setSauce(pizza.sauce);
+//            newPizza.setCrust(pizza.crust);
+//            newPizza.setDiameter(pizza.diameter);
+//            for ( int i = 0; i < pizza.toppings.length; i++ ) {
+//                newPizza.setToppings(pizza.toppings[i]);
+//            }
+//            return foodOrderDao.addPizza(newPizza);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas", e);
+//        }
+//    }
 
     @RequestMapping(path = "/menu/specialty_pizzas", method = RequestMethod.GET)
     public List<SpecialtyPizza> getSpecialtyPizzas() {

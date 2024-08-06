@@ -1,16 +1,13 @@
 <template>
-    <header class="page-header">
-        <h1>Menu</h1>
-    </header>
-    <body>
+    <div>
 
-    </body>
-    <footer>
-
-    </footer>
-</template>
+    </div>
+    </template>
 
 <script>
+    export default {
+        
+    }
 
 </script>
 
