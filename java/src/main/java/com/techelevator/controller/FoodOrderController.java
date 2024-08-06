@@ -28,8 +28,26 @@ public class FoodOrderController {
 
 
     public FoodOrderController(FoodOrderDao foodOrderDao) {
+<<<<<<< HEAD
         this.foodOrderDao = foodOrderDao;
     }
+=======
+
+        this.foodOrderDao = foodOrderDao;
+
+
+    }//    @RequestMapping(path = "/menu/pizzas", method = RequestMethod.GET)
+//    public List<Food> getPizzas() {
+//        try {
+//            return foodOrderDao.getPizzas();
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve pizzas", e);
+//        }
+//    }
+
+
+
+>>>>>>> 090e21314d3249caac5db010100705d93d54092a
 
 //    @RequestMapping(path = "/menu/pizzas", method = RequestMethod.GET)
 //    public List<Food> getPizzas() {
@@ -105,4 +123,59 @@ public class FoodOrderController {
 //            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve order status", e);
 //        }
 //    }
+<<<<<<< HEAD
+=======
+//
+//    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
+//    public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
+//        try {
+//            return foodOrderDao.getSpecialtyPizza(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
+//        }
+//    }
+
+//    @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
+//    public List<Food> getSides() {
+//        try {
+//            return foodOrderDao.getSides();
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve sides", e);
+//        }
+//    }
+//
+//    @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.GET)
+//    public Food getSide(@PathVariable int id) {
+//        try {
+//            return foodOrderDao.getSide(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Side not found", e);
+//        }
+//    }
+//
+//
+//    @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
+//    public Order getOrder(@PathVariable int id) {
+//
+//
+//    @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
+//    public FoodOrder getOrder(@PathVariable int id) {
+//
+//        try {
+//            return foodOrderDao.getOrder(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+//        }
+//    }
+//
+//    @RequestMapping(path = "/order/{id}/status", method = RequestMethod.GET)
+//    public boolean getOrderStatus(@PathVariable int id) {
+//        try {
+//            return foodOrderDao.getOrderStatus(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve order status", e);
+//        }
+
+
+>>>>>>> 090e21314d3249caac5db010100705d93d54092a
 }
