@@ -4,14 +4,16 @@ import com.techelevator.model.Food;
 import com.techelevator.model.SpecialtyPizza;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+@Component
 
-public class JdbcFoodDao implements FoodOrderDao {
+public class JdbcFoodOrderDao implements FoodOrderDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcFoodDao(JdbcTemplate jdbcTemplate) {
+    public JdbcFoodOrderDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;  // Use the passed JdbcTemplate
     }
 

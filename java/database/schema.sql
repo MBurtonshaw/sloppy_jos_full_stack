@@ -62,11 +62,15 @@ CREATE TABLE item(
 	sauce_id int,
 	topping_id int,
 	crust_id int,
+	size_id int,
 	CONSTRAINT PK_item PRIMARY KEY (item_id),
 	CONSTRAINT FK_item_sauce FOREIGN KEY (sauce_id) REFERENCES sauce (sauce_id),
  	CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id),
-	CONSTRAINT FK_item_crust FOREIGN KEY (crust_id) REFERENCES crust (crust_id)
+	CONSTRAINT FK_item_crust FOREIGN KEY (crust_id) REFERENCES crust (crust_id),
+	CONSTRAINT FK_item_diameter FOREIGN KEY (size_id) REFERENCES diameter (size_id)
 );
+
+-- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 
 CREATE TABLE item_topping (
 	item_id int,
