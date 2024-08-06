@@ -4,30 +4,20 @@ import com.techelevator.exception.DaoException;
 import com.techelevator.model.Food;
 import com.techelevator.model.SpecialtyPizza;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
-<<<<<<< HEAD
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-=======
-
-import org.springframework.stereotype.Component;
->>>>>>> 090e21314d3249caac5db010100705d93d54092a
-
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
-<<<<<<< HEAD
-// Add this annotation
-=======
-
-
->>>>>>> 090e21314d3249caac5db010100705d93d54092a
-public class JdbcFoodDao implements FoodOrderDao {
+public class JdbcFoodOrderDao implements FoodOrderDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcFoodDao(JdbcTemplate jdbcTemplate) {
+    public JdbcFoodOrderDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -63,17 +53,27 @@ public class JdbcFoodDao implements FoodOrderDao {
         }
     }
 
+//    public Item addPizza(pizza) {
+//        Item newItem = new Item();
+//        String sql = "INSERT INTO item (sauce_id, topping_id, crust_id)" +
+//                "VALUES(?, ?, ?)" +
+//                "RETURNING item_id";
+//        try {
+//            int newPizzaId = jdbcTemplate.queryForObject(sql, int.class);
+//            newItem = getPizzaById();
+//        } catch (Exception e) {
+//            throw new DaoException(e.getMessage());
+//        }
+//
+//        return newItem;
+//    }
+
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {
         SpecialtyPizza specialtyPizza = new SpecialtyPizza();
         specialtyPizza.setId(rowSet.getInt("specialty_pizza_id"));
         specialtyPizza.setName(rowSet.getString("name"));
         specialtyPizza.setPrice(rowSet.getDouble("base_price"));
         return specialtyPizza;
-    }
-    public SpecialtyPizza getSpecialtyPizza(int id){
-        SpecialtyPizza specialtyPizza = new SpecialtyPizza();
-        String sql ="SELECT * FROM specialty_pizza WHERE id = ?";
-        return  specialtyPizza;
     }
 
 }
