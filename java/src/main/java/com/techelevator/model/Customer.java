@@ -1,4 +1,10 @@
 package com.techelevator.model;
 
-public class Customer {
+public class Customer extends Food{
+
+
+
+
+
+    
 }

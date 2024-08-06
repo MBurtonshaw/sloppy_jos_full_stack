@@ -17,6 +17,7 @@ import java.util.List;
  */
 public interface FoodOrderDao {
 List<SpecialtyPizza> getSpecialtyPizzas();
+SpecialtyPizza getSpecialtyPizza(int id);
     /**
      * Retrieves all specialty pizzas from the data source.
      * @return a list of Food objects representing specialty pizzas.
