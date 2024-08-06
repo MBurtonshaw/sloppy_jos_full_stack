@@ -29,3 +29,8 @@ VALUES ('Traditional'), ('Basil Pesto'), ('Garlic Parmesean');
 
 INSERT INTO specialty_pizza (name, base_price)
 VALUES ('Sloppy Joe Pizza', 25.00), ('The Supreme', 23.00), ('Meatlovers', 22.00);
+
+
+COMMIT TRANSACTION;
+
+

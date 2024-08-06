@@ -7,7 +7,10 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import MenuView from '../views/MenuView.vue';
+<<<<<<< HEAD
 import OrderView from '../views/OrderView.vue';
+=======
+>>>>>>> 4c7c3b4a0281bdc91c8c09904f6627cef85153a7
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -58,6 +61,7 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+<<<<<<< HEAD
   },
   {
     path: "/order",
@@ -66,6 +70,8 @@ const routes = [
     meta: {
       requiresAuth: false
     }
+=======
+>>>>>>> 4c7c3b4a0281bdc91c8c09904f6627cef85153a7
   }
 
 ];

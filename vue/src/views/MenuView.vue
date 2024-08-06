@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,6 +57,29 @@ import Menu from '../components/Menu.vue';
 
     export default {
 
+=======
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>News</title>
+        <!-- <link rel="stylesheet" href="styles.css"> -->
+    </head>
+
+    <body>
+    <header>
+        <h1> Menu </h1>
+    </header>
+    <toppings />
+    </body>
+</template>
+
+<script>
+    import Toppings from '../components/Toppings.vue';
+    export default {
+        components: {
+            Toppings
+        }
+>>>>>>> 4c7c3b4a0281bdc91c8c09904f6627cef85153a7
     }
 </script>
 
