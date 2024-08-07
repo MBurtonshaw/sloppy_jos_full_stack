@@ -59,17 +59,21 @@ public class FoodOrderController {
 
     @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
     public Item addPizza(@RequestBody Item pizza) {
+        if (pizza == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pizza object cannot be null");
+        }
+        // Create a new Item instance and populate it with details from the request
         Item newPizza = new Item();
+        newPizza.setSauce(pizza.getSauce());
+        newPizza.setCrust(pizza.getCrust());
+        newPizza.setDiameter(pizza.getDiameter());
+
         try {
-            newPizza.setSauce(pizza.sauce);
-            newPizza.setCrust(pizza.crust);
-            newPizza.setDiameter(pizza.diameter);
-            for ( int i = 0; i < pizza.toppings.length; i++ ) {
-                newPizza.setToppings(pizza.toppings[i]);
-            }
+            // Call the DAO to add the pizza to the database
             return foodOrderDao.addPizza(newPizza);
         } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas", e);
+            // Handle database access exceptions and return an appropriate response
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve custom pizza", e);
         }
     }
 
@@ -90,6 +94,16 @@ public class FoodOrderController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
         }
     }
+
+//    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.POST)
+//    public SpecialtyPizza addSpecialtyPizza(@PathVariable int id) {
+//        String sql = "";
+//        try {
+//            return foodOrderDao.addSpecialtyPizza(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
+//        }
+//    }
 
 //    @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
 //    public List<Food> getSides() {
