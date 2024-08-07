@@ -1,5 +1,4 @@
-//package com.techelevator.model;
-//
-//public class FoodOrder {
-//
-//}
+package com.techelevator.model;
+
+public class FoodOrder {
+}
