@@ -57,21 +57,21 @@ public class FoodOrderController {
 //
 //    }
 
-//    @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
-//    public Item addPizza(@RequestBody Item pizza) {
-//        Item newPizza = new Item();
-//        try {
-//            newPizza.setSauce(pizza.sauce);
-//            newPizza.setCrust(pizza.crust);
-//            newPizza.setDiameter(pizza.diameter);
-//            for ( int i = 0; i < pizza.toppings.length; i++ ) {
-//                newPizza.setToppings(pizza.toppings[i]);
-//            }
-//            return foodOrderDao.addPizza(newPizza);
-//        } catch (DaoException e) {
-//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas", e);
-//        }
-//    }
+    @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
+    public Item addPizza(@RequestBody Item pizza) {
+        Item newPizza = new Item();
+        try {
+            newPizza.setSauce(pizza.sauce);
+            newPizza.setCrust(pizza.crust);
+            newPizza.setDiameter(pizza.diameter);
+            for ( int i = 0; i < pizza.toppings.length; i++ ) {
+                newPizza.setToppings(pizza.toppings[i]);
+            }
+            return foodOrderDao.addPizza(newPizza);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas", e);
+        }
+    }
 
     @RequestMapping(path = "/menu/specialty_pizzas", method = RequestMethod.GET)
     public List<SpecialtyPizza> getSpecialtyPizzas() {

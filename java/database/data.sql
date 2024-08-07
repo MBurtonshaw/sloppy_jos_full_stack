@@ -34,3 +34,4 @@ VALUES ('Sloppy Joe Pizza', 25.00), ('The Supreme', 23.00), ('Meatlovers', 22.00
 COMMIT TRANSACTION;
 
 
+select * from diameter

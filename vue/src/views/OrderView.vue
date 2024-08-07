@@ -1,30 +1,41 @@
 <template>
     <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Sloppy Joe's Pizza</title>
+      <title>Sloppy Joe's Menu</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     </head>
-  <body>
-      <div class="container">
-          <header id="page-header">
-           <router-link v-bind:to="{ name: 'home' }">
-              <img src="@/assets/sloppy_jo_s_pizza_logo.png" alt="Joe's Sloppy Head" class="resize-image"/>
-           </router-link>
-              <div>
-                  <ul class="nav-link">
-                      <router-link v-bind:to="{name: 'home'}"><li>Home</li></router-link>
-                      <router-link v-bind:to="{name: 'menu'}"><li>Menu</li></router-link>
-                      <router-link v-bind:to="{name: 'order'}"><li>Order Now</li></router-link>
-                  </ul>
-              </div>
-              <nav>
-                  <ul>
-                  <li><a href="#">Login</a></li>
-                  <router-link v-bind:to="{name: 'register'}"><li><a href='#'>Register</a></li></router-link>
-                  </ul>
-              </nav>
-          </header>
-      <main>
+    <body>
+<!-- header -->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <!-- <a class="navbar-brand"> -->
+            <img class="navbar-brand" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
+          <!-- </a> -->
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
+            <li><router-link v-bind:to="{name: 'menu'}">Menu</router-link></li>
+            <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
+            <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
+            <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
           <h1></h1>
   
   
@@ -36,25 +47,12 @@
   
   
   
-      </main>
-      <footer id="page-footer">
-        <div class="footer-image">
-        <router-link v-bind:to="{ name: 'home' }">
-        <img src="@/assets/sloppy_jo_s_pizza_logo.png" alt="Joe's Sloppy Head"  class="resize-image"/>
-         </router-link>
-         <p>&copy; 2024 Sloppy Joe's Pizza. All rights reserved.</p>
-        </div>
-      <nav>
-        <ul class="inline-footer-links">
-          <li><a href="#privacy">Privacy Policy</a></li>
-          <li><a href="#terms">Terms of Service</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </nav>
-      </footer>
-  </div>
+
+      <footer class="container-fluid text-center">
+      <p>&copy; 2024 Sloppy Joe's Pizza. All rights reserved.</p>
+    </footer>
   </body>
-  </template>
+</template>
   
   <script>
   import Order from '../components/Order.vue';

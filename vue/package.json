@@ -12,6 +12,9 @@
   "dependencies": {
     "@chenfengyuan/vue-carousel": "^2.0.0",
     "axios": "^1.6",
+    "bootstrap": "^5.3.3",
+    "jquery": "^3.7.1",
+    "popper.js": "^1.16.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.1",
     "vuex": "^4.1.0"
