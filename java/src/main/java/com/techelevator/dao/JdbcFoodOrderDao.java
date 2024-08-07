@@ -56,6 +56,42 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         }
     }
 
+
+    @Override
+    public Food getPizzaById(int id) {
+        return null;
+    }
+
+    @Override
+    public void addPizza(Food pizza) {
+
+    }
+
+    @Override
+    public void updatePizza(Food pizza) {
+
+    }
+
+    @Override
+    public void deletePizza(int id) {
+
+    }
+
+//    public Item addPizza(pizza) {
+//        Item newItem = new Item();
+//        String sql = "INSERT INTO item (sauce_id, topping_id, crust_id)" +
+//                "VALUES(?, ?, ?)" +
+//                "RETURNING item_id";
+//        try {
+//            int newPizzaId = jdbcTemplate.queryForObject(sql, int.class);
+//            newItem = getPizzaById();
+//        } catch (Exception e) {
+//            throw new DaoException(e.getMessage());
+//        }
+//
+//        return newItem;
+//    }
+
     public Item addPizza(Item pizza) {
         String sql = "INSERT INTO item (sauce_id, crust_id, size_id) " +
                 "VALUES (?, ?, ?) " +
@@ -87,6 +123,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
 //    }
 //
 //
+
 
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {
         SpecialtyPizza specialtyPizza = new SpecialtyPizza();

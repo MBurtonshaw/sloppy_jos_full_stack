@@ -35,24 +35,24 @@ Item addPizza(Item pizza);
      * @param id The unique identifier of the pizza.
      * @return a Food object representing the pizza.
      */
-//    Food getPizzaById(int id);
+  Food getPizzaById(int id);
 
     /**
      * Adds a new pizza to the data source.
      * @param pizza The Food object representing the new pizza to add.
      */
-//    void addPizza(Food pizza);
+  void addPizza(Food pizza);
 
     /**
      * Updates an existing pizza in the data source.
      * @param pizza The Food object representing the pizza to update.
      */
-//    void updatePizza(Food pizza);
+void updatePizza(Food pizza);
 
     /**
      * Deletes a pizza from the data source by its unique identifier.
      * @param id The unique identifier of the pizza to delete.
      */
-//    void deletePizza(int id);
+void deletePizza(int id);
 }
 
