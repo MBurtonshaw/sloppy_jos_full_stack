@@ -13,5 +13,6 @@ export function createStore(pizzas, specialtyPizzas, sides) {
         }
     },
   });
+  
   return store;
 }

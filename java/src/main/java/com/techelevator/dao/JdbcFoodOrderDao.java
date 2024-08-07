@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Food;
+import com.techelevator.model.Item;
 import com.techelevator.model.SpecialtyPizza;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,10 +11,12 @@ import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
-
 @Component
+
 public class JdbcFoodOrderDao implements FoodOrderDao {
     private final JdbcTemplate jdbcTemplate;
 
@@ -53,20 +56,63 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         }
     }
 
-//    public Item addPizza(pizza) {
-//        Item newItem = new Item();
-//        String sql = "INSERT INTO item (sauce_id, topping_id, crust_id)" +
-//                "VALUES(?, ?, ?)" +
-//                "RETURNING item_id";
-//        try {
-//            int newPizzaId = jdbcTemplate.queryForObject(sql, int.class);
-//            newItem = getPizzaById();
-//        } catch (Exception e) {
-//            throw new DaoException(e.getMessage());
-//        }
-//
-//        return newItem;
-//    }
+    public Item addPizza(Item pizza) {
+        // SQL statement for inserting a new pizza
+        String sql = "INSERT INTO item (sauce_id, crust_id, size_id) " +
+                "VALUES (?, ?, ?) " +
+                "RETURNING item_id;";
+        // Check if the pizza object is not null
+        if (pizza == null) {
+            throw new DaoException("Pizza object cannot be null");
+        }
+
+        try {
+            // Fetch the new pizza ID from the database
+            int newPizzaId = jdbcTemplate.queryForObject(sql, int.class,
+                    pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
+
+            // Create and populate a new Item instance for the added pizza
+            Item newPizza = new Item();
+            newPizza.setItemId(newPizzaId);
+            newPizza.setSauce(pizza.getSauce());
+            newPizza.setCrust(pizza.getCrust());
+            newPizza.setDiameter(pizza.getDiameter());
+
+            return newPizza; // Return the newly created pizza
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e); // Wrap DataAccessException
+        }
+    }
+
+    public Item addSpecialtyPizza(Item pizza) {
+        // SQL statement for inserting a new pizza
+        String sql = "INSERT INTO item (sauce_id, crust_id, size_id) " +
+                "VALUES (?, ?, ?) " +
+                "RETURNING item_id;";
+        // Check if the pizza object is not null
+        if (pizza == null) {
+            throw new DaoException("Pizza object cannot be null");
+        }
+
+        try {
+            // Fetch the new pizza ID from the database
+            int newPizzaId = jdbcTemplate.queryForObject(sql, int.class,
+                    pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
+
+            // Create and populate a new Item instance for the added pizza
+            Item newPizza = new Item();
+            newPizza.setItemId(newPizzaId);
+            newPizza.setSauce(pizza.getSauce());
+            newPizza.setCrust(pizza.getCrust());
+            newPizza.setDiameter(pizza.getDiameter());
+
+            return newPizza; // Return the newly created pizza
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e); // Wrap DataAccessException
+        }
+    }
+
+
 
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {
         SpecialtyPizza specialtyPizza = new SpecialtyPizza();
@@ -75,5 +121,6 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         specialtyPizza.setPrice(rowSet.getDouble("base_price"));
         return specialtyPizza;
     }
+
 
 }

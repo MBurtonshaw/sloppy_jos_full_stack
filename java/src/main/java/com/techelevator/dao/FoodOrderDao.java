@@ -3,6 +3,7 @@ package com.techelevator.dao;
 
 
 import com.techelevator.model.Food;
+import com.techelevator.model.Item;
 import com.techelevator.model.SpecialtyPizza;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -20,6 +21,7 @@ import java.util.List;
 public interface FoodOrderDao {
 List<SpecialtyPizza> getSpecialtyPizzas();
 SpecialtyPizza getSpecialtyPizza(int id);
+Item addPizza(Item pizza);
     /**
      * Retrieves all specialty pizzas from the data source.
      * @return a list of Food objects representing specialty pizzas.
