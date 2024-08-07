@@ -62,7 +62,6 @@ public class FoodOrderController {
         if (pizza == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pizza object cannot be null");
         }
-
         // Create a new Item instance and populate it with details from the request
         Item newPizza = new Item();
         newPizza.setSauce(pizza.getSauce());
@@ -96,15 +95,15 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.POST)
-    public SpecialtyPizza addSpecialtyPizza(@PathVariable int id) {
-        String sql = "SELECT specialty_pizza_id, name, base_price";
-        try {
-            return foodOrderDao.addSpecialtyPizza(id);
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.POST)
+//    public SpecialtyPizza addSpecialtyPizza(@PathVariable int id) {
+//        String sql = "";
+//        try {
+//            return foodOrderDao.addSpecialtyPizza(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
+//        }
+//    }
 
 //    @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
 //    public List<Food> getSides() {

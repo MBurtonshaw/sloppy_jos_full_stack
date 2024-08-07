@@ -27,7 +27,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     public List<SpecialtyPizza> getSpecialtyPizzas() {
         List<SpecialtyPizza> specialtyPizzas = new ArrayList<>();
 
-        String sql = "SELECT specialty_pizza_id, name, base_price FROM specialty_pizza;";  // Ensure all columns are selected
+        String sql = "SELECT specialty_pizza_id, name, base_price FROM specialty_pizza;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -93,62 +93,36 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
 //    }
 
     public Item addPizza(Item pizza) {
-        // SQL statement for inserting a new pizza
         String sql = "INSERT INTO item (sauce_id, crust_id, size_id) " +
                 "VALUES (?, ?, ?) " +
                 "RETURNING item_id;";
-        // Check if the pizza object is not null
         if (pizza == null) {
             throw new DaoException("Pizza object cannot be null");
         }
-
         try {
-            // Fetch the new pizza ID from the database
             int newPizzaId = jdbcTemplate.queryForObject(sql, int.class,
                     pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
-
-            // Create and populate a new Item instance for the added pizza
             Item newPizza = new Item();
             newPizza.setItemId(newPizzaId);
-            newPizza.setSauce(pizza.getSauce());
-            newPizza.setCrust(pizza.getCrust());
-            newPizza.setDiameter(pizza.getDiameter());
 
-            return newPizza; // Return the newly created pizza
+            return newPizza;
         } catch (DataAccessException e) {
-            throw new DaoException("Database access error", e); // Wrap DataAccessException
+            throw new DaoException("Database access error", e);
         }
     }
-
-    public Item addSpecialtyPizza(Item pizza) {
-        // SQL statement for inserting a new pizza
-        String sql = "INSERT INTO item (sauce_id, crust_id, size_id) " +
-                "VALUES (?, ?, ?) " +
-                "RETURNING item_id;";
-        // Check if the pizza object is not null
-        if (pizza == null) {
-            throw new DaoException("Pizza object cannot be null");
-        }
-
-        try {
-            // Fetch the new pizza ID from the database
-            int newPizzaId = jdbcTemplate.queryForObject(sql, int.class,
-                    pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
-
-            // Create and populate a new Item instance for the added pizza
-            Item newPizza = new Item();
-            newPizza.setItemId(newPizzaId);
-            newPizza.setSauce(pizza.getSauce());
-            newPizza.setCrust(pizza.getCrust());
-            newPizza.setDiameter(pizza.getDiameter());
-
-            return newPizza; // Return the newly created pizza
-        } catch (DataAccessException e) {
-            throw new DaoException("Database access error", e); // Wrap DataAccessException
-        }
-    }
-
-
+//
+//    public SpecialtyPizza addSpecialtyPizza(int id) {
+//        SpecialtyPizza special = null;
+//        String sql = "SELECT * FROM specialty_pizza WHERE specialty_pizza_id = ? ";
+//        try {
+//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+//            return mapRowToSpecialtyPizza(results);
+//        } catch (DataAccessException e) {
+//            throw new DaoException("Database access error", e); // Wrap DataAccessException
+//        }
+//    }
+//
+//
 
 
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {
