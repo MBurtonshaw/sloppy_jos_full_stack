@@ -98,7 +98,7 @@ public class FoodOrderController {
 
     @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.POST)
     public SpecialtyPizza addSpecialtyPizza(@PathVariable int id) {
-        String sql = "";
+        String sql = "SELECT specialty_pizza_id, name, base_price";
         try {
             return foodOrderDao.addSpecialtyPizza(id);
         } catch (DaoException e) {

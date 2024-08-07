@@ -22,6 +22,7 @@ public interface FoodOrderDao {
 List<SpecialtyPizza> getSpecialtyPizzas();
 SpecialtyPizza getSpecialtyPizza(int id);
 Item addPizza(Item pizza);
+SpecialtyPizza addSpecialtyPizza(int id);
     /**
      * Retrieves all specialty pizzas from the data source.
      * @return a list of Food objects representing specialty pizzas.
