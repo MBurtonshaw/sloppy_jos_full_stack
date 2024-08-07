@@ -53,6 +53,26 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         }
     }
 
+    @Override
+    public Food getPizzaById(int id) {
+        return null;
+    }
+
+    @Override
+    public void addPizza(Food pizza) {
+
+    }
+
+    @Override
+    public void updatePizza(Food pizza) {
+
+    }
+
+    @Override
+    public void deletePizza(int id) {
+
+    }
+
 //    public Item addPizza(pizza) {
 //        Item newItem = new Item();
 //        String sql = "INSERT INTO item (sauce_id, topping_id, crust_id)" +

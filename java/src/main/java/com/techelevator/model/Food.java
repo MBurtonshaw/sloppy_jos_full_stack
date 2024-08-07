@@ -8,7 +8,7 @@ public abstract class  Food {
     private int id; // Unique identifier for the food item
     private String name; // Name of the food item
     private double price; // Price of the food item
-    private String[] ingredients; // Ingredients used in the food item this might be useful for later on specialty pizzas
+
 
 
     // Getter for price
@@ -50,16 +50,5 @@ public abstract class  Food {
     public void setName(String name) {
         this.name = name;
     }
-//
-//    // Getter for ingredients
-//    public String[] getIngredients() {
-//        return ingredients;
-//    }
-//
-//    // Setter for ingredients
-//    public void setIngredients(String[] ingredients) {
-//        this.ingredients = ingredients;
-//    }
-
 
 }
