@@ -5,14 +5,14 @@ public class Item {
     private int itemId;
     private String diameter; //
     private String sauce; //
-    private String[] toppings; //
+    private Topping[] toppings; //
     private String crust;
 
     public Item() {
     }
 
     // Constructor with parameters
-    public Item(int itemId, String diameter, String sauce, String[] topping, String crust) {
+    public Item(int itemId, String diameter, String sauce, Topping[] topping, String crust) {
         this.itemId = itemId;
         this.diameter = diameter;
         this.sauce = sauce;
