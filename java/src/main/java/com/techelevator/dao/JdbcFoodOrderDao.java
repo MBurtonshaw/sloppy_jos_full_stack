@@ -58,7 +58,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
 
 
     @Override
-    public Food getPizzaById(int id) {
+    public Item getPizzaById(int id) {
         return null;
     }
 
@@ -102,10 +102,32 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         try {
             int newPizzaId = jdbcTemplate.queryForObject(sql, int.class,
                     pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
-            Item newPizza = new Item();
-            newPizza.setItemId(newPizzaId);
-
+            Item newPizza = null;
+            newPizza = getPizzaById(newPizzaId);
+            newPizza.setToppings(addToppings(pizza.getToppings()));
             return newPizza;
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
+    public Topping[] addToppings(Topping[] toppings) {
+        if (pizza == null) {
+            throw new DaoException("Pizza object cannot be null");
+        }
+
+        List<Topping> updatedToppings = new ArrayList<>();
+        String insertSql = "INSERT INTO item_topping (pizza_id, topping_id) VALUES (?, ?)"; // Assuming the structure of the table
+
+        try {
+            for (Topping topping : pizza.getToppings()) {
+                // Insert the topping and associate it with the pizza's ID
+                jdbcTemplate.update(insertSql, pizza.getItemId(), topping.getTopping_id()); // Assuming pizza has a getId() method
+                updatedToppings.add(topping);
+            }
+
+            // Retrieve and return the updated list of toppings for the pizza
+            return getToppings(pizza);
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }

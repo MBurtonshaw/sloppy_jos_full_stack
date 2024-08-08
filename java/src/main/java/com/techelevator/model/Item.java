@@ -5,7 +5,7 @@ public class Item {
     private int itemId;
     private String diameter; //
     private String sauce; //
-    private String[] topping; //
+    private String[] toppings; //
     private String crust;
 
     public Item() {
@@ -16,7 +16,7 @@ public class Item {
         this.itemId = itemId;
         this.diameter = diameter;
         this.sauce = sauce;
-        this.topping = topping;
+        this.toppings = toppings;
         this.crust = crust;
     }
 
@@ -32,8 +32,8 @@ public class Item {
         return crust;
     }
 
-    public String[] getTopping() {
-        return topping;
+    public Topping[] getToppings() {
+        return toppings;
     }
 
     public void setCrust(String crust) {
@@ -48,8 +48,8 @@ public class Item {
         this.sauce = sauce;
     }
 
-    public void setTopping(String[] topping) {
-        this.topping = topping;
+    public void setToppings(Topping[] toppings) {
+        this.toppings = toppings;
     }
 
     public int getItemId() {
