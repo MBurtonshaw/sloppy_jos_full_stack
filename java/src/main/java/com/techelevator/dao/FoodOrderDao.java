@@ -23,6 +23,7 @@ public interface FoodOrderDao {
     List<SpecialtyPizza> getSpecialtyPizzas();
     SpecialtyPizza getSpecialtyPizza(int id);
     Item addPizza(Item pizza);
+
 //SpecialtyPizza addSpecialtyPizza(int id);
 
     /**
@@ -36,7 +37,9 @@ public interface FoodOrderDao {
      * @param id The unique identifier of the pizza.
      * @return a Food object representing the pizza.
      */
-    Food getPizzaById(int id);
+
+    Item getPizzaById(int id);
+
 
     /**
      * Adds a new pizza to the data source.
