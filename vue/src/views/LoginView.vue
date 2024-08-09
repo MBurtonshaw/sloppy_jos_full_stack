@@ -29,6 +29,8 @@
             <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
+                  style="width: 65px; height: 65px;"></router-link></li>
             <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
             <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
           </ul>
@@ -66,7 +68,7 @@
       <router-link v-bind:to="{ name: 'home' }">
       <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head"  class="resize-footer"/>
        </router-link>
-       <p>&copy; 2024 Sloppy Joe's Pizza. All rights reserved.</p>
+       <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
       </div>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2987.979148375994!2d-81.64315672653612!3d41.50472667128512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8830fbae42fdaa89%3A0xb4f58c976afcbb42!2s7001%20Euclid%20Ave%2C%20Cleveland%2C%20OH%2044103!5e0!3m2!1sen!2sus!4v1722952925730!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     
@@ -214,7 +216,7 @@ div.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #daa520;
+  background-color:  #e0ba20c1;;
 }
 
 .resize-image {

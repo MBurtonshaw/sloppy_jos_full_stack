@@ -5,7 +5,11 @@ export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
-      user: currentUser || {}
+      user: currentUser || {},
+
+      products: [],
+      shoppingCart: [],
+      orders: [],
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -23,8 +27,42 @@ export function createStore(currentToken, currentUser) {
         state.token = '';
         state.user = {};
         axios.defaults.headers.common = {};
+      },
+      ADD_TO_CART(state, product) {
+        let thisProduct = state.shoppingCart.find((sp) => {
+          return sp.productId == product.productId;
+        });
+        if (thisProduct) {
+          thisProduct.qty++;
+        }
+        else {
+          let newShoppingProduct = {
+            productId: product.productId,
+            qty: 1
+          };
+          state.shoppingCart.push(newShoppingProduct);
+
+        }
+      },
+      REMOVE_FROM_CART(state, product) {
+        let thisProduct = state.shoppingCart.find((sp) => {
+          return sp.productId == product.productId;
+        });
+
+        if (thisProduct) {
+          if (thisProduct.qty <= 1) {
+            state.shoppingCart.pop(thisProduct);
+          }
+          else {
+            thisProduct.qty--;
+          }
+        }
+      },
+      EMPTY_CART(state) {
+          state.shoppingCart = [];
       }
     },
+    
   });
-  return store;
+  return store; 
 }

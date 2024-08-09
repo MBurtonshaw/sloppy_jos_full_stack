@@ -15,9 +15,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <!-- <a class="navbar-brand"> -->
-            <img class="navbar-brand" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-          <!-- </a> -->
+          
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -25,11 +23,15 @@
             <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
             <li><router-link v-bind:to="{name: 'menu'}">Menu</router-link></li>
             <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
-            <li><router-link v-bind:to="{name: 'order'}">Contact Us</router-link></li>
+            <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
           </ul>
+
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
+            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
+                  style="width: 65px; height: 65px;"></router-link></li>
+            <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li> 
           </ul>
+          
         </div>
       </div>
     </nav>
@@ -52,7 +54,7 @@
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" v-model="user.confirmPassword" required />
       </div>
-      <button type="submit">Create Account</button>
+      <button type="submit">Create Account</button><br>
       <p><router-link v-bind:to="{ name: 'login' }">Already have an account? Log in.</router-link></p>
     </form>
   </div>
@@ -64,7 +66,7 @@
   </div>
 
   <footer class="container-fluid text-center">
-      <p>&copy; 2024 Sloppy Joe's Pizza. All rights reserved.</p>
+      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
     </footer>
 
 </body>
@@ -141,14 +143,35 @@ export default {
   border-radius: 5px;
 }
 
+#register {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100vh;
+  
+}
+
+#register form {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 400px;
+  width: 100%;
+}
+
 
 label {
   margin-right: 0.5rem;
 }
 
 button {
-  width: 25%;
-  padding: 10px;
+  width: 75%;
+  padding: 20px;
   border: none;
   border-radius: 5px;
   background-color: #007bff;
@@ -171,7 +194,7 @@ body {
 
 
 footer {
-      background-color: #e0ba20c7;
+      background-color: #e0ba20c1;
       padding: 25px;
       font-size: 24px;
       

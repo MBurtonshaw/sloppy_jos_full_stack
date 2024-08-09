@@ -6,9 +6,11 @@ import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
+
 import MenuView from '../views/MenuView.vue';
 import OrderView from '../views/OrderView.vue';
 import ContactUsView from '../views/ContactUsView.vue';
+import ShoppingCart from '../views/ShoppingCartView.vue';
 
 
 /**
@@ -25,7 +27,7 @@ const routes = [
     name: 'home',
     component: HomeView,
     meta: {
-      requiresAuth: true
+      requiresAuth: false
     }
   },
   {
@@ -73,6 +75,14 @@ const routes = [
     path: "/contact",
     name: "contact",
     component: ContactUsView,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/shopping-cart",
+    name: "shopping-cart",
+    component: ShoppingCart,
     meta: {
       requiresAuth: false
     }
