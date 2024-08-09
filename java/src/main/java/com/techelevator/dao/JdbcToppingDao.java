@@ -29,7 +29,13 @@ public class JdbcToppingDao implements ToppingDao {
         String sql = "INSERT INTO item_topping(item_id, topping_id)" +
                     "VALUES (?, ?);";
         try {
-            int newToppingId = jdbcTemplate.update(sql, pizza.getItemId(), pizza.getToppings());
+            List<Topping> toppings = pizza.getToppings();
+            if (!toppings.isEmpty()) {
+                for (Topping topping : toppings) {
+                    // Insert the topping and associate it with the pizza's ID
+                    jdbcTemplate.update(sql, pizza.getItemId(), topping.getTopping_id()); // Make sure this matches your Topping class
+                }
+            }
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }

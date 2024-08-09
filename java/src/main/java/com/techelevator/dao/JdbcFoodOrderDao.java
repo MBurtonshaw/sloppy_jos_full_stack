@@ -56,9 +56,6 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         }
     }
 
-
-
-
     @Override
     public void updatePizza(Food pizza) {
 
@@ -69,26 +66,10 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
 
     }
 
-//    public Item addPizza(pizza) {
-//        Item newItem = new Item();
-//        String sql = "INSERT INTO item (sauce_id, topping_id, crust_id)" +
-//                "VALUES(?, ?, ?)" +
-//                "RETURNING item_id";
-//        try {
-//            int newPizzaId = jdbcTemplate.queryForObject(sql, int.class);
-//            newItem = getPizzaById();
-//        } catch (Exception e) {
-//            throw new DaoException(e.getMessage());
-//        }
-//
-//        return newItem;
-//    }
-
     @Override
     public Item getPizzaById(int id) {
         Item customPizza = null;
         String sql = "SELECT * FROM item WHERE item_id = ?;";
-
         try {
             // Execute the query and fetch the results
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
@@ -114,7 +95,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
             throw new DaoException("Crust cannot be null");
         }
         if (pizza.getDiameter() == null) {
-            throw new DaoException("Diameter cannot be null");
+            throw new DaoException("Size cannot be null");
         }
 
         try {
