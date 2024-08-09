@@ -79,4 +79,24 @@ public class FoodOrderController {
         }
     }
 
+    @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
+    public List<Side> getSides() {
+        try {
+            return foodOrderDao.getSides();
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.GET)
+    public Side getSide(@PathVariable int id) {
+        try {
+            return foodOrderDao.getSide(id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
+        }
+    }
+
+
+
 }

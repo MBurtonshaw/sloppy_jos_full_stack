@@ -1,10 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.Food;
-import com.techelevator.model.Item;
-import com.techelevator.model.SpecialtyPizza;
-import com.techelevator.model.Topping;
+import com.techelevator.model.*;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.BadSqlGrammarException;
@@ -27,7 +24,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     public List<SpecialtyPizza> getSpecialtyPizzas() {
         List<SpecialtyPizza> specialtyPizzas = new ArrayList<>();
 
-        String sql = "SELECT specialty_pizza_id, name, base_price FROM specialty_pizza;";
+        String sql = "SELECT specialty_pizza_id, specialty_pizza_name, base_price FROM specialty_pizza;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
@@ -111,6 +108,35 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }
+    }
+    @Override
+    public List<Side> getSides() {
+        List<Side> sides = new ArrayList<>();
+        String sql = "SELECT side_id, side_name, base_price FROM side;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                sides.add(mapRowToSide(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return sides;
+    }
+
+    @Override
+    public Side getSide(int id) {
+        Side side = null;
+        String sql = "SELECT side_id, side_name, base_price FROM side WHERE side_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            if (results.next()) { // Check if a result was returned
+                side = mapRowToSide(results); // Map the row to SpecialtyPizza
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return side;
     }
 
 //    private List<String> getToppingsForPizza(Item pizza) {
@@ -196,12 +222,18 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {
         SpecialtyPizza specialtyPizza = new SpecialtyPizza();
         specialtyPizza.setId(rowSet.getInt("specialty_pizza_id"));
-        specialtyPizza.setName(rowSet.getString("name"));
+        specialtyPizza.setName(rowSet.getString("specialty_pizza_name"));
         specialtyPizza.setPrice(rowSet.getDouble("base_price"));
         return specialtyPizza;
     }
 
-
+    private Side mapRowToSide(SqlRowSet rowSet) {
+        Side side = new Side();
+        side.setId(rowSet.getInt("side_id"));
+        side.setName(rowSet.getString("side_name"));
+        side.setPrice(rowSet.getDouble("base_price"));
+        return side;
+    }
 
 
 }
