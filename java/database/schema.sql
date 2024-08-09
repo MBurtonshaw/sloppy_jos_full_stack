@@ -81,7 +81,8 @@ CREATE TABLE item_topping (
 
 -- ----specialty pizzas-------------------------------------
 CREATE TABLE specialty_pizza (
- specialty_pizza_name VARCHAR(36)  PRIMARY KEY NOT NULL,
+ specialty_pizza_id SERIAL PRIMARY KEY, 
+specialty_pizza_name VARCHAR(36),  
  base_price decimal
 
 );
@@ -105,7 +106,7 @@ CREATE TABLE customer (
 -----side table----------------------
 CREATE TABLE side (
 
-	side_name varchar(50)PRIMARY KEY,
+	side_id int PRIMARY KEY,
 	base_price decimal
 
 );
@@ -116,14 +117,14 @@ CREATE TABLE food_order (
 	item_id int,
 	user_id int,
 	customer_id int,
-	side_name VARCHAR(36),
-	specialty_pizza_name VARCHAR(36),
+	side_id int,
+	specialty_pizza_id int,
 	CONSTRAINT PK_food_order PRIMARY KEY (food_order_id),
 	CONSTRAINT FK_food_order_item FOREIGN KEY (item_id) REFERENCES item (item_id),
 	CONSTRAINT FK_food_order_users FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT FK_food_order_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id),
-	CONSTRAINT FK_food_order_side FOREIGN KEY (side_name) REFERENCES side (side_name),
-	CONSTRAINT FK_food_order_specialty_pizza FOREIGN KEY (specialty_pizza_name) REFERENCES specialty_pizza (specialty_pizza_name)
+	CONSTRAINT FK_food_order_side FOREIGN KEY (side_id) REFERENCES side (side_id),
+	CONSTRAINT FK_food_order_specialty_pizza FOREIGN KEY (specialty_pizza_id) REFERENCES specialty_pizza (specialty_pizza_id)
 );
 
 -- ROLLBACK;
