@@ -28,6 +28,8 @@
             <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
+                  style="width: 65px; height: 65px;"></router-link></li>
             <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
             <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
           </ul>
@@ -76,12 +78,16 @@
       <h3><strong>Pizza Extra Sloppy is What We Do</strong></h3><br>
       <div class="row">
         <div class="col-sm-4">
+          <router-link v-bind:to="{name: 'order'}">
           <img src="@/assets/Pizzas2.png" class="img-responsive"  style="width:100%" alt="Pizza">
-          <p><strong>Order Custom</strong></p>
+          <p><strong>Order Specialty</strong></p>
+        </router-link>
         </div>
         <div class="col-sm-4"> 
+          <router-link v-bind:to="{name: 'order'}">
           <img src="@/assets/Pizzas1.png" class="img-responsive" style="width:100%" alt="Pizza">
-          <p><strong>We are here to serve you</strong></p>
+          <p><strong>Order Custom</strong></p>
+          </router-link>
         </div>
         <div class="col-sm-4">
           <div class="well">
@@ -92,7 +98,7 @@
     </div><br>
 
     <footer class="container-fluid text-center">
-      <p>&copy; 2024 Sloppy Joe's Pizza. All rights reserved.</p>
+      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
     </footer>
 <!-- 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
@@ -116,7 +122,7 @@
     
 
     footer {
-      background-color: #e0ba20c7;
+      background-color: #e0ba20c1;;
       padding: 25px;
       font-size: 24px;
       
