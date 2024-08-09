@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS crust CASCADE;
 DROP TABLE IF EXISTS item CASCADE;
 DROP TABLE IF EXISTS item_topping CASCADE;
 DROP TABLE IF EXISTS specialty_pizza CASCADE;
+DROP TABLE IF EXISTS specialty_topping CASCADE;
 DROP TABLE IF EXISTS customer CASCADE;
 DROP TABLE IF EXISTS side CASCADE;DROP TABLE IF EXISTS food_order CASCADE;
 DROP TABLE IF EXISTS specialty_pizza CASCADE;
@@ -21,7 +22,6 @@ CREATE TABLE users (
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
-
 
 ---sauces----------------------------------------------
 
@@ -85,6 +85,16 @@ specialty_pizza_name VARCHAR(36),
 
 );
 
+CREATE TABLE specialty_topping (
+	specialty_id int,
+	topping_id int,
+ 	CONSTRAINT PK_specialty_topping PRIMARY KEY(specialty_id, topping_id),
+ 	CONSTRAINT FK_specialty_topping_item FOREIGN KEY (specialty_id) REFERENCES specialty_pizza (specialty_pizza_id),
+ 	CONSTRAINT FK_specialty_topping_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id)
+);
+
+-- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
+
 
 ------Customer Table---------------
 CREATE TABLE customer (
@@ -105,6 +115,7 @@ CREATE TABLE customer (
 CREATE TABLE side (
 
 	side_id int PRIMARY KEY,
+	side_name varchar(24),
 	base_price decimal
 
 );
