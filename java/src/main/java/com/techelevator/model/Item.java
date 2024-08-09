@@ -10,24 +10,24 @@ public class Item {
     @JsonProperty("item_id")
     private int itemId;
     @JsonProperty("size_name")
-    private String diameter; //
+    private String diameter;
     @JsonProperty("sauce_name")
-    private String sauce; //
-    //@JsonProperty("topping_id")
-    private List<Topping> toppings; //
+    private String sauce;
+    @JsonProperty("toppings")
+    private List<Integer> toppingIds;
     @JsonProperty("crust_name")
     private String crust;
 
     public Item() {
-        this.toppings = new ArrayList<>(); // Initialize the list
+        this.toppingIds = new ArrayList<>();
     }
 
     // Constructor with parameters
-    public Item(int itemId, String diameter, String sauce, List<Topping> toppings, String crust) {
+    public Item(int itemId, String diameter, String sauce, List<Integer> toppingIds, String crust) {
         this.itemId = itemId;
         this.diameter = diameter;
         this.sauce = sauce;
-        this.toppings = toppings; // Correctly set the toppings
+        this.toppingIds = toppingIds; // Correctly set the toppings
         this.crust = crust;
     }
 
@@ -43,8 +43,8 @@ public class Item {
         return crust;
     }
 
-    public List<Topping> getToppings() {
-        return toppings;
+    public List<Integer> getToppingIds() {
+        return toppingIds;
     }
 
     public void setCrust(String crust) {
@@ -59,8 +59,8 @@ public class Item {
         this.sauce = sauce;
     }
 
-    public void setToppings(List<Topping> toppings) {
-        this.toppings = toppings;
+    public void setToppingIds(List<Integer> toppingIds) {
+        this.toppingIds = toppingIds;
     }
 
     public int getItemId() {

@@ -24,16 +24,14 @@ public class JdbcToppingDao implements ToppingDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     public void addToppings(Item pizza) {
-        String sql = "INSERT INTO item_topping(item_id, topping_id)" +
+        String sql = "INSERT INTO item_topping(item_id, topping_id) " +
                     "VALUES (?, ?);";
         try {
-            List<Topping> toppings = pizza.getToppings();
-            if (!toppings.isEmpty()) {
-                for (Topping topping : toppings) {
-                    // Insert the topping and associate it with the pizza's ID
-                    jdbcTemplate.update(sql, pizza.getItemId(), topping.getTopping_id()); // Make sure this matches your Topping class
+            List<Integer> toppingIds = pizza.getToppingIds();
+            if (!toppingIds.isEmpty()) {
+                for (Integer toppingId : toppingIds) {
+                    jdbcTemplate.update(sql, pizza.getItemId(), toppingId);
                 }
             }
         } catch (DataAccessException e) {

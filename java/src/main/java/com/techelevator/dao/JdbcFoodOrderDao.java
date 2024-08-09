@@ -73,8 +73,15 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         try {
             // Execute the query and fetch the results
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-            if (results.next()) { // Check if a result was returned
-                customPizza = mapRowToCustomPizza(results); // Map the row to SpecialtyPizza
+            if (results.next()) {
+                customPizza = mapRowToCustomPizza(results);
+                List<Integer> newToppings = new ArrayList<>();
+                String sql2 = "SELECT * FROM item_topping WHERE item_id = ?;";
+                SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql2, id);
+                while (results2.next()) {
+                    newToppings.add(results2.getInt("topping_id"));
+                }
+                customPizza.setToppingIds(newToppings);
             }
             return customPizza; // Return the specialty pizza or null if not found
         } catch (CannotGetJdbcConnectionException e) {
@@ -86,7 +93,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
 
     @Override
     public void addPizza(Item pizza) {
-        String sql = "INSERT INTO item (sauce_name, crust_name, size_name) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO item (sauce_name, crust_name, size_name) VALUES (?, ?, ?) RETURNING item_id";
 
         if (pizza.getSauce() == null) {
             throw new DaoException("Sauce cannot be null");
@@ -99,16 +106,31 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         }
 
         try {
-            jdbcTemplate.update(sql, pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
+            int newId = jdbcTemplate.queryForObject(sql,int.class, pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
+            pizza.setItemId(newId);
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }
     }
 
+//    private List<String> getToppingsForPizza(Item pizza) {
+//        List<String> toppings = new ArrayList<>();
+//        String sql = "SELECT topping_id FROM item_toppings WHERE item_id = ?";
+//        try {
+//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, pizza.getItemId());
+//            if (results.next()) {
+//                toppings.add();
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
+
     private Item mapRowToCustomPizza(SqlRowSet rowSet) {
         Item customPizza = new Item();
         customPizza.setItemId(rowSet.getInt("item_id"));
         customPizza.setSauce(rowSet.getString("sauce_name"));
+        //how to deal with toppings list?
         customPizza.setCrust(rowSet.getString("crust_name"));
         customPizza.setDiameter(rowSet.getString("size_name"));
         return customPizza;
