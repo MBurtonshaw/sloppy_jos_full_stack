@@ -21,7 +21,7 @@ import java.util.List;
 
 public interface FoodOrderDao {
     List<SpecialtyPizza> getSpecialtyPizzas();
-    SpecialtyPizza getSpecialtyPizza(String name);
+    SpecialtyPizza getSpecialtyPizza(int id);
     void addPizza(Item pizza);
     Item getPizzaById(int id);
 

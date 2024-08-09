@@ -1,14 +1,21 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Item {
 
+    @JsonProperty("item_id")
     private int itemId;
+    @JsonProperty("size_name")
     private String diameter; //
+    @JsonProperty("sauce_name")
     private String sauce; //
+    //@JsonProperty("topping_id")
     private List<Topping> toppings; //
+    @JsonProperty("crust_name")
     private String crust;
 
     public Item() {
