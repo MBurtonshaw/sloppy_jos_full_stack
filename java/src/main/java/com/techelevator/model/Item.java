@@ -1,22 +1,26 @@
 package com.techelevator.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Item {
 
     private int itemId;
     private String diameter; //
     private String sauce; //
-    private Topping[] toppings; //
+    private List<Topping> toppings; //
     private String crust;
 
     public Item() {
+        this.toppings = new ArrayList<>(); // Initialize the list
     }
 
     // Constructor with parameters
-    public Item(int itemId, String diameter, String sauce, Topping[] topping, String crust) {
+    public Item(int itemId, String diameter, String sauce, List<Topping> toppings, String crust) {
         this.itemId = itemId;
         this.diameter = diameter;
         this.sauce = sauce;
-        this.toppings = toppings;
+        this.toppings = toppings; // Correctly set the toppings
         this.crust = crust;
     }
 
@@ -32,7 +36,7 @@ public class Item {
         return crust;
     }
 
-    public Topping[] getToppings() {
+    public List<Topping> getToppings() {
         return toppings;
     }
 
@@ -48,7 +52,7 @@ public class Item {
         this.sauce = sauce;
     }
 
-    public void setToppings(Topping[] toppings) {
+    public void setToppings(List<Topping> toppings) {
         this.toppings = toppings;
     }
 

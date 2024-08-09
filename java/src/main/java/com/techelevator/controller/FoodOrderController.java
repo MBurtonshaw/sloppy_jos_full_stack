@@ -58,19 +58,13 @@ public class FoodOrderController {
 //    }
 
     @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
-    public Item addPizza(@RequestBody Item pizza) {
+    public void addPizza(@RequestBody Item pizza) {
         if (pizza == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Pizza object cannot be null");
         }
-        // Create a new Item instance and populate it with details from the request
-        Item newPizza = new Item();
-        newPizza.setSauce(pizza.getSauce());
-        newPizza.setCrust(pizza.getCrust());
-        newPizza.setDiameter(pizza.getDiameter());
-
         try {
             // Call the DAO to add the pizza to the database
-            return foodOrderDao.addPizza(newPizza);
+            foodOrderDao.addPizza(pizza);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve custom pizza", e);
