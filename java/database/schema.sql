@@ -57,12 +57,10 @@ CREATE TABLE crust (
 CREATE TABLE item(
 	item_id SERIAL NOT NULL,
 	sauce_name VARCHAR(36),
-	topping_id int,
 	crust_name VARCHAR(36) ,
 	size_name VARCHAR(10), 
 CONSTRAINT PK_item PRIMARY KEY (item_id),
 CONSTRAINT FK_item_sauce FOREIGN KEY (sauce_name) REFERENCES sauce (sauce_name),
-CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id),
 CONSTRAINT FK_item_crust FOREIGN KEY (crust_name) REFERENCES crust (crust_name),
 CONSTRAINT FK_item_diameter FOREIGN KEY (size_name) REFERENCES diameter (size_name)
 );
@@ -71,10 +69,10 @@ CONSTRAINT FK_item_diameter FOREIGN KEY (size_name) REFERENCES diameter (size_na
 
 CREATE TABLE item_topping (
 	item_id int,
-	topping_id int
--- 	CONSTRAINT PK_item_topping PRIMARY KEY(item_id, topping_id),
--- 	CONSTRAINT FK_item_topping_item FOREIGN KEY (item_id) REFERENCES item (item_id),
--- 	CONSTRAINT FK_item_topping_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id)
+	topping_id int,
+ 	CONSTRAINT PK_item_topping PRIMARY KEY(item_id, topping_id),
+ 	CONSTRAINT FK_item_topping_item FOREIGN KEY (item_id) REFERENCES item (item_id),
+ 	CONSTRAINT FK_item_topping_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id)
 );
 
 -- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);

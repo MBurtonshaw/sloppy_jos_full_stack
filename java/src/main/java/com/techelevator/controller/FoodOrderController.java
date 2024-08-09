@@ -39,7 +39,10 @@ public class FoodOrderController {
         try {
             // Call the DAO to add the pizza to the database
             foodOrderDao.addPizza(pizza);
-            toppingDao.addToppings(pizza);
+            List<Topping> toppings = pizza.getToppings();
+            if (!toppings.isEmpty()) {
+                toppingDao.addToppings(pizza);
+            }
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve custom pizza", e);
@@ -55,10 +58,10 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/menu/specialty_pizzas/{name}", method = RequestMethod.GET)
-    public SpecialtyPizza getSpecialtyPizza(@PathVariable String name) {
+    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
+    public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
         try {
-            return foodOrderDao.getSpecialtyPizza(name);
+            return foodOrderDao.getSpecialtyPizza(id);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
         }
