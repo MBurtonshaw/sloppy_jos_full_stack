@@ -10,7 +10,8 @@ DROP TABLE IF EXISTS item_topping CASCADE;
 DROP TABLE IF EXISTS specialty_pizza CASCADE;
 DROP TABLE IF EXISTS specialty_topping CASCADE;
 DROP TABLE IF EXISTS customer CASCADE;
-DROP TABLE IF EXISTS side CASCADE;DROP TABLE IF EXISTS food_order CASCADE;
+DROP TABLE IF EXISTS side CASCADE;
+DROP TABLE IF EXISTS food_order CASCADE;
 DROP TABLE IF EXISTS specialty_pizza CASCADE;
 
 
@@ -134,6 +135,22 @@ CREATE TABLE food_order (
 	CONSTRAINT FK_food_order_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id),
 	CONSTRAINT FK_food_order_side FOREIGN KEY (side_id) REFERENCES side (side_id),
 	CONSTRAINT FK_food_order_specialty_pizza FOREIGN KEY (specialty_pizza_id) REFERENCES specialty_pizza (specialty_pizza_id)
+);
+
+CREATE TABLE food_order_specialty (
+	food_order_id int,
+	specialty_pizza_id int,
+ 	CONSTRAINT PK_food_order_specialty PRIMARY KEY(food_order_id, specialty_pizza_id),
+    CONSTRAINT FK_food_order_specialty_food_order FOREIGN KEY (food_order_id) REFERENCES food_order (food_order_id),
+    CONSTRAINT FK_food_order_specialty_specialty_pizza FOREIGN KEY (specialty_pizza_id) REFERENCES specialty_pizza (specialty_pizza_id)
+);
+
+CREATE TABLE food_order_side (
+	food_order_id int,
+	side_id int,
+ 	CONSTRAINT PK_food_order_side PRIMARY KEY(food_order_id, side_id),
+    CONSTRAINT FK_food_order_side_food_order FOREIGN KEY (food_order_id) REFERENCES food_order (food_order_id),
+    CONSTRAINT FK_food_order_side_side FOREIGN KEY (side_id) REFERENCES side (side_id)
 );
 
 -- ROLLBACK;

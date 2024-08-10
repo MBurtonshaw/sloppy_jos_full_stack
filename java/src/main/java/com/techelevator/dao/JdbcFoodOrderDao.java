@@ -197,6 +197,45 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         return side;
     }
 
+    @Override
+    public FoodOrder getOrder(int id) {
+        FoodOrder order = null;
+        String sql = "SELECT food_order_id FROM food_order WHERE food_order_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            if (results.next()) {
+                order = mapRowToOrder(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return order;
+    }
+
+//    @Override
+//    public FoodOrder addOrder(int id) {
+//        FoodOrder order = null;
+//        String sql = "INSERT INTO food_order (food_order_id) VALUES (?) RETURNING food_order_id";
+//        try {
+//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+//            if (results.next()) {
+//                order = mapRowToOrder(results);
+//            }
+//        } catch (CannotGetJdbcConnectionException e) {
+//            throw new DaoException("Unable to connect to server or database", e);
+//        }
+//        return order;
+//    }
+
+    public void addSideToOrder(int orderId, int sideId) {
+        String sql = "INSERT INTO food_order_side VALUES (food_order_id, side_id);";
+        try {
+            jdbcTemplate.update(sql, orderId, sideId);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
     //Format custom pizza based on model
     private Item mapRowToCustomPizza(SqlRowSet rowSet) {
         Item customPizza = new Item();
@@ -223,6 +262,12 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         side.setName(rowSet.getString("side_name"));
         side.setPrice(rowSet.getDouble("base_price"));
         return side;
+    }
+
+    private FoodOrder mapRowToOrder(SqlRowSet rowSet) {
+        FoodOrder newOrder = new FoodOrder();
+        newOrder.setFood_order_id(rowSet.getInt("food_order_id"));
+        return newOrder;
     }
 
 }

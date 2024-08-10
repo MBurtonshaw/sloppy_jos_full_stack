@@ -118,4 +118,22 @@ public class FoodOrderController {
         }
     }
 
+    @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
+    public FoodOrder getOrder(@PathVariable int id) {
+        try {
+            return foodOrderDao.getOrder(id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+//    @RequestMapping(path = "/side/{id}", method = RequestMethod.POST)
+//    public void addSideToOrder(@RequestBody int sideId, @RequestBody int orderId) {
+//        try {
+//            foodOrderDao.addSideToOrder(orderId, sideId);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+//        }
+//    }
+
 }

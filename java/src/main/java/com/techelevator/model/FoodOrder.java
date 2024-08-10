@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 public class FoodOrder {
 
+    private int food_order_id;
     private int item_id;
     private int user_id;
     private int customer_id;
@@ -41,5 +42,13 @@ public class FoodOrder {
     }
     public void setSpecialty_pizza_id(int specialty_pizza_id) {
         this.specialty_pizza_id = specialty_pizza_id;
+    }
+
+    public int getFood_order_id() {
+        return food_order_id;
+    }
+
+    public void setFood_order_id(int food_order_id) {
+        this.food_order_id = food_order_id;
     }
 }
