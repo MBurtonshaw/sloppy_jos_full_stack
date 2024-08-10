@@ -21,14 +21,26 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    //Returns all specialty pizzas
     public List<SpecialtyPizza> getSpecialtyPizzas() {
+        //Fetching all specialty pizzas
         List<SpecialtyPizza> specialtyPizzas = new ArrayList<>();
-
         String sql = "SELECT specialty_pizza_id, specialty_pizza_name, base_price FROM specialty_pizza;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {
                 specialtyPizzas.add(mapRowToSpecialtyPizza(results));
+            }
+            // Retrieving toppingIds for each specialty pizzas
+            for (SpecialtyPizza specialtyPizza : specialtyPizzas) {
+                List<Integer> newToppings = new ArrayList<>();
+                String sql2 = "SELECT topping_id FROM specialty_topping WHERE specialty_id = ?;";
+                SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql2, specialtyPizza.getId());
+                while (results2.next()) {
+                    newToppings.add(results2.getInt("topping_id"));
+                }
+                //Setting toppingIds for specialty pizzas
+                specialtyPizza.setToppingIds(newToppings);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -36,21 +48,32 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         return specialtyPizzas;
     }
 
+    //Returns specialty pizzas by id
     public SpecialtyPizza getSpecialtyPizza(int id) {
-        SpecialtyPizza specialtyPizza = null; // Initialize as null
-        String sql = "SELECT * FROM specialty_pizza WHERE specialty_pizza_id = ?;";
+        SpecialtyPizza specialtyPizza = null;
+        String sql = "SELECT specialty_pizza_id, specialty_pizza_name, base_price FROM specialty_pizza WHERE specialty_pizza_id = ?;";
         try {
             // Execute the query and fetch the results
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-            if (results.next()) { // Check if a result was returned
-                specialtyPizza = mapRowToSpecialtyPizza(results); // Map the row to SpecialtyPizza
+            if (results.next()) {
+                specialtyPizza = mapRowToSpecialtyPizza(results);
+
+                //Retrieving toppingIds for specialty pizza
+                List<Integer> newToppings = new ArrayList<>();
+                String sql2 = "SELECT topping_id FROM specialty_topping WHERE specialty_id = ?;";
+                SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql2, id);
+                while (results2.next()) {
+                    newToppings.add(results2.getInt("topping_id"));
+                }
+                //Setting toppingIds for specialty pizza
+                specialtyPizza.setToppingIds(newToppings);
             }
-            return specialtyPizza; // Return the specialty pizza or null if not found
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e); // Catch other DB-related exceptions
         }
+        return specialtyPizza;
     }
 
     @Override
@@ -63,21 +86,25 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
 
     }
 
+    //Returns a custom pizza by id
     @Override
     public Item getPizzaById(int id) {
         Item customPizza = null;
-        String sql = "SELECT * FROM item WHERE item_id = ?;";
+        String sql = "SELECT item_id, sauce_name, crust_name, size_name FROM item WHERE item_id = ?;";
         try {
             // Execute the query and fetch the results
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             if (results.next()) {
                 customPizza = mapRowToCustomPizza(results);
+
+                //Retrieving toppingIds for custom pizza
                 List<Integer> newToppings = new ArrayList<>();
                 String sql2 = "SELECT * FROM item_topping WHERE item_id = ?;";
                 SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql2, id);
                 while (results2.next()) {
                     newToppings.add(results2.getInt("topping_id"));
                 }
+                //Setting toppingIds for custom pizza
                 customPizza.setToppingIds(newToppings);
             }
             return customPizza; // Return the specialty pizza or null if not found
@@ -88,10 +115,12 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         }
     }
 
+    //Create a custom pizza
     @Override
     public void addPizza(Item pizza) {
+        //Inserting custom pizza into db through sql string
+        //Using pizza object in parameters
         String sql = "INSERT INTO item (sauce_name, crust_name, size_name) VALUES (?, ?, ?) RETURNING item_id";
-
         if (pizza.getSauce() == null) {
             throw new DaoException("Sauce cannot be null");
         }
@@ -101,14 +130,17 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         if (pizza.getDiameter() == null) {
             throw new DaoException("Size cannot be null");
         }
-
         try {
+            //creating a record for a custom pizza
             int newId = jdbcTemplate.queryForObject(sql,int.class, pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
+            //setting an id for a custom pizza
             pizza.setItemId(newId);
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }
     }
+
+    //Returns all sides
     @Override
     public List<Side> getSides() {
         List<Side> sides = new ArrayList<>();
@@ -124,6 +156,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         return sides;
     }
 
+    //Returns a side by id
     @Override
     public Side getSide(int id) {
         Side side = null;
@@ -139,86 +172,17 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         return side;
     }
 
-//    private List<String> getToppingsForPizza(Item pizza) {
-//        List<String> toppings = new ArrayList<>();
-//        String sql = "SELECT topping_id FROM item_toppings WHERE item_id = ?";
-//        try {
-//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, pizza.getItemId());
-//            if (results.next()) {
-//                toppings.add();
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
+    //Format custom pizza based on model
     private Item mapRowToCustomPizza(SqlRowSet rowSet) {
         Item customPizza = new Item();
         customPizza.setItemId(rowSet.getInt("item_id"));
         customPizza.setSauce(rowSet.getString("sauce_name"));
-        //how to deal with toppings list?
         customPizza.setCrust(rowSet.getString("crust_name"));
         customPizza.setDiameter(rowSet.getString("size_name"));
         return customPizza;
     }
 
-//    public List<Topping> addToppings(Item pizza) {
-//        if (pizza == null) {
-//            throw new DaoException("Pizza object cannot be null");
-//        }
-//        // Assuming getToppings() returns an array or list of Topping objects
-//        List<Topping> toppings = pizza.getToppings();
-//        if (toppings != null || toppings.size() > 0) {
-//            throw new DaoException("Topping array cannot be null or empty");
-//        }
-//
-//        List<Topping> updatedToppings = new ArrayList<>();
-//        String insertSql = "INSERT INTO item_topping (pizza_id, topping_id) VALUES (?, ?)";
-//
-//        try {
-//            for (Topping topping : toppings) {
-//                // Insert the topping and associate it with the pizza's ID
-//                jdbcTemplate.update(insertSql, pizza.getItemId(), topping.getTopping_id()); // Make sure this matches your Topping class
-//                updatedToppings.add(topping);
-//            }
-//
-//            // Retrieve and return the updated list of toppings for the pizza
-//            return getToppings(pizza);
-//        } catch (DataAccessException e) {
-//            throw new DaoException("Database access error", e);
-//        }
-//    }
-//
-//    public List<Topping> getToppings(Item pizza) {
-//        String sql = "SELECT t.id, t.name FROM item_topping it " +
-//                "JOIN topping t ON it.topping_id = t.id " +
-//                "WHERE it.pizza_id = ?"; // Assuming pizza_id is the foreign key
-//
-//        List<Topping> toppings = jdbcTemplate.query(sql, new Object[]{pizza.getItemId()},
-//                (rs, rowNum) -> {
-//                    Topping topping = new Topping();
-//                    topping.setTopping_id(rs.getInt("id"));
-//                    topping.setName(rs.getString("name"));
-//                    return topping;
-//                });
-//
-//        return toppings; // Convert List to array
-//    }
-//
-//    public SpecialtyPizza addSpecialtyPizza(int id) {
-//        SpecialtyPizza special = null;
-//        String sql = "SELECT * FROM specialty_pizza WHERE specialty_pizza_id = ? ";
-//        try {
-//            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-//            return mapRowToSpecialtyPizza(results);
-//        } catch (DataAccessException e) {
-//            throw new DaoException("Database access error", e); // Wrap DataAccessException
-//        }
-//    }
-//
-//
-
-
+    //Format specialty pizza based on model
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {
         SpecialtyPizza specialtyPizza = new SpecialtyPizza();
         specialtyPizza.setId(rowSet.getInt("specialty_pizza_id"));
@@ -227,6 +191,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         return specialtyPizza;
     }
 
+    //Format side based on model
     private Side mapRowToSide(SqlRowSet rowSet) {
         Side side = new Side();
         side.setId(rowSet.getInt("side_id"));
@@ -234,6 +199,5 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         side.setPrice(rowSet.getDouble("base_price"));
         return side;
     }
-
 
 }

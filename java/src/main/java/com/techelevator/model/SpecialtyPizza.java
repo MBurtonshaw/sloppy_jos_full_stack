@@ -22,4 +22,12 @@ public class SpecialtyPizza extends Food{
 public  SpecialtyPizza(){
 
 }
+
+    public List<Integer> getToppingIds() {
+        return toppingIds;
+    }
+
+    public void setToppingIds(List<Integer> toppingIds) {
+        this.toppingIds = toppingIds;
+    }
 }

@@ -22,10 +22,9 @@ import java.util.List;
 @CrossOrigin
 public class FoodOrderController {
 
-    private FoodOrderDao foodOrderDao;
-    private ToppingDao toppingDao;
+    private final FoodOrderDao foodOrderDao;
+    private final ToppingDao toppingDao;
 
-    private final String API_BASE_URL = "http://localhost:9000/";
     public FoodOrderController(FoodOrderDao foodOrderDao, ToppingDao toppingDao) {
         this.foodOrderDao = foodOrderDao;
         this.toppingDao = toppingDao;
@@ -96,7 +95,5 @@ public class FoodOrderController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
         }
     }
-
-
 
 }

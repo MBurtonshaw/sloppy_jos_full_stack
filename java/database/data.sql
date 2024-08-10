@@ -10,7 +10,7 @@ BEGIN TRANSACTION;
 INSERT INTO topping (topping_name)
 VALUES ('Pepperoni'), ('Bacon'), ('Ham'), ('Mushrooms'), ('Black Olives'), ('Green Olives'), ('Bell Pepper'),
 		('Italian Sausage'), ('Onions'), ('Pineapple'), ('Extra Cheese'), ('Prosciutto'), ('Meatballs'),
-		('Anchioves'), ('Ginger-Infused Pineapple'), ('Truffles'), ('Artichokes'), ('Blue Cheese'), ('Jalapenos');
+		('Anchioves'), ('Ginger-Infused Pineapple'), ('Truffles'), ('Artichokes'), ('Blue Cheese'), ('Jalapenos'), ('Ground Beef'), ('Sloppy Joe Sauce');
 
 -- ROLLBACK;
 
@@ -33,7 +33,7 @@ INSERT INTO side (side_id, side_name, base_price)
 VALUES (1, 'Garlic Bread Sticks', 7.00), (2, 'Cheese Bread', 10.00), (3, 'Caesar Salad', 10.00), (4, 'Mozzarella Sticks', 10.00),  (5, 'Buffalo Wings - 6pc', 10.00), (6, 'Buffalo Wings - 12pc', 16.00);
 
 INSERT INTO specialty_topping(specialty_id, topping_id)
-VALUES(4, 1), (4, 4), (4, 19);
+VALUES(1, 11), (1, 41), (1, 42), (2, 1), (2, 2), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (3, 1), (3, 2), (3, 3), (3, 8), (3, 12), (3, 13), (4, 1), (4, 4), (4, 19);
 
 COMMIT TRANSACTION;
 --ROLLBACK
