@@ -6,15 +6,14 @@ DROP TABLE IF EXISTS topping CASCADE;
 DROP TABLE IF EXISTS diameter CASCADE;
 DROP TABLE IF EXISTS crust CASCADE;
 DROP TABLE IF EXISTS item CASCADE;
-DROP TABLE IF EXISTS item_topping CASCADE;
 DROP TABLE IF EXISTS specialty_pizza CASCADE;
-DROP TABLE IF EXISTS specialty_topping CASCADE;
 DROP TABLE IF EXISTS customer CASCADE;
 DROP TABLE IF EXISTS side CASCADE;
 DROP TABLE IF EXISTS food_order CASCADE;
-DROP TABLE IF EXISTS specialty_pizza CASCADE;
-
-
+DROP TABLE IF EXISTS item_topping CASCADE;
+DROP TABLE IF EXISTS specialty_topping CASCADE;
+DROP TABLE IF EXISTS food_order_specialty CASCADE;
+DROP TABLE IF EXISTS food_order_side CASCADE;
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -68,13 +67,7 @@ CONSTRAINT FK_item_diameter FOREIGN KEY (size_name) REFERENCES diameter (size_na
 
 -- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 
-CREATE TABLE item_topping (
-	item_id int,
-	topping_id int,
- 	CONSTRAINT PK_item_topping PRIMARY KEY(item_id, topping_id),
- 	CONSTRAINT FK_item_topping_item FOREIGN KEY (item_id) REFERENCES item (item_id),
- 	CONSTRAINT FK_item_topping_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id)
-);
+
 
 -- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 
@@ -86,13 +79,7 @@ specialty_pizza_name VARCHAR(36),
 
 );
 
-CREATE TABLE specialty_topping (
-	specialty_id int,
-	topping_id int,
- 	CONSTRAINT PK_specialty_topping PRIMARY KEY(specialty_id, topping_id),
- 	CONSTRAINT FK_specialty_topping_item FOREIGN KEY (specialty_id) REFERENCES specialty_pizza (specialty_pizza_id),
- 	CONSTRAINT FK_specialty_topping_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id)
-);
+
 
 -- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 
@@ -135,6 +122,22 @@ CREATE TABLE food_order (
 	CONSTRAINT FK_food_order_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id),
 	CONSTRAINT FK_food_order_side FOREIGN KEY (side_id) REFERENCES side (side_id),
 	CONSTRAINT FK_food_order_specialty_pizza FOREIGN KEY (specialty_pizza_id) REFERENCES specialty_pizza (specialty_pizza_id)
+);
+
+CREATE TABLE item_topping (
+	item_id int,
+	topping_id int,
+ 	CONSTRAINT PK_item_topping PRIMARY KEY(item_id, topping_id),
+ 	CONSTRAINT FK_item_topping_item FOREIGN KEY (item_id) REFERENCES item (item_id),
+ 	CONSTRAINT FK_item_topping_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id)
+);
+
+CREATE TABLE specialty_topping (
+	specialty_id int,
+	topping_id int,
+ 	CONSTRAINT PK_specialty_topping PRIMARY KEY(specialty_id, topping_id),
+ 	CONSTRAINT FK_specialty_topping_item FOREIGN KEY (specialty_id) REFERENCES specialty_pizza (specialty_pizza_id),
+ 	CONSTRAINT FK_specialty_topping_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id)
 );
 
 CREATE TABLE food_order_specialty (
