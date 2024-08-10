@@ -2,8 +2,7 @@ package com.techelevator.controller;
 
 import javax.validation.Valid;
 
-import com.techelevator.dao.FoodOrderDao;
-import com.techelevator.dao.ToppingDao;
+import com.techelevator.dao.*;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.*;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.techelevator.dao.UserDao;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
@@ -24,10 +22,14 @@ public class FoodOrderController {
 
     private final FoodOrderDao foodOrderDao;
     private final ToppingDao toppingDao;
+    private final SideDao sideDao;
+    private final SpecialtyPizzaDao specialtyPizzaDao;
 
-    public FoodOrderController(FoodOrderDao foodOrderDao, ToppingDao toppingDao) {
+    public FoodOrderController(FoodOrderDao foodOrderDao, ToppingDao toppingDao, SideDao sideDao, SpecialtyPizzaDao specialtyPizzaDao) {
         this.foodOrderDao = foodOrderDao;
         this.toppingDao = toppingDao;
+        this.sideDao = sideDao;
+        this.specialtyPizzaDao = specialtyPizzaDao;
     }
 
     @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
@@ -85,7 +87,7 @@ public class FoodOrderController {
     @RequestMapping(path = "/menu/specialty_pizzas", method = RequestMethod.GET)
     public List<SpecialtyPizza> getSpecialtyPizzas() {
         try {
-            return foodOrderDao.getSpecialtyPizzas();
+            return specialtyPizzaDao.getSpecialtyPizzas();
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas", e);
         }
@@ -94,7 +96,7 @@ public class FoodOrderController {
     @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
     public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
         try {
-            return foodOrderDao.getSpecialtyPizza(id);
+            return specialtyPizzaDao.getSpecialtyPizza(id);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
         }
@@ -103,7 +105,7 @@ public class FoodOrderController {
     @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
     public List<Side> getSides() {
         try {
-            return foodOrderDao.getSides();
+            return sideDao.getSides();
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
         }
@@ -112,7 +114,7 @@ public class FoodOrderController {
     @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.GET)
     public Side getSide(@PathVariable int id) {
         try {
-            return foodOrderDao.getSide(id);
+            return sideDao.getSide(id);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
         }

@@ -28,10 +28,6 @@ public interface FoodOrderDao {
 
     List<Order> getOrdersByUserId(int userId);
 
-    List<SpecialtyPizza> getSpecialtyPizzas();
-    SpecialtyPizza getSpecialtyPizza(int id);
-    List<Side> getSides();
-    Side getSide(int id);
     void addPizza(Item pizza);
     Item getPizzaById(int id);
 
