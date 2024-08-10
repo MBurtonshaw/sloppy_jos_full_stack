@@ -77,13 +77,38 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     }
 
     @Override
-    public void updatePizza(Food pizza) {
+    public Item updatePizza(Item pizza) {
+        Item updatedPizza = null;
+        String sql = "UPDATE item SET sauce_name = ?, crust_name = ?, size_name = ? WHERE item_id = ?;";
+        try {
+            int numberOfRows = jdbcTemplate.update(sql, pizza.getSauce(), pizza.getCrust(),
+                    pizza.getDiameter(), pizza.getItemId());
 
+            if (numberOfRows == 0) {
+                throw new DaoException("Zero rows affected, expected at least one");
+            } else {
+                updatedPizza = getPizzaById(pizza.getItemId());
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return updatedPizza;
     }
 
     @Override
     public void deletePizza(int id) {
-
+        boolean success = false;
+        int numberOfRows;
+        String sql = "DELETE FROM item WHERE item_id = ?;";
+        try {
+            jdbcTemplate.update(sql, id);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
     }
 
     //Returns a custom pizza by id

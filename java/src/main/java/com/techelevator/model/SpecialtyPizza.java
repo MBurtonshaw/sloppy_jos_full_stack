@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SpecialtyPizza extends Food{
     int specialty_pizza_id;
-    @JsonProperty("specialty_pizza_name")
+
     String name;
     double base_price;
 

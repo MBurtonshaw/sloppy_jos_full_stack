@@ -60,6 +60,28 @@ public class FoodOrderController {
         }
     }
 
+    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.PUT)
+    public Item updatePizza(@RequestBody Item pizza) {
+        try {
+            // Call the DAO to add the pizza to the database
+            return foodOrderDao.updatePizza(pizza);
+        } catch (DaoException e) {
+            // Handle database access exceptions and return an appropriate response
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to update custom pizza", e);
+        }
+    }
+
+    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.DELETE)
+    public void deletePizza(@PathVariable int id) {
+        try {
+            // Call the DAO to add the pizza to the database
+            foodOrderDao.deletePizza(id);
+        } catch (DaoException e) {
+            // Handle database access exceptions and return an appropriate response
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete custom pizza", e);
+        }
+    }
+
     @RequestMapping(path = "/menu/specialty_pizzas", method = RequestMethod.GET)
     public List<SpecialtyPizza> getSpecialtyPizzas() {
         try {

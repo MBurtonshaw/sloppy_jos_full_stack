@@ -28,7 +28,7 @@ public interface FoodOrderDao {
     void addPizza(Item pizza);
     Item getPizzaById(int id);
 
-    void updatePizza(Food pizza);
+    Item updatePizza(Item pizza);
 
     void deletePizza(int id);
 
