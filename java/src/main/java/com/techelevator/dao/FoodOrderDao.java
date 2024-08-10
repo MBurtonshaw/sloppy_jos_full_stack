@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+
+import com.techelevator.model.Item;
+import com.techelevator.model.Side;
+import com.techelevator.model.SpecialtyPizza;
+import org.springframework.core.annotation.Order;
+
 import java.util.List;
 
 /**
@@ -18,6 +24,10 @@ import java.util.List;
  */
 
 public interface FoodOrderDao {
+    Order addOrder(Order order);
+
+    List<Order> getOrdersByUserId(int userId);
+
     List<SpecialtyPizza> getSpecialtyPizzas();
     SpecialtyPizza getSpecialtyPizza(int id);
     List<Side> getSides();
@@ -34,3 +44,6 @@ public interface FoodOrderDao {
     void addSideToOrder(int order, int side);
 
 }
+
+
+
