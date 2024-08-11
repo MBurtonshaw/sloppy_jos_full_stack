@@ -56,6 +56,7 @@ public class JdbcSideDao implements SideDao {
     // Format side based on model
     private Side mapRowToSide(SqlRowSet rowSet) {
         Side side = new Side();
+
         side.setId(rowSet.getInt("side_id"));
         side.setName(rowSet.getString("side_name"));
         side.setPrice(rowSet.getDouble("base_price"));

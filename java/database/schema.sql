@@ -23,68 +23,44 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
----sauces----------------------------------------------
-
 CREATE TABLE sauce(
-	sauce_name varchar(20) PRIMARY KEY NOT NULL
-	
+	sauce_name varchar(20) PRIMARY KEY NOT NULL	
 );
 
-
-
----toppings----------------------------------------------------
 CREATE TABLE topping (
 	topping_id SERIAL NOT NULL,
 	topping_name varchar(36),
 	CONSTRAINT PK_topping PRIMARY KEY (topping_id)
 );
 
-
-------diameter------------------------------------------------
 CREATE TABLE diameter (
-	
 	size_name varchar(36) PRIMARY KEY
-	
 );
 
------crust----------------------------------------------------
 CREATE TABLE crust (
 	crust_name varchar(36)PRIMARY KEY NOT NULL
-	
 );
 
--------item table----------------------------------------------
 CREATE TABLE item(
 	item_id SERIAL NOT NULL,
 	sauce_name VARCHAR(36),
-	crust_name VARCHAR(36) ,
+	crust_name VARCHAR(36),
 	size_name VARCHAR(10), 
-CONSTRAINT PK_item PRIMARY KEY (item_id),
-CONSTRAINT FK_item_sauce FOREIGN KEY (sauce_name) REFERENCES sauce (sauce_name),
-CONSTRAINT FK_item_crust FOREIGN KEY (crust_name) REFERENCES crust (crust_name),
-CONSTRAINT FK_item_diameter FOREIGN KEY (size_name) REFERENCES diameter (size_name)
+	CONSTRAINT PK_item PRIMARY KEY (item_id),
+	CONSTRAINT FK_item_sauce FOREIGN KEY (sauce_name) REFERENCES sauce (sauce_name),
+	CONSTRAINT FK_item_crust FOREIGN KEY (crust_name) REFERENCES crust (crust_name),
+	CONSTRAINT FK_item_diameter FOREIGN KEY (size_name) REFERENCES diameter (size_name)
 );
-
+-- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 -- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 
-
-
--- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
-
--- ----specialty pizzas-------------------------------------
 CREATE TABLE specialty_pizza (
- specialty_pizza_id SERIAL PRIMARY KEY, 
-specialty_pizza_name VARCHAR(36),  
- base_price decimal
-
+	specialty_pizza_id SERIAL PRIMARY KEY, 
+	specialty_pizza_name VARCHAR(36),  
+	base_price decimal
 );
-
-
-
 -- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 
-
-------Customer Table---------------
 CREATE TABLE customer (
     customer_id SERIAL NOT NULL,
     first_name varchar(50),
@@ -99,16 +75,12 @@ CREATE TABLE customer (
 	CONSTRAINT PK_customer PRIMARY KEY (customer_id)
 );
 
------side table----------------------
 CREATE TABLE side (
-
 	side_id int PRIMARY KEY,
 	side_name varchar(24),
 	base_price decimal
-
 );
 
-------Order Table-----------------
 CREATE TABLE food_order (
 	food_order_id SERIAL NOT NULL,
 	item_id int,
@@ -165,10 +137,4 @@ CREATE TABLE food_order_item (
 );
 
 -- ROLLBACK;
-
-
 COMMIT TRANSACTION;
-
-
-
-

@@ -1,17 +1,21 @@
 package com.techelevator.model;
 
+import java.util.List;
+
 public class FoodOrder {
 
     private int food_order_id;
-    private int item_id;
     private int user_id;
     private int customer_id;
-    private int side_id;
-    private int specialty_pizza_id;
+    private List<Integer> specialty_pizza_ids;
+    private List<Integer> custom_pizza_ids;
+    private List<Integer> side_ids;
 
     // getters
-    public int getItem_id() {
-        return item_id;
+
+
+    public List<Integer> getCustom_pizza_ids() {
+        return custom_pizza_ids;
     }
 
     public int getCustomer_id() {
@@ -23,12 +27,14 @@ public class FoodOrder {
     }
 
     // setters
-    public int getSide_id() {
-        return side_id;
+
+
+    public List<Integer> getSide_ids() {
+        return side_ids;
     }
 
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
+    public void setCustom_pizza_ids(List<Integer> custom_pizza_ids) {
+        this.custom_pizza_ids = custom_pizza_ids;
     }
 
     public void setCustomer_id(int customer_id) {
@@ -39,16 +45,16 @@ public class FoodOrder {
         this.user_id = user_id;
     }
 
-    public void setSide_id(int side_id) {
-        this.side_id = side_id;
+    public void setSide_ids(List<Integer> side_ids) {
+        this.side_ids = side_ids;
     }
 
-    public int getSpecialty_pizza_id() {
-        return specialty_pizza_id;
+    public List<Integer> getSpecialty_pizza_ids() {
+        return specialty_pizza_ids;
     }
 
-    public void setSpecialty_pizza_id(int specialty_pizza_id) {
-        this.specialty_pizza_id = specialty_pizza_id;
+    public void setSpecialty_pizza_ids(List<Integer> specialty_pizza_ids) {
+        this.specialty_pizza_ids = specialty_pizza_ids;
     }
 
     public int getFood_order_id() {

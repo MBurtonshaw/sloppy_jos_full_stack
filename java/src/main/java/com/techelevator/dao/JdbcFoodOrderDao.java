@@ -204,9 +204,15 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     private FoodOrder mapRowToOrder(SqlRowSet rowSet) {
         FoodOrder newOrder = new FoodOrder();
         newOrder.setFood_order_id(rowSet.getInt("food_order_id"));
-        newOrder.setItem_id(rowSet.getInt("item_id"));
-        newOrder.setSpecialty_pizza_id(rowSet.getInt("specialty_pizza_id"));
-        newOrder.setSide_id(rowSet.getInt("side_id"));
+        List<Integer> custom_ids = new ArrayList<>();
+        custom_ids.add(rowSet.getInt("item_id"));
+        newOrder.setCustom_pizza_ids(custom_ids);
+        List<Integer> specialty_ids = new ArrayList<>();
+        specialty_ids.add(rowSet.getInt("specialty_pizza_id"));
+        newOrder.setSpecialty_pizza_ids(specialty_ids);
+        List<Integer> side_ids = new ArrayList<>();
+        side_ids.add(rowSet.getInt("side_id"));
+        newOrder.setSide_ids(side_ids);
         newOrder.setUser_id(rowSet.getInt("user_id"));
         newOrder.setCustomer_id(rowSet.getInt("customer_id"));
         return newOrder;
