@@ -156,6 +156,14 @@ CREATE TABLE food_order_side (
     CONSTRAINT FK_food_order_side_side FOREIGN KEY (side_id) REFERENCES side (side_id)
 );
 
+CREATE TABLE food_order_item (
+	food_order_id int,
+	item_id int,
+ 	CONSTRAINT PK_food_order_item PRIMARY KEY(food_order_id, item_id),
+    CONSTRAINT FK_food_order_item_food_order FOREIGN KEY (food_order_id) REFERENCES food_order (food_order_id),
+    CONSTRAINT FK_food_order_item_item FOREIGN KEY (item_id) REFERENCES item (item_id)
+);
+
 -- ROLLBACK;
 
 

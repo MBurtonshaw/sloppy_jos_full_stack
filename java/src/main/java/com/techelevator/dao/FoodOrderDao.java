@@ -1,8 +1,6 @@
 
 package com.techelevator.dao;
 
-
-
 import com.techelevator.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -29,9 +27,10 @@ public interface FoodOrderDao {
     List<Order> getOrdersByUserId(int userId);
 
     void addPizza(Item pizza);
+
     Item getPizzaById(int id);
 
-    Item updatePizza(Item pizza);
+    Item updatePizza(Item pizza, int id);
 
     void deletePizza(int id);
 
@@ -40,6 +39,3 @@ public interface FoodOrderDao {
     void addSideToOrder(int order, int side);
 
 }
-
-
-

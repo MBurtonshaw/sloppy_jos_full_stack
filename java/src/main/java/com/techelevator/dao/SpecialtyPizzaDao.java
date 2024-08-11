@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface SpecialtyPizzaDao {
     List<SpecialtyPizza> getSpecialtyPizzas();
+
     SpecialtyPizza getSpecialtyPizza(int id);
 }

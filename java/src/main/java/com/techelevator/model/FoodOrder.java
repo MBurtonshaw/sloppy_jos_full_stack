@@ -10,7 +10,8 @@ public class FoodOrder {
     private int specialty_pizza_id;
     private int orderId;
     private int qty;
-    //getters
+
+    // getters
     public int getItem_id() {
         return item_id;
     }
@@ -31,7 +32,7 @@ public class FoodOrder {
         return qty;
     }
 
-    //setters
+    // setters
     public int getSide_id() {
         return side_id;
     }
@@ -39,18 +40,23 @@ public class FoodOrder {
     public void setItem_id(int item_id) {
         this.item_id = item_id;
     }
+
     public void setCustomer_id(int customer_id) {
         this.customer_id = customer_id;
     }
+
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
     public void setSide_id(int side_id) {
         this.side_id = side_id;
     }
+
     public int getSpecialty_pizza_id() {
         return specialty_pizza_id;
     }
+
     public void setSpecialty_pizza_id(int specialty_pizza_id) {
         this.specialty_pizza_id = specialty_pizza_id;
     }

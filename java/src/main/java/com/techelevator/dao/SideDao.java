@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface SideDao {
     Side getSide(int id);
+
     List<Side> getSides();
 }

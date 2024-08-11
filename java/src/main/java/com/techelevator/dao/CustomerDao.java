@@ -15,9 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import com.techelevator.model.User;
 
-
-public abstract class  CustomerDao implements UserDao {
-
+public abstract class CustomerDao implements UserDao {
 
     @Override
     public List<User> getUsers() {

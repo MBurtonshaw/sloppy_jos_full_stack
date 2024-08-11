@@ -4,30 +4,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class SpecialtyPizza extends Food{
+public class SpecialtyPizza extends Food {
     int specialty_pizza_id;
 
     String name;
     double base_price;
+    List<String> toppings;
 
-    List<Integer> toppingIds;
-    //constructor
-    public SpecialtyPizza(int specialty_pizza_id, String name, double base_price, List<Integer> toppingIds){
-       // super(specialty_pizza_id,name,base_price);
-        this.specialty_pizza_id =specialty_pizza_id;
+    // constructor
+    public SpecialtyPizza(int specialty_pizza_id, String name, double base_price) {
+        // super(specialty_pizza_id,name,base_price);
+        this.specialty_pizza_id = specialty_pizza_id;
         this.name = name;
         this.base_price = base_price;
-        this.toppingIds = toppingIds;
-    }
-public  SpecialtyPizza(){
-
-}
-
-    public List<Integer> getToppingIds() {
-        return toppingIds;
     }
 
-    public void setToppingIds(List<Integer> toppingIds) {
-        this.toppingIds = toppingIds;
+    public SpecialtyPizza() {
+
+    }
+
+    public List<String> getToppings() {
+        return toppings;
+    }
+
+    public void setToppings(List<String> toppings) {
+        this.toppings = toppings;
     }
 }

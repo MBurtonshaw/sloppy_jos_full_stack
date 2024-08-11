@@ -25,7 +25,8 @@ public class FoodOrderController {
     private final SideDao sideDao;
     private final SpecialtyPizzaDao specialtyPizzaDao;
 
-    public FoodOrderController(FoodOrderDao foodOrderDao, ToppingDao toppingDao, SideDao sideDao, SpecialtyPizzaDao specialtyPizzaDao) {
+    public FoodOrderController(FoodOrderDao foodOrderDao, ToppingDao toppingDao, SideDao sideDao,
+                               SpecialtyPizzaDao specialtyPizzaDao) {
         this.foodOrderDao = foodOrderDao;
         this.toppingDao = toppingDao;
         this.sideDao = sideDao;
@@ -63,10 +64,10 @@ public class FoodOrderController {
     }
 
     @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.PUT)
-    public Item updatePizza(@RequestBody Item pizza) {
+    public Item updatePizza(@RequestBody Item pizza, @PathVariable int id) {
         try {
             // Call the DAO to add the pizza to the database
-            return foodOrderDao.updatePizza(pizza);
+            return foodOrderDao.updatePizza(pizza, id);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to update custom pizza", e);
@@ -89,7 +90,8 @@ public class FoodOrderController {
         try {
             return specialtyPizzaDao.getSpecialtyPizzas();
         } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas", e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas",
+                    e);
         }
     }
 
@@ -129,13 +131,15 @@ public class FoodOrderController {
         }
     }
 
-//    @RequestMapping(path = "/side/{id}", method = RequestMethod.POST)
-//    public void addSideToOrder(@RequestBody int sideId, @RequestBody int orderId) {
-//        try {
-//            foodOrderDao.addSideToOrder(orderId, sideId);
-//        } catch (DaoException e) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
-//        }
-//    }
+    // @RequestMapping(path = "/side/{id}", method = RequestMethod.POST)
+    // public void addSideToOrder(@RequestBody int sideId, @RequestBody int orderId)
+    // {
+    // try {
+    // foodOrderDao.addSideToOrder(orderId, sideId);
+    // } catch (DaoException e) {
+    // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found",
+    // e);
+    // }
+    // }
 
 }

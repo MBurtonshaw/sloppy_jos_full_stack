@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class JdbcSpecialtyPizzaDao implements SpecialtyPizzaDao {
     private final JdbcTemplate jdbcTemplate;
@@ -21,9 +22,9 @@ public class JdbcSpecialtyPizzaDao implements SpecialtyPizzaDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    //Returns all specialty pizzas
+    // Returns all specialty pizzas
     public List<SpecialtyPizza> getSpecialtyPizzas() {
-        //Fetching all specialty pizzas
+        // Fetching all specialty pizzas
         List<SpecialtyPizza> specialtyPizzas = new ArrayList<>();
         String sql = "SELECT specialty_pizza_id, specialty_pizza_name, base_price FROM specialty_pizza;";
         try {
@@ -34,13 +35,21 @@ public class JdbcSpecialtyPizzaDao implements SpecialtyPizzaDao {
             // Retrieving toppingIds for each specialty pizzas
             for (SpecialtyPizza specialtyPizza : specialtyPizzas) {
                 List<Integer> newToppings = new ArrayList<>();
+                List<String> toppingNames = new ArrayList<>();
                 String sql2 = "SELECT topping_id FROM specialty_topping WHERE specialty_id = ?;";
                 SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql2, specialtyPizza.getId());
                 while (results2.next()) {
                     newToppings.add(results2.getInt("topping_id"));
                 }
-                //Setting toppingIds for specialty pizzas
-                specialtyPizza.setToppingIds(newToppings);
+                String sql3 = "SELECT topping_name FROM topping WHERE topping_id = ?;";
+                for (Integer topping : newToppings) {
+                    SqlRowSet results3 = jdbcTemplate.queryForRowSet(sql3, topping);
+                    while (results3.next()) {
+                        toppingNames.add(results3.getString("topping_name"));
+                    }
+                }
+                // Setting toppingIds for specialty pizzas
+                specialtyPizza.setToppings(toppingNames);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -48,7 +57,7 @@ public class JdbcSpecialtyPizzaDao implements SpecialtyPizzaDao {
         return specialtyPizzas;
     }
 
-    //Returns specialty pizzas by id
+    // Returns specialty pizzas by id
     public SpecialtyPizza getSpecialtyPizza(int id) {
         SpecialtyPizza specialtyPizza = null;
         String sql = "SELECT specialty_pizza_id, specialty_pizza_name, base_price FROM specialty_pizza WHERE specialty_pizza_id = ?;";
@@ -58,15 +67,24 @@ public class JdbcSpecialtyPizzaDao implements SpecialtyPizzaDao {
             if (results.next()) {
                 specialtyPizza = mapRowToSpecialtyPizza(results);
 
-                //Retrieving toppingIds for specialty pizza
+                // Retrieving toppingIds for specialty pizza
                 List<Integer> newToppings = new ArrayList<>();
+                List<String> toppingNames = new ArrayList<>();
                 String sql2 = "SELECT topping_id FROM specialty_topping WHERE specialty_id = ?;";
                 SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql2, id);
                 while (results2.next()) {
                     newToppings.add(results2.getInt("topping_id"));
                 }
-                //Setting toppingIds for specialty pizza
-                specialtyPizza.setToppingIds(newToppings);
+                String sql3 = "SELECT topping_name FROM topping WHERE topping_id = ?;";
+                for (Integer topping : newToppings) {
+                    SqlRowSet results3 = jdbcTemplate.queryForRowSet(sql3, topping);
+                    while (results3.next()) {
+                        toppingNames.add(results3.getString("topping_name"));
+                    }
+                }
+
+                // Setting toppingIds for specialty pizza
+                specialtyPizza.setToppings(toppingNames);
             }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -76,7 +94,7 @@ public class JdbcSpecialtyPizzaDao implements SpecialtyPizzaDao {
         return specialtyPizza;
     }
 
-    //Format specialty pizza based on model
+    // Format specialty pizza based on model
     private SpecialtyPizza mapRowToSpecialtyPizza(SqlRowSet rowSet) {
         SpecialtyPizza specialtyPizza = new SpecialtyPizza();
         specialtyPizza.setId(rowSet.getInt("specialty_pizza_id"));

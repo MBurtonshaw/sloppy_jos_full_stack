@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class JdbcToppingDao implements ToppingDao {
     private final JdbcTemplate jdbcTemplate;
@@ -26,7 +27,7 @@ public class JdbcToppingDao implements ToppingDao {
 
     public void addToppings(Item pizza) {
         String sql = "INSERT INTO item_topping(item_id, topping_id) " +
-                    "VALUES (?, ?);";
+                "VALUES (?, ?);";
         try {
             List<Integer> toppingIds = pizza.getToppingIds();
             if (!toppingIds.isEmpty()) {

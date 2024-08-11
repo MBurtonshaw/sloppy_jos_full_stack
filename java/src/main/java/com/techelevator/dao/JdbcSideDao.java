@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class JdbcSideDao implements SideDao {
     private final JdbcTemplate jdbcTemplate;
@@ -36,7 +37,7 @@ public class JdbcSideDao implements SideDao {
         return sides;
     }
 
-    //Returns a side by id
+    // Returns a side by id
     @Override
     public Side getSide(int id) {
         Side side = null;
@@ -52,7 +53,7 @@ public class JdbcSideDao implements SideDao {
         return side;
     }
 
-    //Format side based on model
+    // Format side based on model
     private Side mapRowToSide(SqlRowSet rowSet) {
         Side side = new Side();
         side.setId(rowSet.getInt("side_id"));

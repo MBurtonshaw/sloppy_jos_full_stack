@@ -4,12 +4,10 @@ package com.techelevator.model;
  * The Food class represents a food item, such as a pizza,
  * with an id, name, price, and ingredients.
  */
-public abstract class  Food {
+public abstract class Food {
     private int id; // Unique identifier for the food item
     private String name; // Name of the food item
     private double price; // Price of the food item
-
-
 
     // Getter for price
 
@@ -17,13 +15,11 @@ public abstract class  Food {
         return price;
     }
 
-
     // Setter for price
 
     public void setPrice(double price) {
         this.price = price;
     }
-
 
     // Getter for id
 
@@ -31,20 +27,17 @@ public abstract class  Food {
         return id;
     }
 
-
     // Setter for id
 
     public void setId(int id) {
         this.id = id;
     }
 
-
     // Getter for name
 
     public String getName() {
         return name;
     }
-
 
     // Setter for name
     public void setName(String name) {
