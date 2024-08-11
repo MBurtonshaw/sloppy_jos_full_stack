@@ -35,7 +35,7 @@ VALUES (1, 'Garlic Bread Sticks', 7.00), (2, 'Cheese Bread', 10.00), (3, 'Caesar
 INSERT INTO specialty_topping(specialty_id, topping_id)
 VALUES(1, 11), (1, 20), (1, 21), (2, 1), (2, 2), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (3, 1), (3, 2), (3, 3), (3, 8), (3, 12), (3, 13), (4, 1), (4, 4), (4, 19);
 
-INSERT INTO food_order VALUES(1, 5, null, null, 4, 4);
+INSERT INTO food_order VALUES(1, null, null, null, null, null);
 
 COMMIT TRANSACTION;
 --ROLLBACK

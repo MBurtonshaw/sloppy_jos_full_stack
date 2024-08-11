@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class FoodOrder {
@@ -9,6 +11,7 @@ public class FoodOrder {
     private int customer_id;
     private List<Integer> specialty_pizza_ids;
     private List<Integer> custom_pizza_ids;
+
     private List<Integer> side_ids;
 
     // getters

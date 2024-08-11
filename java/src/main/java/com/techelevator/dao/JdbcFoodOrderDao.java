@@ -183,7 +183,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     // }
 
     public void addSideToOrder(int orderId, int sideId) {
-        String sql = "INSERT INTO food_order_side VALUES (food_order_id, side_id);";
+        String sql = "INSERT INTO food_order_side(food_order_id, side_id) VALUES(?, ?);";
         try {
             jdbcTemplate.update(sql, orderId, sideId);
         } catch (DataAccessException e) {
