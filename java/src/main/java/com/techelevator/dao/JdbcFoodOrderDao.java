@@ -154,7 +154,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     @Override
     public FoodOrder getOrder(int id) {
         FoodOrder order = null;
-        String sql = "SELECT food_order_id FROM food_order WHERE food_order_id = ?;";
+        String sql = "SELECT food_order_id, item_id, user_id, customer_id, side_id, specialty_pizza_id FROM food_order WHERE food_order_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             if (results.next()) {
@@ -204,6 +204,11 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     private FoodOrder mapRowToOrder(SqlRowSet rowSet) {
         FoodOrder newOrder = new FoodOrder();
         newOrder.setFood_order_id(rowSet.getInt("food_order_id"));
+        newOrder.setItem_id(rowSet.getInt("item_id"));
+        newOrder.setSpecialty_pizza_id(rowSet.getInt("specialty_pizza_id"));
+        newOrder.setSide_id(rowSet.getInt("side_id"));
+        newOrder.setUser_id(rowSet.getInt("user_id"));
+        newOrder.setCustomer_id(rowSet.getInt("customer_id"));
         return newOrder;
     }
 
