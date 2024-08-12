@@ -25,28 +25,6 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     }
 
     @Override
-    public Order addOrder(Order order) {
-        return null;
-    }
-
-    @Override
-    public List<Order> getOrdersByUserId(int userId) {
-        return null;
-    }
-
-
-
-
-
-    // Returns a custom pizza by id
-
-
-    // Create a custom pizza
-
-
-    // Returns all sides
-
-    @Override
     public FoodOrder getOrder(int id) {
         FoodOrder order = null;
         String sql = "SELECT food_order_id, user_id, customer_id FROM food_order WHERE food_order_id = ?;";
@@ -141,14 +119,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     }
 
     // Format custom pizza based on model
-    private Item mapRowToCustomPizza(SqlRowSet rowSet) {
-        Item customPizza = new Item();
-        customPizza.setItemId(rowSet.getInt("item_id"));
-        customPizza.setSauce(rowSet.getString("sauce_name"));
-        customPizza.setCrust(rowSet.getString("crust_name"));
-        customPizza.setDiameter(rowSet.getString("size_name"));
-        return customPizza;
-    }
+
 
     private FoodOrder mapRowToOrder(SqlRowSet rowSet) {
         FoodOrder newOrder = new FoodOrder();

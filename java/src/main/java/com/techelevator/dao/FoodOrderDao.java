@@ -22,11 +22,6 @@ import java.util.List;
  */
 
 public interface FoodOrderDao {
-    Order addOrder(Order order);
-
-    List<Order> getOrdersByUserId(int userId);
-
-
 
     FoodOrder getOrder(int id);
     void addOrder(FoodOrder foodOrder);
