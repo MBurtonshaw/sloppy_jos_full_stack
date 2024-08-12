@@ -53,6 +53,7 @@ public class JdbcSideDao implements SideDao {
         return side;
     }
 
+
     // Format side based on model
     private Side mapRowToSide(SqlRowSet rowSet) {
         Side side = new Side();

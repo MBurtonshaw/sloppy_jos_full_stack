@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS food_order CASCADE;
 DROP TABLE IF EXISTS item_topping CASCADE;
 DROP TABLE IF EXISTS specialty_topping CASCADE;
 DROP TABLE IF EXISTS food_order_specialty CASCADE;
+DROP TABLE IF EXISTS food_order_item CASCADE;
 DROP TABLE IF EXISTS food_order_side CASCADE;
 
 CREATE TABLE users (
@@ -28,7 +29,7 @@ CREATE TABLE sauce(
 );
 
 CREATE TABLE topping (
-	topping_id SERIAL NOT NULL,
+	topping_id int NOT NULL,
 	topping_name varchar(36),
 	CONSTRAINT PK_topping PRIMARY KEY (topping_id)
 );
@@ -55,7 +56,7 @@ CREATE TABLE item(
 -- ALTER TABLE item ADD CONSTRAINT FK_item_item_topping FOREIGN KEY (topping_id) REFERENCES topping (topping_id);
 
 CREATE TABLE specialty_pizza (
-	specialty_pizza_id SERIAL PRIMARY KEY, 
+	specialty_pizza_id int PRIMARY KEY, 
 	specialty_pizza_name VARCHAR(36),  
 	base_price decimal
 );
@@ -83,17 +84,11 @@ CREATE TABLE side (
 
 CREATE TABLE food_order (
 	food_order_id SERIAL NOT NULL,
-	item_id int,
 	user_id int,
 	customer_id int,
-	side_id int,
-	specialty_pizza_id int,
 	CONSTRAINT PK_food_order PRIMARY KEY (food_order_id),
-	CONSTRAINT FK_food_order_item FOREIGN KEY (item_id) REFERENCES item (item_id),
 	CONSTRAINT FK_food_order_users FOREIGN KEY (user_id) REFERENCES users (user_id),
-	CONSTRAINT FK_food_order_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id),
-	CONSTRAINT FK_food_order_side FOREIGN KEY (side_id) REFERENCES side (side_id),
-	CONSTRAINT FK_food_order_specialty_pizza FOREIGN KEY (specialty_pizza_id) REFERENCES specialty_pizza (specialty_pizza_id)
+	CONSTRAINT FK_food_order_customer FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
 );
 
 CREATE TABLE item_topping (

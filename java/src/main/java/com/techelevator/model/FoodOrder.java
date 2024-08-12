@@ -6,11 +6,17 @@ import java.util.List;
 
 public class FoodOrder {
 
+    @JsonProperty("order")
     private int food_order_id;
+    @JsonProperty("user")
     private int user_id;
+    @JsonProperty("customer")
     private int customer_id;
+    @JsonProperty("specialty_pizzas")
     private List<Integer> specialty_pizza_ids;
+    @JsonProperty("custom_pizzas")
     private List<Integer> custom_pizza_ids;
+    @JsonProperty("sides")
 
     private List<Integer> side_ids;
 

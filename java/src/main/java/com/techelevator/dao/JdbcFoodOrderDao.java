@@ -184,8 +184,25 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
 
     public void addSideToOrder(int orderId, int sideId) {
         String sql = "INSERT INTO food_order_side(food_order_id, side_id) VALUES(?, ?);";
+        String sql2 = "UPDATE food_order SET side_id += ? WHERE food_order_id = ?;";
         try {
-            jdbcTemplate.update(sql, orderId, sideId);
+            int success = jdbcTemplate.update(sql, orderId, sideId);
+            if (success > 0) {
+                jdbcTemplate.update(sql2, sideId, orderId);
+            }
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
+    public void removeSideFromOrder(int orderId, int sideId) {
+        String sql = "UPDATE food_order SET side_id = ? WHERE food_order_id = ?;";
+        String sql2 = "UPDATE food_order_side SET side_id = ? WHERE food_order_id = ?;";
+        try {
+            int success = jdbcTemplate.update(sql, orderId, sideId);
+            if ( success > 0) {
+                jdbcTemplate.update(sql2, orderId, sideId);
+            }
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }
