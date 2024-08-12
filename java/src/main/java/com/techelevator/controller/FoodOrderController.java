@@ -131,6 +131,42 @@ public class FoodOrderController {
         }
     }
 
+    @RequestMapping(path = "/order/{id}", method = RequestMethod.POST)
+    public FoodOrder addOrder(@PathVariable int id) {
+        try {
+            return foodOrderDao.addOrder(id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.POST)
+    public void addSpecialtyPizzaToOrder(@PathVariable int id, @RequestBody int orderId) {
+        try {
+            foodOrderDao.addSpecialtyPizzaToOrder(orderId, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.DELETE)
+    public void deleteSpecialtyPizzaFromOrder(@PathVariable int id, @RequestBody int orderId) {
+        try {
+            foodOrderDao.removeSpecialtyPizzaFromOrder(orderId, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/order/{id}", method = RequestMethod.DELETE)
+    public FoodOrder removeOrder(@PathVariable int id) {
+        try {
+            return foodOrderDao.removeOrder(id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
      @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.POST)
      public void addSideToOrder(@PathVariable int id, @RequestBody int food_order_id)
      {
@@ -140,6 +176,16 @@ public class FoodOrderController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
          }
      }
+
+    @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.DELETE)
+    public void removeSideFromOrder(@PathVariable int id, @RequestBody int food_order_id)
+    {
+        try {
+            foodOrderDao.removeSideFromOrder(food_order_id, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
 
 
     //addSideToOrder

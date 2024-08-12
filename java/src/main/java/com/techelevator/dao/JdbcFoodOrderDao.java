@@ -154,7 +154,7 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     @Override
     public FoodOrder getOrder(int id) {
         FoodOrder order = null;
-        String sql = "SELECT food_order_id, item_id, user_id, customer_id, side_id, specialty_pizza_id FROM food_order WHERE food_order_id = ?;";
+        String sql = "SELECT food_order_id, user_id, customer_id FROM food_order WHERE food_order_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             if (results.next()) {
@@ -166,43 +166,67 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         return order;
     }
 
-    // @Override
-    // public FoodOrder addOrder(int id) {
-    // FoodOrder order = null;
-    // String sql = "INSERT INTO food_order (food_order_id) VALUES (?) RETURNING
-    // food_order_id";
-    // try {
-    // SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-    // if (results.next()) {
-    // order = mapRowToOrder(results);
-    // }
-    // } catch (CannotGetJdbcConnectionException e) {
-    // throw new DaoException("Unable to connect to server or database", e);
-    // }
-    // return order;
-    // }
+     @Override
+     public FoodOrder addOrder(int id) {
+     FoodOrder order = null;
+     String sql = "INSERT INTO food_order(food_order_id) VALUES (?) RETURNING food_order_id";
+     try {
+         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+         if (results.next()) {
+            order = mapRowToOrder(results);
+         }
+     } catch (CannotGetJdbcConnectionException e) {
+     throw new DaoException("Unable to connect to server or database", e);
+     }
+     return order;
+     }
+
+    @Override
+    public FoodOrder removeOrder(int id) {
+        FoodOrder order = null;
+        String sql = "DELETE FROM food_order WHERE food_order_id = ?;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            if (results.next()) {
+                order = mapRowToOrder(results);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return order;
+    }
 
     public void addSideToOrder(int orderId, int sideId) {
         String sql = "INSERT INTO food_order_side(food_order_id, side_id) VALUES(?, ?);";
-        String sql2 = "UPDATE food_order SET side_id += ? WHERE food_order_id = ?;";
         try {
-            int success = jdbcTemplate.update(sql, orderId, sideId);
-            if (success > 0) {
-                jdbcTemplate.update(sql2, sideId, orderId);
-            }
+            jdbcTemplate.update(sql, orderId, sideId);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
+    public void addSpecialtyPizzaToOrder(int orderId, int specialtyId) {
+        String sql = "INSERT INTO food_order_specialty(food_order_id, specialty_pizza_id) VALUES(?, ?);";
+        try {
+            jdbcTemplate.update(sql, orderId, specialtyId);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
+    public void removeSpecialtyPizzaFromOrder(int orderId, int specialtyId) {
+        String sql = "DELETE FROM food_order_specialty WHERE food_order_id = ? AND specialty_pizza_id = ?;";
+        try {
+            jdbcTemplate.update(sql, orderId, specialtyId);
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }
     }
 
     public void removeSideFromOrder(int orderId, int sideId) {
-        String sql = "UPDATE food_order SET side_id = ? WHERE food_order_id = ?;";
-        String sql2 = "UPDATE food_order_side SET side_id = ? WHERE food_order_id = ?;";
+        String sql = "DELETE FROM food_order_side WHERE food_order_id = ? AND side_id = ?;";
         try {
-            int success = jdbcTemplate.update(sql, orderId, sideId);
-            if ( success > 0) {
-                jdbcTemplate.update(sql2, orderId, sideId);
-            }
+            jdbcTemplate.update(sql, orderId, sideId);
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }
@@ -221,15 +245,6 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     private FoodOrder mapRowToOrder(SqlRowSet rowSet) {
         FoodOrder newOrder = new FoodOrder();
         newOrder.setFood_order_id(rowSet.getInt("food_order_id"));
-        List<Integer> custom_ids = new ArrayList<>();
-        custom_ids.add(rowSet.getInt("item_id"));
-        newOrder.setCustom_pizza_ids(custom_ids);
-        List<Integer> specialty_ids = new ArrayList<>();
-        specialty_ids.add(rowSet.getInt("specialty_pizza_id"));
-        newOrder.setSpecialty_pizza_ids(specialty_ids);
-        List<Integer> side_ids = new ArrayList<>();
-        side_ids.add(rowSet.getInt("side_id"));
-        newOrder.setSide_ids(side_ids);
         newOrder.setUser_id(rowSet.getInt("user_id"));
         newOrder.setCustomer_id(rowSet.getInt("customer_id"));
         return newOrder;
