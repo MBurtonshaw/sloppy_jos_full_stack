@@ -16,15 +16,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <!-- <a class="navbar-brand"> -->
-            <img class="navbar-brand" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-          <!-- </a> -->
+          <a class="navbar-brand">
+            <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
+          </a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
-            <li><router-link v-bind:to="{name: 'menu'}">Menu</router-link></li>
+            <li><router-link v-bind:to="{name: 'about-us'}">About Us</router-link></li>
             <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
             <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
           </ul>
@@ -117,6 +117,24 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+    font-size: 24px;
+    margin-bottom: 0;
+    border-radius: 0;
+   
+  }
+
+.navbar-logo {
+  max-height: 100px; /* Adjust the max height as needed */
+  width: auto; /* Maintain aspect ratio */
+  margin-top: -25px;
+  }
+      @media (max-width: 768px) {
+      .navbar-logo {
+        max-height: 40px; /* Adjust size for smaller screens */
+      }
+    }
+
 .form-input-group {
   margin-bottom: 15px;
   width: 100%;

@@ -1,6 +1,6 @@
 <template>
       <head>
-      <title>Sloppy Joe's Menu</title>
+      <title>Sloppy Joe's</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,15 +15,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <!-- <a class="navbar-brand"> -->
-            <img class="navbar-brand" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-          <!-- </a> -->
+          <a class="navbar-brand">
+            <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
+          </a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
-            <li><router-link v-bind:to="{name: 'menu'}">Menu</router-link></li>
+            <li><router-link v-bind:to="{name: 'about-us'}">About Us</router-link></li>
             <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
             <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
           </ul>
@@ -75,15 +75,26 @@
 </script>
 
 <style scoped>
-     .navbar {
-      font-size: 24px;
-      margin-bottom: 0;
-      border-radius: 0;
-        
+  .navbar {
+    font-size: 24px;
+    margin-bottom: 0;
+    border-radius: 0;
+   
+  }
+
+  .navbar-logo {
+  max-height: 100px; /* Adjust the max height as needed */
+  width: auto; /* Maintain aspect ratio */
+  margin-top: -25px;
+  }
+      @media (max-width: 768px) {
+      .navbar-logo {
+        max-height: 40px; /* Adjust size for smaller screens */
+      }
     }
     
 
-    footer {
+  footer {
       background-color: #e0ba20c7;
       padding: 25px;
       font-size: 24px;
