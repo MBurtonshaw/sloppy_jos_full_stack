@@ -24,13 +24,15 @@ public class FoodOrderController {
     private final ToppingDao toppingDao;
     private final SideDao sideDao;
     private final SpecialtyPizzaDao specialtyPizzaDao;
+    private final CustomPizzaDao customPizzaDao;
 
     public FoodOrderController(FoodOrderDao foodOrderDao, ToppingDao toppingDao, SideDao sideDao,
-                               SpecialtyPizzaDao specialtyPizzaDao) {
+                               SpecialtyPizzaDao specialtyPizzaDao, CustomPizzaDao customPizzaDao) {
         this.foodOrderDao = foodOrderDao;
         this.toppingDao = toppingDao;
         this.sideDao = sideDao;
         this.specialtyPizzaDao = specialtyPizzaDao;
+        this.customPizzaDao = customPizzaDao;
     }
 
     @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
@@ -40,7 +42,7 @@ public class FoodOrderController {
         }
         try {
             // Call the DAO to add the pizza to the database
-            foodOrderDao.addPizza(pizza);
+            customPizzaDao.addPizza(pizza);
             List<Integer> toppingIds = pizza.getToppingIds();
             System.out.println(pizza.getToppingIds());
             if (!toppingIds.isEmpty()) {
@@ -56,7 +58,7 @@ public class FoodOrderController {
     public Item addPizza(@PathVariable int id) {
         try {
             // Call the DAO to add the pizza to the database
-            return foodOrderDao.getPizzaById(id);
+            return customPizzaDao.getPizzaById(id);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve custom pizza", e);
@@ -67,7 +69,7 @@ public class FoodOrderController {
     public Item updatePizza(@RequestBody Item pizza, @PathVariable int id) {
         try {
             // Call the DAO to add the pizza to the database
-            return foodOrderDao.updatePizza(pizza, id);
+            return customPizzaDao.updatePizza(pizza, id);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to update custom pizza", e);
@@ -78,7 +80,7 @@ public class FoodOrderController {
     public void deletePizza(@PathVariable int id) {
         try {
             // Call the DAO to add the pizza to the database
-            foodOrderDao.deletePizza(id);
+            customPizzaDao.deletePizza(id);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete custom pizza", e);
@@ -158,19 +160,19 @@ public class FoodOrderController {
         }
     }
 
-//    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.POST)
-//    public void addCustomPizzaToOrder(@PathVariable int id, @RequestBody int customId) {
-//        try {
-//            foodOrderDao.addCustomPizzaToOrder(customId, id);
-//        } catch (DaoException e) {
-//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
-//        }
-//    }
-//
+    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.POST)
+    public void addCustomPizzaToOrder(@PathVariable int id, @RequestBody int orderId) {
+        try {
+            foodOrderDao.addCustomPizzaToOrder(orderId, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
 //    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.DELETE)
-//    public void removeCustomPizzaFromOrder(@PathVariable int id, @RequestBody int customId) {
+//    public void removeCustomPizzaFromOrder(@PathVariable int id, @RequestBody int orderId) {
 //        try {
-//            foodOrderDao.removeCustomPizzaFromOrder(customId, id);
+//            foodOrderDao.removeCustomPizzaFromOrder(orderId, id);
 //        } catch (DaoException e) {
 //            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
 //        }
