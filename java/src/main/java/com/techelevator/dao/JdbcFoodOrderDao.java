@@ -167,18 +167,13 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     }
 
      @Override
-     public FoodOrder addOrder(int id) {
-     FoodOrder order = null;
-     String sql = "INSERT INTO food_order(food_order_id) VALUES (?) RETURNING food_order_id";
+     public void addOrder(FoodOrder order) {
+     String sql = "INSERT INTO food_order(user_id, customer_id) VALUES (?, ?) RETURNING food_order_id";
      try {
-         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
-         if (results.next()) {
-            order = mapRowToOrder(results);
-         }
+         jdbcTemplate.queryForRowSet(sql, order.getUser_id(), order.getCustomer_id());
      } catch (CannotGetJdbcConnectionException e) {
-     throw new DaoException("Unable to connect to server or database", e);
+        throw new DaoException("Unable to connect to server or database", e);
      }
-     return order;
      }
 
     @Override
@@ -218,6 +213,24 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         String sql = "DELETE FROM food_order_specialty WHERE food_order_id = ? AND specialty_pizza_id = ?;";
         try {
             jdbcTemplate.update(sql, orderId, specialtyId);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
+    public void addCustomPizzaToOrder(int orderId, int customId) {
+        String sql = "INSERT INTO food_order_item(food_order_id, item_id) VALUES(?, ?);";
+        try {
+            jdbcTemplate.update(sql, orderId, customId);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
+    public void removeCustomPizzaFromOrder(int orderId, int customId) {
+        String sql = "DELETE FROM food_order_item WHERE food_order_id = ? AND item_id = ?;";
+        try {
+            jdbcTemplate.update(sql, orderId, customId);
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }

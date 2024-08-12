@@ -122,7 +122,7 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/orders/{id}", method = RequestMethod.GET)
     public FoodOrder getOrder(@PathVariable int id) {
         try {
             return foodOrderDao.getOrder(id);
@@ -131,10 +131,10 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/order/{id}", method = RequestMethod.POST)
-    public FoodOrder addOrder(@PathVariable int id) {
+    @RequestMapping(path = "/orders", method = RequestMethod.POST)
+    public void addOrder(@RequestBody FoodOrder order) {
         try {
-            return foodOrderDao.addOrder(id);
+            foodOrderDao.addOrder(order);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
         }
@@ -157,6 +157,24 @@ public class FoodOrderController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
         }
     }
+
+//    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.POST)
+//    public void addCustomPizzaToOrder(@PathVariable int id, @RequestBody int customId) {
+//        try {
+//            foodOrderDao.addCustomPizzaToOrder(customId, id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+//        }
+//    }
+//
+//    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.DELETE)
+//    public void removeCustomPizzaFromOrder(@PathVariable int id, @RequestBody int customId) {
+//        try {
+//            foodOrderDao.removeCustomPizzaFromOrder(customId, id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+//        }
+//    }
 
     @RequestMapping(path = "/order/{id}", method = RequestMethod.DELETE)
     public FoodOrder removeOrder(@PathVariable int id) {

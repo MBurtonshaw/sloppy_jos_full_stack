@@ -35,11 +35,13 @@ public interface FoodOrderDao {
     void deletePizza(int id);
 
     FoodOrder getOrder(int id);
-    FoodOrder addOrder(int id);
+    void addOrder(FoodOrder foodOrder);
     FoodOrder removeOrder(int id);
 
     void addSpecialtyPizzaToOrder(int orderId, int specialtyId);
     void removeSpecialtyPizzaFromOrder(int orderId, int specialtyId);
+    void addCustomPizzaToOrder(int orderId, int customId);
+    void removeCustomPizzaFromOrder(int orderId, int customId);
 
     void addSideToOrder(int order, int side);
 
