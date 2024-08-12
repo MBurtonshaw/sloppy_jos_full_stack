@@ -64,15 +64,6 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         return order;
     }
 
-    public void addSideToOrder(int orderId, int sideId) {
-        String sql = "INSERT INTO food_order_side(food_order_id, side_id) VALUES(?, ?);";
-        try {
-            jdbcTemplate.update(sql, orderId, sideId);
-        } catch (DataAccessException e) {
-            throw new DaoException("Database access error", e);
-        }
-    }
-
     public void addSpecialtyPizzaToOrder(int orderId, int specialtyId) {
         String sql = "INSERT INTO food_order_specialty(food_order_id, specialty_pizza_id) VALUES(?, ?);";
         try {
@@ -109,6 +100,15 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
         }
     }
 
+    public void addSideToOrder(int orderId, int sideId) {
+        String sql = "INSERT INTO food_order_side(food_order_id, side_id) VALUES(?, ?);";
+        try {
+            jdbcTemplate.update(sql, orderId, sideId);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e);
+        }
+    }
+
     public void removeSideFromOrder(int orderId, int sideId) {
         String sql = "DELETE FROM food_order_side WHERE food_order_id = ? AND side_id = ?;";
         try {
@@ -117,9 +117,6 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
             throw new DaoException("Database access error", e);
         }
     }
-
-    // Format custom pizza based on model
-
 
     private FoodOrder mapRowToOrder(SqlRowSet rowSet) {
         FoodOrder newOrder = new FoodOrder();
