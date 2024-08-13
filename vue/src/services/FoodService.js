@@ -10,8 +10,12 @@ export default {
     return http.get('/order');
   },
 
-  addSpecialtyPizza(id) {
-    return http.post('/order');
+  addSpecialtyPizza(orderId, data) {
+    return http.post(`/api/orders/${orderId}/specialty`, data);
+  },
+
+  addCustomPizza(orderId, data) {
+    return http.post(`/api/orders/${orderId}/custom`, data);
   }
 
   // getProduct(productId) {

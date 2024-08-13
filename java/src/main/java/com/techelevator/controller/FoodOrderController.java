@@ -129,7 +129,7 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/orders", method = RequestMethod.POST)
+    @RequestMapping(path = "api/orders", method = RequestMethod.POST)
     public void addOrder(@RequestBody FoodOrder order) {
         try {
             foodOrderDao.addOrder(order);
@@ -138,10 +138,10 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.POST)
-    public void addSpecialtyPizzaToOrder(@PathVariable int id, @RequestBody int orderId) {
+    @RequestMapping(path = "/api/orders/{orderId}/specialty", method = RequestMethod.POST)
+    public void addSpecialtyPizzaToOrder(@PathVariable int orderId, @RequestBody int id) {
         try {
-            foodOrderDao.addSpecialtyPizzaToOrder(orderId, id);
+            foodOrderDao.addSpecialtyPizzaToOrder(id, orderId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
         }
