@@ -209,6 +209,7 @@
   <script>
   import axios from 'axios';
   import Order from '../components/Order.vue';
+  import foodService from '../services/FoodService';
  
   export default {
   data() {
@@ -287,8 +288,28 @@
     },
     beforeUnmount() {
       document.removeEventListener('click', this.handleClickOutside);
-    }
-  },
+    },
+    getSpecialtyPizzas() {
+            foodService.getProducts()
+                .then(response => {
+                    this.$store.commit('SET_SPECIALTY_PIZZAS', response.data);
+                    this.isLoading = false;
+                })
+                .catch(error => {
+                    if (error.response) {
+                        this.$store.commit('SET_NOTIFICATION',
+                        "Error getting products. Response received was '" + error.response.statusText + "'.");
+                    } else if (error.request) {
+                        this.$store.commit('SET_NOTIFICATION', "Error getting products. Server could not be reached.");
+                    } else {
+                        this.$store.commit('SET_NOTIFICATION', "Error getting products. Request could not be created.");
+                    }
+                });
+            }, 
+  },        
+  created() {
+        this.getSpecialtyPizzas();
+    },
 };
   </script>
   

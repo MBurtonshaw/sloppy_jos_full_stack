@@ -87,7 +87,7 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/menu/specialty_pizzas", method = RequestMethod.GET)
+    @RequestMapping(path = "/order", method = RequestMethod.GET)
     public List<SpecialtyPizza> getSpecialtyPizzas() {
         try {
             return specialtyPizzaDao.getSpecialtyPizzas();
