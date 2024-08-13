@@ -10,7 +10,7 @@
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <button type="button" class="navbar-toggle" data-togagle="collapse" data-target="#myNavbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
@@ -51,16 +51,14 @@
         <th>Actions</th>
     </thead>
     <tbody v-if="$store.state.shoppingCart.length > 0">
-        <tr v-for="(sp, i) in $store.state.shoppingCart" v-bind:key="sp.productId">
-            <td width="300"><router-link v-bind:to="{ name: 'product-detail', params: { id: products[i].productId }}">
-                                {{ products[i].name }}
-                            </router-link>
+        <tr v-for="(food, i) in $store.state.shoppingCart" v-bind:key="i">
+            <td width="300">
+                {{ food.obj.id }}
             </td>
-            <td>{{ sp.qty }}</td>
-            <td>${{ products[i].price }}</td>
-            <td>${{ sp.qty*products[i].price }}</td>
-            <td><input type="button" value="+" @click="addToCart(products[i])">
-                <input type="button" value="-" @click="removeFromCart(products[i])"></td>
+            <td>${{ food.obj.price }}</td>
+
+            <!-- <td><input type="button" value="+" @click="addToCart(products[i])">
+                <input type="button" value="-" @click="removeFromCart(products[i])"></td> -->
         </tr>
     </tbody>
     <tbody v-else>
@@ -92,13 +90,6 @@
       export default {
         components: ShoppingCart,
         computed: {
-            products() {
-                return this.$store.state.shoppingCart.map((shopProduct) => {
-                    return this.$store.state.products.find((prod) => {
-                        return prod.productId == shopProduct.productId;
-                    })
-                });
-            }
         },
         methods: {
         addToCart(product) {

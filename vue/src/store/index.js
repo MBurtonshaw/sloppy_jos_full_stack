@@ -1,5 +1,6 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
+import foodService from '../services/FoodService';
 
 const NOTIFICATION_TIMEOUT = 6000;
 
@@ -9,7 +10,6 @@ export function createStore(currentToken, currentUser) {
       token: currentToken || '',
       user: currentUser || {},
 
-      products: [],
       shoppingCart: [],
       orders: [],
     },
@@ -18,14 +18,24 @@ export function createStore(currentToken, currentUser) {
         state.specialtyPizzas = specialtyPizzas;
       },
       ADD_TO_CART(state, item) {
-        console.log('yay');
         state.shoppingCart.push(item);
       },
       REMOVE_FROM_CART(state, item) {
         
       },
       CHECKOUT(state) {
-
+        let order = {
+          "user" : state.currentUser.id,
+          "customer" : state.currentUser.id
+        };
+        foodService.addOrder(order).then(response => {
+          for (let i = 0; i < state.shoppingCart.length; i++ ) {
+            if (state.shoppingCart[i].type == 'Specialty') {
+              foodService.addSpecialtyPizza(response.data.order, state.shoppingCart[i].obj);
+            }
+          }
+        }
+        );
       },
       SET_NOTIFICATION(state, notification) {
         // Clear the current notification if one exists

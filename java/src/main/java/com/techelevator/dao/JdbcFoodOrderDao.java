@@ -40,13 +40,18 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     }
 
      @Override
-     public void addOrder(FoodOrder order) {
+     public FoodOrder addOrder(FoodOrder order) {
+        FoodOrder newOrder = new FoodOrder();
      String sql = "INSERT INTO food_order(user_id, customer_id) VALUES (?, ?) RETURNING food_order_id";
      try {
-         jdbcTemplate.queryForRowSet(sql, order.getUser_id(), order.getCustomer_id());
+         int result = jdbcTemplate.queryForObject(sql, int.class, order.getUser_id(), order.getCustomer_id());
+         newOrder.setFood_order_id(result);
+         newOrder.setCustomer_id(order.getCustomer_id());
+         newOrder.setUser_id(order.getUser_id());
      } catch (CannotGetJdbcConnectionException e) {
         throw new DaoException("Unable to connect to server or database", e);
      }
+     return newOrder;
      }
 
     @Override

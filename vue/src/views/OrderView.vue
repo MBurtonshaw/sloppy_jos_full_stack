@@ -72,7 +72,7 @@
         <img src="@/assets/orderSloppyPizza.png" alt="Sloppy Joe Special" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy Joe Special -  Dive into savory nostalgia with this pizza, loaded with seasoned ground beef, tangy tomato sauce, and a melty cheese blend that brings the classic Sloppy Joe to your plate</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(1)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Joe Special', 1, 25.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         <img src="@/assets/orderSupreme.png" alt="Supreme Pizza" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">The Sloppy Supreme - A feast of flavors with pepperoni, sausage, bell peppers, onions, and black olives, all layered over a rich tomato base and gooey mozzarella</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(2)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('The Sloppy Supreme', 2, 23.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@
         <img src="@/assets/orderZestyTrio.png" alt="Zesty Trio" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Jo's Zesty Trio - A bold combo of spicy pepperoni, earthy mushrooms, and fiery jalapeños, all on a bed of rich tomato sauce and bubbling cheese</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(4)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('The Zesty Trio', 4, 23.50)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@
         <img src="@/assets/orderMeatlovers.png" alt="Meatlover's Pizza" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy's Carnivore Delight - Piled high with pepperoni, sausage, ham, and bacon, all perfectly balanced by a hearty tomato sauce and melted cheese</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(3)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy\'s Carnivore Delight', 3, 22.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -306,8 +306,8 @@
                     }
                 });
             }, 
-      addToCart(id) {
-          this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id: id}});
+      addToCart(id, name, price) {
+          this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id, name, price}});
       }
   },        
   created() {

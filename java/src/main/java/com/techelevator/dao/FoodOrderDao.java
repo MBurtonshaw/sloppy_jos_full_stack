@@ -24,7 +24,7 @@ import java.util.List;
 public interface FoodOrderDao {
 
     FoodOrder getOrder(int id);
-    void addOrder(FoodOrder foodOrder);
+    FoodOrder addOrder(FoodOrder foodOrder);
     FoodOrder removeOrder(int id);
 
     void addSpecialtyPizzaToOrder(int orderId, int specialtyId);
