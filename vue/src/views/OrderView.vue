@@ -156,7 +156,7 @@
         <img src="@/assets/orderMozzSticks.png" alt="Mozzarella Sticks" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Jo's Mozz Sticks - A hearty pizza topped with seasoned beef, onions, and cheese</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Jo\'s Mozz Sticks', 4, 10.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -165,7 +165,16 @@
         <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Buff Wings - 6pc', 5, 10.00)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Buff Wings - 12pc', 6, 16.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -174,7 +183,7 @@
         <img src="@/assets/orderCheeseBread.png" alt="Cheesy Bread" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Cheesy Bread - Soft, cheesy perfection with a crisp, golden crust and a gooey, melted center</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Cheesy Bread', 2, 10.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -183,7 +192,7 @@
         <img src="@/assets/orderGarlicBread.png" alt="Garlic Bread" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Garlic Bread - Warm, golden breadsticks infused with rich garlic butter and sprinkled with Parmesan cheese—perfect for dipping</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Garlic Bread', 1, 7.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -192,7 +201,7 @@
         <img src="@/assets/orderSalad.png" alt="Salad" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy Salad - Crisp romaine lettuce, shaved Parmesan, and crunchy croutons tossed in a creamy Caesar dressing</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Salad', 3, 10.00)">Add to Cart</button>
         </div>
       </div>
     </div>

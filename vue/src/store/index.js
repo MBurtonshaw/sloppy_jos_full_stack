@@ -21,21 +21,28 @@ export function createStore(currentToken, currentUser) {
         state.shoppingCart.push(item);
       },
       REMOVE_FROM_CART(state, item) {
-        
+        const index = state.shoppingCart.indexOf(item);
+        if (index !== -1) {
+          state.shoppingCart.splice(index, 1);
+        }
       },
       CHECKOUT(state) {
         let order = {
-          "user" : state.currentUser.id,
-          "customer" : state.currentUser.id
+          "user" : state.user.id,
+          "customer" : state.user.id
         };
         foodService.addOrder(order).then(response => {
-          for (let i = 0; i < state.shoppingCart.length; i++ ) {
-            if (state.shoppingCart[i].type == 'Specialty') {
-              foodService.addSpecialtyPizza(response.data.order, state.shoppingCart[i].obj);
+          // Iterate over the shopping cart to add specialty pizzas
+          state.shoppingCart.forEach(item => {
+            if (item.type === 'Specialty') {
+              foodService.addSpecialtyPizza(response.data.order, item.obj).catch(error => {
+                console.error('Error adding specialty pizza:', error);
+              });
             }
-          }
-        }
-        );
+          });
+        }).catch(error => {
+          console.error('Error adding order:', error); // Handle error from addOrder
+        });
       },
       SET_NOTIFICATION(state, notification) {
         // Clear the current notification if one exists

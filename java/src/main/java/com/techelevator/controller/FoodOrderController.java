@@ -142,6 +142,11 @@ public class FoodOrderController {
         }
     }
 
+    @RequestMapping(path="api/orders/{id}", method = RequestMethod.GET)
+    public FoodOrder checkoutOrder(@RequestBody FoodOrder order) {
+
+    }
+
     @RequestMapping(path = "/api/orders/{orderId}/specialty", method = RequestMethod.POST)
     public void addSpecialtyPizzaToOrder(@PathVariable int orderId, @RequestBody SpecialtyDTO specialtyDTO) {
         try {
