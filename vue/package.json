@@ -16,6 +16,7 @@
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
     "vue": "^3.3.4",
+    "vue-credit-card-validation": "^1.0.5",
     "vue-router": "^4.2.1",
     "vuex": "^4.1.0"
   },
