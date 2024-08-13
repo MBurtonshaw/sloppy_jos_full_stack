@@ -1,18 +1,17 @@
 package com.techelevator.controller;
 
-import javax.validation.Valid;
-
-import com.techelevator.dao.*;
+import com.techelevator.dao.FoodOrderDao;
+import com.techelevator.dao.SideDao;
+import com.techelevator.dao.SpecialtyPizzaDao;
+import com.techelevator.dao.ToppingDao;
 import com.techelevator.exception.DaoException;
-import com.techelevator.model.*;
-import org.springframework.http.HttpHeaders;
+import com.techelevator.model.FoodOrder;
+import com.techelevator.model.Item;
+import com.techelevator.model.Side;
+import com.techelevator.model.SpecialtyPizza;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.techelevator.security.jwt.JWTFilter;
-import com.techelevator.security.jwt.TokenProvider;
 
 import java.util.List;
 
