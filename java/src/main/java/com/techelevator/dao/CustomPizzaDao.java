@@ -21,19 +21,12 @@ import java.util.List;
  * accessing and managing food items in a database or collection.
  */
 
-public interface FoodOrderDao {
+public interface CustomPizzaDao {
+    Item getPizzaById(int id);
 
-    FoodOrder getOrder(int id);
-    void addOrder(FoodOrder foodOrder);
-    FoodOrder removeOrder(int id);
+    void addPizza(Item pizza);
 
-    void addSpecialtyPizzaToOrder(int orderId, int specialtyId);
-    void removeSpecialtyPizzaFromOrder(int orderId, int specialtyId);
-    void addCustomPizzaToOrder(int orderId, int customId);
-    void removeCustomPizzaFromOrder(int orderId, int customId);
+    Item updatePizza(Item pizza, int id);
 
-    void addSideToOrder(int order, int side);
-
-    void removeSideFromOrder(int orderId, int sideId);
-
+    void deletePizza(int id);
 }

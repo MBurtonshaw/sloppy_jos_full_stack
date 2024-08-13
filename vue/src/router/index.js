@@ -1,5 +1,6 @@
 import { createRouter as createRouter, createWebHistory } from 'vue-router'
 import { useStore } from 'vuex'
+import axios from 'axios';
 
 // Import components
 import HomeView from '../views/HomeView.vue';
@@ -7,10 +8,11 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 
-import MenuView from '../views/MenuView.vue';
 import OrderView from '../views/OrderView.vue';
 import ContactUsView from '../views/ContactUsView.vue';
-import ShoppingCart from '../views/ShoppingCartView.vue';
+import ShoppingCartView from '../views/ShoppingCartView.vue';
+import AboutUsView from '../views/AboutUsView.vue';
+
 
 
 /**
@@ -56,14 +58,6 @@ const routes = [
     }
   },
   {
-    path: "/menu",
-    name: "menu",
-    component: MenuView,
-    meta: {
-      requiresAuth: false
-    }
-  },
-  {
     path: "/order",
     name: "order",
     component: OrderView,
@@ -82,7 +76,15 @@ const routes = [
   {
     path: "/shopping-cart",
     name: "shopping-cart",
-    component: ShoppingCart,
+    component: ShoppingCartView,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/about-us",
+    name: "about-us",
+    component: AboutUsView,
     meta: {
       requiresAuth: false
     }

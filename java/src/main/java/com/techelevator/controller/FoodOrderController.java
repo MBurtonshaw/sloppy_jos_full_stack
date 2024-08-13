@@ -23,13 +23,15 @@ public class FoodOrderController {
     private final ToppingDao toppingDao;
     private final SideDao sideDao;
     private final SpecialtyPizzaDao specialtyPizzaDao;
+    private final CustomPizzaDao customPizzaDao;
 
     public FoodOrderController(FoodOrderDao foodOrderDao, ToppingDao toppingDao, SideDao sideDao,
-                               SpecialtyPizzaDao specialtyPizzaDao) {
+                               SpecialtyPizzaDao specialtyPizzaDao, CustomPizzaDao customPizzaDao) {
         this.foodOrderDao = foodOrderDao;
         this.toppingDao = toppingDao;
         this.sideDao = sideDao;
         this.specialtyPizzaDao = specialtyPizzaDao;
+        this.customPizzaDao = customPizzaDao;
     }
 
     @RequestMapping(path = "/menu/byo", method = RequestMethod.POST)
@@ -39,7 +41,7 @@ public class FoodOrderController {
         }
         try {
             // Call the DAO to add the pizza to the database
-            foodOrderDao.addPizza(pizza);
+            customPizzaDao.addPizza(pizza);
             List<Integer> toppingIds = pizza.getToppingIds();
             System.out.println(pizza.getToppingIds());
             if (!toppingIds.isEmpty()) {
@@ -55,7 +57,7 @@ public class FoodOrderController {
     public Item addPizza(@PathVariable int id) {
         try {
             // Call the DAO to add the pizza to the database
-            return foodOrderDao.getPizzaById(id);
+            return customPizzaDao.getPizzaById(id);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve custom pizza", e);
@@ -66,7 +68,7 @@ public class FoodOrderController {
     public Item updatePizza(@RequestBody Item pizza, @PathVariable int id) {
         try {
             // Call the DAO to add the pizza to the database
-            return foodOrderDao.updatePizza(pizza, id);
+            return customPizzaDao.updatePizza(pizza, id);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to update custom pizza", e);
@@ -77,7 +79,7 @@ public class FoodOrderController {
     public void deletePizza(@PathVariable int id) {
         try {
             // Call the DAO to add the pizza to the database
-            foodOrderDao.deletePizza(id);
+            customPizzaDao.deletePizza(id);
         } catch (DaoException e) {
             // Handle database access exceptions and return an appropriate response
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete custom pizza", e);
@@ -121,10 +123,64 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/order/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/orders/{id}", method = RequestMethod.GET)
     public FoodOrder getOrder(@PathVariable int id) {
         try {
             return foodOrderDao.getOrder(id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/orders", method = RequestMethod.POST)
+    public void addOrder(@RequestBody FoodOrder order) {
+        try {
+            foodOrderDao.addOrder(order);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.POST)
+    public void addSpecialtyPizzaToOrder(@PathVariable int id, @RequestBody int orderId) {
+        try {
+            foodOrderDao.addSpecialtyPizzaToOrder(orderId, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.DELETE)
+    public void deleteSpecialtyPizzaFromOrder(@PathVariable int id, @RequestBody int orderId) {
+        try {
+            foodOrderDao.removeSpecialtyPizzaFromOrder(orderId, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.POST)
+    public void addCustomPizzaToOrder(@PathVariable int id, @RequestBody int orderId) {
+        try {
+            foodOrderDao.addCustomPizzaToOrder(orderId, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+//    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.DELETE)
+//    public void removeCustomPizzaFromOrder(@PathVariable int id, @RequestBody int orderId) {
+//        try {
+//            foodOrderDao.removeCustomPizzaFromOrder(orderId, id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+//        }
+//    }
+
+    @RequestMapping(path = "/order/{id}", method = RequestMethod.DELETE)
+    public FoodOrder removeOrder(@PathVariable int id) {
+        try {
+            return foodOrderDao.removeOrder(id);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
         }
@@ -139,6 +195,16 @@ public class FoodOrderController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
          }
      }
+
+    @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.DELETE)
+    public void removeSideFromOrder(@PathVariable int id, @RequestBody int food_order_id)
+    {
+        try {
+            foodOrderDao.removeSideFromOrder(food_order_id, id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
 
 
     //addSideToOrder

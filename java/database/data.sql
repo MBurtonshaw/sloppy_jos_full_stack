@@ -32,9 +32,10 @@ VALUES (1, 'Sloppy Joe Pizza', 25.00), (2, 'The Supreme', 23.00), (3, 'Meatlover
 INSERT INTO side (side_id, side_name, base_price)
 VALUES (1, 'Garlic Bread Sticks', 7.00), (2, 'Cheese Bread', 10.00), (3, 'Caesar Salad', 10.00), (4, 'Mozzarella Sticks', 10.00),  (5, 'Buffalo Wings - 6pc', 10.00), (6, 'Buffalo Wings - 12pc', 16.00);
 
- INSERT INTO specialty_topping(specialty_id, topping_id)
- VALUES(1, 11), (1, 20), (1, 21), (2, 1), (2, 2), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (3, 1), (3, 2), (3, 3), (3, 8), (3, 12), (3, 13), (4, 1), (4, 4), (4, 19);
-
+INSERT INTO specialty_topping(specialty_id, topping_id)
+VALUES(1, 11), (1, 20), (1, 21), (2, 1), (2, 2), (2, 4), (2, 5), (2, 6), (2, 7), (2, 8), (2, 9), (3, 1), (3, 2), (3, 3), (3, 8), (3, 12), (3, 13), (4, 1), (4, 4), (4, 19);
+ 
+-- INSERT INTO customer(customer_id) VALUES(1);
 -- INSERT INTO food_order VALUES(1, null, null);
 
 COMMIT TRANSACTION;

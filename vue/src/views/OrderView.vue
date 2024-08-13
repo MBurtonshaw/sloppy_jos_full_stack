@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     </head>
-    <body>
+  <body>
 <!-- header -->
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
@@ -15,15 +15,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <!-- <a class="navbar-brand"> -->
-            <img class="navbar-brand" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-          <!-- </a> -->
+          <a class="navbar-brand">
+            <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
+          </a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
-            <li><router-link v-bind:to="{name: 'menu'}">Menu</router-link></li>
+            <li><router-link v-bind:to="{name: 'about-us'}">About Us</router-link></li>
             <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
             <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
           </ul>
@@ -43,7 +43,7 @@
     </div>
 
     <!-- search bar       --------->
-    <div class="search-container">
+    <div class="search-container text-center">
     <input 
       type="text" 
       v-model="query" 
@@ -64,15 +64,140 @@
   </div>
 
   <!-- grid for photos -->
-  <div class="grid-container">
-    <div class="grid-item" v-for="(image, index) in images" :key="index">
-      <img :src="image.src" :alt="image.alt">
-      <button class="add-to-cart-btn" @click="addToCart(image)">Add to Cart</button>
+<h4>World Famous Sloppy Specialty Pizzas</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderSloppyPizza.png" alt="Sloppy Joe Special" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Sloppy Joe Special -  Dive into savory nostalgia with this pizza, loaded with seasoned ground beef, tangy tomato sauce, and a melty cheese blend that brings the classic Sloppy Joe to your plate</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderSupreme.png" alt="Supreme Pizza" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">The Sloppy Supreme - A feast of flavors with pepperoni, sausage, bell peppers, onions, and black olives, all layered over a rich tomato base and gooey mozzarella</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderZestyTrio.png" alt="Zesty Trio" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Jo's Zesty Trio - A bold combo of spicy pepperoni, earthy mushrooms, and fiery jalapeños, all on a bed of rich tomato sauce and bubbling cheese</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderMeatlovers.png" alt="Meatlover's Pizza" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Sloppy's Carnivore Delight - Piled high with pepperoni, sausage, ham, and bacon, all perfectly balanced by a hearty tomato sauce and melted cheese</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
+<h4>Build Your Own and Make it Extra Sloppy!</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/Pizzas3.png" alt="Custom Pizza" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Create Your Own Sloppy Pizza!</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/pizza5.png" alt="Cooking Pizza" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">All of Our Pizzas are Made to Order</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/Pizzas2.png" alt="Another Pizza" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Pepperoni Delight - Loaded with pepperoni and extra cheese</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/Pizzas2.png" alt="Another Pizza" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Veggie Supreme - A colorful mix of veggies on a cheesy base</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-
+<h4>Order Our Sloppy Sides!</h4>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderMozzSticks.png" alt="Mozzarella Sticks" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Jo's Mozz Sticks - A hearty pizza topped with seasoned beef, onions, and cheese</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderCheeseBread.png" alt="Cheesy Bread" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Cheesy Bread - Soft, cheesy perfection with a crisp, golden crust and a gooey, melted center</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderGarlicBread.png" alt="Garlic Bread" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Garlic Bread - Warm, golden breadsticks infused with rich garlic butter and sprinkled with Parmesan cheese—perfect for dipping</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderSalad.png" alt="Salad" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Sloppy Salad - Crisp romaine lettuce, shaved Parmesan, and crunchy croutons tossed in a creamy Caesar dressing</p>
+          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   
 
       <footer class="container-fluid text-center">
@@ -88,17 +213,6 @@
   export default {
   data() {
     return {
-      images: [
-        { src: "@/assets/Pizzas1.png", alt: 'Pizza with Sausage/Pepperoni'},
-        { src: '@/assets/beefPizza.jpg', alt: 'Beef Pizza' },
-        { src: 'path/to/your/image3.jpg', alt: 'Image 3' },
-        { src: 'path/to/your/image4.jpg', alt: 'Image 4' },
-        { src: 'path/to/your/image5.jpg', alt: 'Image 5' },
-        { src: 'path/to/your/image6.jpg', alt: 'Image 6' },
-        { src: 'path/to/your/image7.jpg', alt: 'Image 7' },
-        { src: 'path/to/your/image8.jpg', alt: 'Image 8' },
-        { src: 'path/to/your/image9.jpg', alt: 'Image 9' },
-      ],
       query: '',
       addresses: [],
       latitude: 41.505493,  // Latitude for 7100 Euclid Ave, Cleveland
@@ -161,7 +275,7 @@
 
       const distance = R * c; 
       return distance;
-    },
+    },  
     handleClickOutside(event) {
       const searchContainer = this.$refs.searchContainer;
       if (searchContainer && !searchContainer.contains(event.target)) {
@@ -181,20 +295,26 @@
   <style scoped>
   body {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    background-color: #a9a9a9;
   }
+
+  .navbar {
+      font-size: 24px;
+      margin-bottom: 0;
+      border-radius: 0;
+      color: #e0ba20c7;
+    }
+
+    .navbar-logo {
+    max-height: 100px; /* Adjust the max height as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-top: -25px;
+   }
+      @media (max-width: 768px) {
+      .navbar-logo {
+        max-height: 40px; /* Adjust size for smaller screens */
+      }
+    }
   
-  div.container {
-    display: grid;
-    grid-template-columns: 300px 1fr 250px;
-    grid-template-rows: 100px 1fr 1fr;
-    gap: 15px;
-    background-color: #a9a9a9;
-    grid-template-areas:
-      "header header header"
-      "main main main"
-      "footer footer footer";
-  }
   
   #page-header {
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
@@ -251,7 +371,6 @@
 .nav-link li {
   margin-right: 50px;
   font-size: 35px;
- 
 }
 
 .nav-link li:last-child {
@@ -267,13 +386,13 @@
   color: #0000ff;
 }
 
-/* search bar ////////////////// */
+/* search bar /////////////////////////////////////////////////////// */
 .search-container {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
   padding: 10px;
-  /* border: 1px solid #ccc; */
+  border: 1px solid #ccc;
   border-radius: 5px;
   /* background-color: #f9f9f9; */
 }
@@ -310,51 +429,72 @@
   font-weight: bold;
 }
 
-/* grid for photos ////////////////// */
-.grid-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Space between items */
-  justify-content: center; /* Center items horizontally */
-  align-items: center; /* Center items vertically */
-  max-width: 900px; /* Adjust the width as needed */
-  margin: 0 auto; /* Center the grid container */
+/* grid for photos /////////////////////////////////////////////////////////////////// */
+.container {
+  padding-bottom: 40px; 
+}
+
+.row {
+  margin-bottom: 40px;
 }
 
 .grid-item {
-  flex: 1 1 calc(33.333% - 20px); /* 3 items per row, with gaps considered */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-  background-color: #f0f0f0; /* Background color for demonstration */
-  display: flex;
-  flex-direction: column; /* Stack the image and button vertically */
-  align-items: center; /* Center items horizontally */
-  justify-content: center; /* Center items vertically */
-  height: 200px; /* Fixed height for images */
-  position: relative; /* Position relative to place the button absolutely */
-  overflow: hidden; /* Hide overflow if needed */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.grid-item img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover; /* Scale image to cover the container */
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  transition: transform 0.3s ease;
+  height: 200px;
+  object-fit: cover;
+}
+
+.grid-item:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+.description {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.grid-item:hover .description {
+  opacity: 1;
 }
 
 .add-to-cart-btn {
   position: absolute;
-  bottom: 5px;
-  background-color: #04454b;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  text-align: center;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.add-to-cart-btn:hover {
-  background-color: #087a5d;
+.grid-item:hover .add-to-cart-btn {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.1);
+}
+
+h4 {
+  font-size: 24px;
+  padding-left: 5%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
   
   

@@ -7,35 +7,35 @@
   </head>
   <body>
 
-  <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
-        </button>
-        <!-- <a class="navbar-brand"> -->
-          <img class="navbar-brand" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-        <!-- </a> -->
-      </div>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+          </button>
+          <!-- <a class="navbar-brand">
+            <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
+          </a> -->
+        </div>
 
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
-          <li><router-link v-bind:to="{name: 'menu'}">Menu</router-link></li>
-          <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
-          <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
+            <li><router-link v-bind:to="{name: 'about-us'}">About Us</router-link></li>
+            <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
+            <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
                   style="width: 65px; height: 65px;"></router-link></li>
-          <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
-          <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
-        </ul>
+            <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
+            <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <div class="container mt-4">
     <div class="embed-responsive embed-responsive-16by9">
@@ -56,9 +56,9 @@
         </router-link>
       </div>
       <div class="col-sm-4"> 
-        <router-link v-bind:to="{name: 'menu'}">
-        <img src="@/assets/Pizzas1.png" class="img-responsive" style="width:100%" alt="Pizza">
-        <p><strong>Check Out Our Menu</strong></p>
+        <router-link v-bind:to="{name: 'about-us'}">
+        <img src="@/assets/spLogo.png" class="img-responsive" style="width:100%" alt="Pizza">
+        <p><strong>~We Are Sloppy Jo~</strong></p>
       </router-link>
       </div>
       <div class="col-sm-4">
@@ -84,14 +84,30 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
   .navbar {
     font-size: 24px;
     margin-bottom: 0;
     border-radius: 0;
-    color: #e0ba20c7;
+    
+  }
+
+  .navbar-brand {
+    height: auto;
+    ;
   }
   
+  .navbar-logo {
+    max-height: 100px; /* Adjust the max height as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-top: -25px;
+  }
+      @media (max-width: 768px) {
+      .navbar-logo {
+        max-height: 40px; /* Adjust size for smaller screens */
+      }
+    }
+
 
   footer {
     background-color: #e0ba20c1;;
@@ -100,23 +116,8 @@ export default {
     
   }
   
-.carousel-inner img {
-    width: 100%; 
-    margin: auto;
-    min-height:200px;
-    max-height: fit-content;
-}
 
-/* Hide the carousel text when the screen is less than 600 pixels wide */
-@media (max-width: 600px) {
-  .carousel-caption {
-    display: none; 
-  }
-}
 
-.navbar-brand {
-  height: auto;
-  ;
-}
+
 
 </style>
