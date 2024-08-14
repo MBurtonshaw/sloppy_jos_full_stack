@@ -72,7 +72,7 @@
         <img src="@/assets/orderSloppyPizza.png" alt="Sloppy Joe Special" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy Joe Special -  Dive into savory nostalgia with this pizza, loaded with seasoned ground beef, tangy tomato sauce, and a melty cheese blend that brings the classic Sloppy Joe to your plate</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(1)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Joe Special', 1, 25.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
         <img src="@/assets/orderSupreme.png" alt="Supreme Pizza" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">The Sloppy Supreme - A feast of flavors with pepperoni, sausage, bell peppers, onions, and black olives, all layered over a rich tomato base and gooey mozzarella</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(2)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('The Sloppy Supreme', 2, 23.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@
         <img src="@/assets/orderZestyTrio.png" alt="Zesty Trio" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Jo's Zesty Trio - A bold combo of spicy pepperoni, earthy mushrooms, and fiery jalapeños, all on a bed of rich tomato sauce and bubbling cheese</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(4)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('The Zesty Trio', 4, 23.50)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@
         <img src="@/assets/orderMeatlovers.png" alt="Meatlover's Pizza" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy's Carnivore Delight - Piled high with pepperoni, sausage, ham, and bacon, all perfectly balanced by a hearty tomato sauce and melted cheese</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart(3)">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy\'s Carnivore Delight', 3, 22.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -156,7 +156,7 @@
         <img src="@/assets/orderMozzSticks.png" alt="Mozzarella Sticks" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Jo's Mozz Sticks - A hearty pizza topped with seasoned beef, onions, and cheese</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Jo\'s Mozz Sticks', 4, 10.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -165,7 +165,16 @@
         <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Buff Wings - 6pc', 5, 10.00)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="card grid-item">
+        <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
+        <div class="card-body">
+          <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Buff Wings - 12pc', 6, 16.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -174,7 +183,7 @@
         <img src="@/assets/orderCheeseBread.png" alt="Cheesy Bread" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Cheesy Bread - Soft, cheesy perfection with a crisp, golden crust and a gooey, melted center</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Cheesy Bread', 2, 10.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -183,7 +192,7 @@
         <img src="@/assets/orderGarlicBread.png" alt="Garlic Bread" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Garlic Bread - Warm, golden breadsticks infused with rich garlic butter and sprinkled with Parmesan cheese—perfect for dipping</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Garlic Bread', 1, 7.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -192,7 +201,7 @@
         <img src="@/assets/orderSalad.png" alt="Salad" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy Salad - Crisp romaine lettuce, shaved Parmesan, and crunchy croutons tossed in a creamy Caesar dressing</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addToCart('Sloppy Salad', 3, 10.00)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -306,8 +315,8 @@
                     }
                 });
             }, 
-      addToCart(id) {
-          this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id: id}});
+      addToCart(id, name, price) {
+          this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id, name, price}});
       }
   },        
   created() {

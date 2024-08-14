@@ -16,6 +16,10 @@ export default {
 
   addCustomPizza(orderId, data) {
     return http.post(`/api/orders/${orderId}/custom`, data);
+  },
+
+  addOrder(data) {
+    return http.post('/api/orders', data);
   }
 
   // getProduct(productId) {
