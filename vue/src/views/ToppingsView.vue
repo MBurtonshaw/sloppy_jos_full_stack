@@ -190,7 +190,24 @@ export default {
       this.customPizza.sauce = this.selectedSauce;
       this.customPizza.crust = this.selectedCrust;
       this.customPizza.toppings = this.selectedToppings;
+      this.customPizza.price = 15.00;
       this.customPizza.size = this.selectedSize;
+      if (this.customPizza.size == 'Medium') {
+        this.customPizza.price += 1.50;
+      }
+      if (this.customPizza.size == 'Large') {
+        this.customPizza.price += 3.00;
+      }
+      if (this.customPizza.size == 'Large') {
+        this.customPizza.price += 3.00;
+      }
+      if (this.customPizza.size == 'Half-Sheet') {
+        this.customPizza.price += 7.00
+      }
+      if (this.customPizza.size == 'Full-Sheet') {
+        this.customPizza.price += 9.00
+      }
+      this.customPizza.price += (1.00 * this.customPizza.toppings.length);
       console.log(this.customPizza);
       console.log(this.customPizza.toppings);
     },
