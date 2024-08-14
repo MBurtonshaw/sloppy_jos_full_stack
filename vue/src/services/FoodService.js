@@ -20,6 +20,10 @@ export default {
 
   addOrder(data) {
     return http.post('/api/orders', data);
+  },
+
+  addSide(orderId, data) {
+    return http.post(`/api/orders/${orderId}/side`, data);
   }
 
   // getProduct(productId) {
