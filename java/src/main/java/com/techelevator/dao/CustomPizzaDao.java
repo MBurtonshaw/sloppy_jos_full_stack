@@ -24,7 +24,7 @@ import java.util.List;
 public interface CustomPizzaDao {
     Item getPizzaById(int id);
 
-    void addPizza(Item pizza);
+    int addPizza(Item pizza);
 
     Item updatePizza(Item pizza, int id);
 

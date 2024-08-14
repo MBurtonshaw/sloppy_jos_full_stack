@@ -109,7 +109,7 @@ public class JdbcCustomPizzaDao implements CustomPizzaDao {
     }
 
     @Override
-    public void addPizza(Item pizza) {
+    public int addPizza(Item pizza) {
         // Inserting custom pizza into db through sql string
         // Using pizza object in parameters
         String sql = "INSERT INTO item (sauce_name, crust_name, size_name) VALUES (?, ?, ?) RETURNING item_id";
@@ -122,15 +122,16 @@ public class JdbcCustomPizzaDao implements CustomPizzaDao {
         if (pizza.getDiameter() == null) {
             throw new DaoException("Size cannot be null");
         }
+        int newId = 0;
         try {
             // creating a record for a custom pizza
-            int newId = jdbcTemplate.queryForObject(sql, int.class, pizza.getSauce(), pizza.getCrust(),
-                    pizza.getDiameter());
+            newId = jdbcTemplate.queryForObject(sql, int.class, pizza.getSauce(), pizza.getCrust(), pizza.getDiameter());
             // setting an id for a custom pizza
-            pizza.setItemId(newId);
+
         } catch (DataAccessException e) {
             throw new DaoException("Database access error", e);
         }
+        return newId;
     }
 
     private Item mapRowToCustomPizza(SqlRowSet rowSet) {
