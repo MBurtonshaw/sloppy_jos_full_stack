@@ -17,16 +17,17 @@
 
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
-            <li><router-link v-bind:to="{name: 'about-us'}">About Us</router-link></li>
-            <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
-            <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
+            <li class="active"><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
+            <li><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
+            <li><router-link v-bind:to="{ name: 'order' }">Order Now</router-link></li>
+            <li><router-link v-bind:to="{ name: 'contact' }">Contact Us</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
-              style="width: 65px; height: 65px;"></router-link></li>
-            <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
-            <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
+            <li><router-link v-bind:to="{ name: 'shopping-cart' }"><img class="navbar-brand"
+                  src="@/assets/shopping-cart2.png" alt="shopping cart img"
+                  style="width: 65px; height: 65px;"></router-link></li>
+            <li><router-link v-bind:to="{ name: 'login' }">Login</router-link></li>
+            <li><router-link v-bind:to="{ name: 'register' }">Register</router-link></li>
           </ul>
         </div>
       </div>
@@ -35,9 +36,9 @@
       <!-- custom pizza grid -->
       <div class="container">
         <h2 class="text-center">Create Your Custom Pizza</h2>
-        <form>
+        
   
-      <!-- Size Selection -->
+     
 <!-- Size Selection -->
   <div class="form-group">
       <h4>Choose Your Pizza Size</h4>
@@ -109,118 +110,136 @@
               <div class="col-xs-6 col-sm-4" v-for="(topping, index) in toppings" :key="index">
                 <label>
                   <input type="checkbox" v-model="selectedToppings" :value="topping">
-                  {{ topping }}
+                  {{ topping.name }}
                 </label>
               </div>
             </div>
           </div>
-  
-          <!-- Add to Cart Button -->
-          <button type="button" class="btn btn-primary" @click="addToCart">Add to Cart</button>
-        </form>
-      </div>
-  
-      <footer class="container-fluid text-center">
-        <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
-      </footer>
-    </body>
-  </template>
-  
-  
-  <script>
-  import axios from 'axios';
-  import Order from '../components/Order.vue';
-  import foodService from '../services/FoodService';
- 
-  export default {
-    data() {
+        <button type="button" @click="makePizza()">Make Pizza (temporary button)</button>
+        <!-- Add to Cart Button -->
+        <button type="button" class="btn btn-primary" @click="addCustomPizzaToCart()">Add to Cart</button>
+    </div>
+
+    <footer class="container-fluid text-center">
+      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
+    </footer>
+  </body>
+</template>
+
+
+<script>
+import axios from 'axios';
+import Order from '../components/Order.vue';
+import foodService from '../services/FoodService';
+
+export default {
+  data() {
     return {
       crusts: ['Regular', 'Thin', 'Pan'],
       sauces: ['Traditional', 'Basil-Pesto', 'Garlic Parmesean'],
       toppings: [
-        'Pepperoni', 'Bacon', 'Ham', 'Mushroom', 'Black Olives', 'Green Olives',
-        'Bell Pepper', 'Italian Sausage', 'Onions', 'Pineapple', 'Extra Cheese',
-        'Prosciutto', 'Meatballs', 'Anchioves', 'Ginger-Infused Pineapple', 'Truffles',
-        'Artichokes', 'Blue Cheese', 'Jalepenos', 'Ground Beef', 'Sloppy Joe Sauce'
+        { id: 1, name: 'Pepperoni', price: 1.00 },
+        { id: 2, name: 'Bacon', price: 1.00 },
+        { id: 3, name: 'Ham', price: 1.00 },
+        { id: 4, name: 'Mushroom', price: 1.00 },
+        { id: 5, name: 'Black Olives', price: 1.00 },
+        { id: 6, name: 'Green Olives', price: 1.00 },
+        { id: 7, name: 'Bell Pepper', price: 1.00 },
+        { id: 8, name: 'Italian Sausage', price: 1.00 },
+        { id: 9, name: 'Onions', price: 1.00 },
+        { id: 10, name: 'Pineapple', price: 1.00 },
+        { id: 11, name: 'Extra Cheese', price: 1.00 },
+        { id: 12, name: 'Prosciutto', price: 1.00 },
+        { id: 13, name: 'Meatballs', price: 1.00 },
+        { id: 14, name: 'Anchovies', price: 1.00 },
+        { id: 15, name: 'Ginger-Infused Pineapple', price: 1.00 },
+        { id: 16, name: 'Truffles', price: 1.00 },
+        { id: 17, name: 'Artichokes', price: 1.00 },
+        { id: 18, name: 'Blue Cheese', price: 1.00 },
+        { id: 19, name: 'Jalapenos', price: 1.00 },
+        { id: 20, name: 'Ground Beef', price: 1.00 },
+        { id: 21, name: 'Sloppy Joe Sauce', price: 1.00 }
       ],
       selectedCrust: '',
       selectedSauce: '',
-      selectedToppings: []
+      selectedSize: '',
+      selectedToppings: [],
+      customPizza: {
+
+      }
     };
   },
   methods: {
-    
-    getSpecialtyPizzas() {
-            foodService.getProducts()
-                .then(response => {
-                    this.$store.commit('SET_SPECIALTY_PIZZAS', response.data);
-                    this.isLoading = false;
-                })
-                .catch(error => {
-                    if (error.response) {
-                        this.$store.commit('SET_NOTIFICATION',
-                        "Error getting products. Response received was '" + error.response.statusText + "'.");
-                    } else if (error.request) {
-                        this.$store.commit('SET_NOTIFICATION', "Error getting products. Server could not be reached.");
-                    } else {
-                        this.$store.commit('SET_NOTIFICATION', "Error getting products. Request could not be created.");
-                    }
-                });
-            }, 
-      addToCart(id, name, price) {
-          this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id, name, price}});
+    addTopping(topping) {
+      const index = this.selectedToppings.indexOf(topping);
+
+      if (index === -1) {
+        // Topping is not in the list, so add it
+        this.selectedToppings.push(topping);
+      } else {
+        // Topping is already in the list, so remove it
+        this.selectedToppings.splice(index, 1);
       }
-  },        
-  created() {
-        this.getSpecialtyPizzas();
     },
-    addCustomPizzaToCart(id, name, price) {
-          this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id: id, name: name, price: price}});
-      },
+    makePizza() {
+      this.customPizza.sauce = this.selectedSauce;
+      this.customPizza.crust = this.selectedCrust;
+      this.customPizza.toppings = this.selectedToppings;
+      this.customPizza.size = this.selectedSize;
+      console.log(this.customPizza);
+      console.log(this.customPizza.toppings);
+    },
+    addCustomPizzaToCart() {
+      let newPizza = this.makePizza();
+      this.$store.commit('ADD_TO_CART', {type: 'Custom', obj: {id: this.customPizza.id, name: 'Custom', price: this.customPizza.price}});
+    },
+  },
 };
-  </script>
-  
-  <style scoped>
-  body {
-    font-family: 'Arial', sans-serif;
-    font-size: 24px;
-  }
+</script>
 
-  .navbar {
-      font-size: 24px;
-      margin-bottom: 0;
-      border-radius: 0;
-      color: #e0ba20c7;
-      font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
-  
-    }
+<style scoped>
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+}
 
-    .navbar-logo {
-    max-height: 100px; /* Adjust the max height as needed */
-    width: auto; /* Maintain aspect ratio */
-    margin-top: -25px;
-   }
-      @media (max-width: 768px) {
-      .navbar-logo {
-        max-height: 40px; /* Adjust size for smaller screens */
-      }
-    }
-  
-  
-  .resize-image {
-    max-width: 200px;
-    max-height: auto;
-    margin-top: 20px;
+.navbar {
+  font-size: 24px;
+  margin-bottom: 0;
+  border-radius: 0;
+  color: #e0ba20c7;
+  font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
+
+}
+
+.navbar-logo {
+  max-height: 100px;
+  /* Adjust the max height as needed */
+  width: auto;
+  /* Maintain aspect ratio */
+  margin-top: -25px;
+}
+
+@media (max-width: 768px) {
+  .navbar-logo {
+    max-height: 40px;
+    /* Adjust size for smaller screens */
   }
-  
+}
+
+
+.resize-image {
+  max-width: 200px;
+  max-height: auto;
+  margin-top: 20px;
+}
+
 footer {
   background-color: #e0ba20c7;
   padding: 25px;
   font-size: 24px;
   font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
 }
-  
-
 
 
 h4 {

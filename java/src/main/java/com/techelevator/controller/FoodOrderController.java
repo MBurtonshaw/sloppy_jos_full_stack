@@ -54,77 +54,77 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.GET)
-    public Item addPizza(@PathVariable int id) {
-        try {
-            // Call the DAO to add the pizza to the database
-            return customPizzaDao.getPizzaById(id);
-        } catch (DaoException e) {
-            // Handle database access exceptions and return an appropriate response
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve custom pizza", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.GET)
+//    public Item addPizza(@PathVariable int id) {
+//        try {
+//            // Call the DAO to add the pizza to the database
+//            return customPizzaDao.getPizzaById(id);
+//        } catch (DaoException e) {
+//            // Handle database access exceptions and return an appropriate response
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve custom pizza", e);
+//        }
+//    }
 
-    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.PUT)
-    public Item updatePizza(@RequestBody Item pizza, @PathVariable int id) {
-        try {
-            // Call the DAO to add the pizza to the database
-            return customPizzaDao.updatePizza(pizza, id);
-        } catch (DaoException e) {
-            // Handle database access exceptions and return an appropriate response
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to update custom pizza", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.PUT)
+//    public Item updatePizza(@RequestBody Item pizza, @PathVariable int id) {
+//        try {
+//            // Call the DAO to add the pizza to the database
+//            return customPizzaDao.updatePizza(pizza, id);
+//        } catch (DaoException e) {
+//            // Handle database access exceptions and return an appropriate response
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to update custom pizza", e);
+//        }
+//    }
 
-    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.DELETE)
-    public void deletePizza(@PathVariable int id) {
-        try {
-            // Call the DAO to add the pizza to the database
-            customPizzaDao.deletePizza(id);
-        } catch (DaoException e) {
-            // Handle database access exceptions and return an appropriate response
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete custom pizza", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/byo/{id}", method = RequestMethod.DELETE)
+//    public void deletePizza(@PathVariable int id) {
+//        try {
+//            // Call the DAO to add the pizza to the database
+//            customPizzaDao.deletePizza(id);
+//        } catch (DaoException e) {
+//            // Handle database access exceptions and return an appropriate response
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to delete custom pizza", e);
+//        }
+//    }
 
-    @RequestMapping(path = "/order", method = RequestMethod.GET)
-    public List<SpecialtyPizza> getSpecialtyPizzas() {
-        try {
-            return specialtyPizzaDao.getSpecialtyPizzas();
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas",
-                    e);
-        }
-    }
+//    @RequestMapping(path = "/order", method = RequestMethod.GET)
+//    public List<SpecialtyPizza> getSpecialtyPizzas() {
+//        try {
+//            return specialtyPizzaDao.getSpecialtyPizzas();
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve specialty pizzas",
+//                    e);
+//        }
+//    }
 
-    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
-    public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
-        try {
-            return specialtyPizzaDao.getSpecialtyPizza(id);
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.GET)
+//    public SpecialtyPizza getSpecialtyPizza(@PathVariable int id) {
+//        try {
+//            return specialtyPizzaDao.getSpecialtyPizza(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Specialty pizza not found", e);
+//        }
+//    }
 
-    @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
-    public List<Side> getSides() {
-        try {
-            return sideDao.getSides();
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/sides", method = RequestMethod.GET)
+//    public List<Side> getSides() {
+//        try {
+//            return sideDao.getSides();
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
+//        }
+//    }
 
-    @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.GET)
-    public Side getSide(@PathVariable int id) {
-        try {
-            return sideDao.getSide(id);
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/sides/{id}", method = RequestMethod.GET)
+//    public Side getSide(@PathVariable int id) {
+//        try {
+//            return sideDao.getSide(id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sides not found", e);
+//        }
+//    }
 
-    @RequestMapping(path = "/orders/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "api/orders/{id}", method = RequestMethod.GET)
     public FoodOrder getOrder(@PathVariable int id) {
         try {
             return foodOrderDao.getOrder(id);
@@ -165,14 +165,14 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.DELETE)
-    public void deleteSpecialtyPizzaFromOrder(@PathVariable int id, @RequestBody int orderId) {
-        try {
-            foodOrderDao.removeSpecialtyPizzaFromOrder(orderId, id);
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
-        }
-    }
+//    @RequestMapping(path = "/menu/specialty_pizzas/{id}", method = RequestMethod.DELETE)
+//    public void deleteSpecialtyPizzaFromOrder(@PathVariable int id, @RequestBody int orderId) {
+//        try {
+//            foodOrderDao.removeSpecialtyPizzaFromOrder(orderId, id);
+//        } catch (DaoException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+//        }
+//    }
 
     @RequestMapping(path = "/api/orders/{orderId}/custom", method = RequestMethod.POST)
     public void addCustomPizzaToOrder(@PathVariable int orderId, @RequestBody Item pizza) {

@@ -163,7 +163,7 @@ export default {
         `Order Submitted`
       );
       this.$router.push('/');
-    }
+    },
   }
 
 }
