@@ -206,16 +206,18 @@ button:hover {
 }
 
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   background-image: url('@/assets/Pizzas4.png');
   background-position: center;
   background-size: cover;
+  font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
+    font-size: 24px;
 }
 
 footer {
       background-color: #e0ba20c1;
       padding: 25px;
-      font-size: 24px;    
+      font-size: 24px;
+      font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
     }
 
 </style>

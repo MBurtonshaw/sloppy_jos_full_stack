@@ -194,10 +194,12 @@ button:hover {
 }
 
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  
   background-image: url('@/assets/pizza5.png');
   background-position: center;
   background-size: cover;
+  font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
+    font-size: 24px;
   
 
 }
@@ -244,14 +246,11 @@ div.container {
 }
 
 footer {
-      height: auto;
-      padding: 10px 20px;
-  }
-  
-  .footer-image {
-    display: grid;
-    place-items: center;
-  }
+      background-color: #e0ba20c1;
+      padding: 25px;
+      font-size: 24px;
+      font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
+    }
   
 
 .nav-link {

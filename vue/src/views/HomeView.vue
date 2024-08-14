@@ -47,18 +47,18 @@
 </div>
     
   <div class="container text-center">    
-    <h3><strong>Pizza Extra Sloppy is What We Do</strong></h3><br>
+    <h1><strong>Pizza Extra Sloppy is What We Do</strong></h1><br>
     <div class="row">
       <div class="col-sm-4">
         <router-link v-bind:to="{name: 'order'}">
         <img src="@/assets/Pizzas2.png" class="img-responsive"  style="width:100%" alt="Pizza">
-        <p><strong>Order Specialty</strong></p>
+        <p>Order Now!</p>
         </router-link>
       </div>
       <div class="col-sm-4"> 
         <router-link v-bind:to="{name: 'about-us'}">
         <img src="@/assets/spLogo.png" class="img-responsive" style="width:100%" alt="Pizza">
-        <p><strong>~We Are Sloppy Jo~</strong></p>
+        <p>We Are Sloppy Jo!</p>
       </router-link>
       </div>
       <div class="col-sm-4">
@@ -104,11 +104,16 @@ export default {
     }
 
 
-  footer {
-    background-color: #e0ba20c1;;
-    padding: 25px;
+    footer {
+      background-color: #e0ba20c1;
+      padding: 25px;
+      font-size: 24px;
+      font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
+    }
+
+  body {
+    font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
     font-size: 24px;
-    
   }
   
 

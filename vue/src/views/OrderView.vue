@@ -114,7 +114,9 @@
         <img src="@/assets/Pizzas3.png" alt="Custom Pizza" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Create Your Own Sloppy Pizza!</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+        <router-link v-bind:to="{name: 'custom'}">
+          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+        </router-link>
         </div>
       </div>
     </div>
@@ -123,7 +125,9 @@
         <img src="@/assets/pizza5.png" alt="Cooking Pizza" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">All of Our Pizzas are Made to Order</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <router-link v-bind:to="{name: 'custom'}">
+          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+        </router-link>
         </div>
       </div>
     </div>
@@ -131,17 +135,21 @@
       <div class="card grid-item">
         <img src="@/assets/Pizzas2.png" alt="Another Pizza" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Pepperoni Delight - Loaded with pepperoni and extra cheese</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <p class="card-text description">Click on the Button Below to Start Building!</p>
+          <router-link v-bind:to="{name: 'custom'}">
+          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+        </router-link>
         </div>
       </div>
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="card grid-item">
-        <img src="@/assets/Pizzas2.png" alt="Another Pizza" class="card-img-top">
+        <img src="@/assets/dinoPizza.png" alt="Another Pizza" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description"><strong>Veggie Supreme</strong> - A colorful mix of veggies on a cheesy base</p>
-          <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+          <p class="card-text description">Make it Extra Sloppy!</p>
+          <router-link v-bind:to="{name: 'custom'}">
+          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+        </router-link>
         </div>
       </div>
     </div>
@@ -171,7 +179,7 @@
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="card grid-item">
-        <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
+        <img src="@/assets/orderWings2.png" alt="Buffalo Wings" class="card-img-top">
         <div class="card-body">
           <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(6, 'Sloppy Buff Wings - 12pc', 16.00)">Add to Cart</button>
@@ -333,7 +341,8 @@
   
   <style scoped>
   body {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
+    
   }
 
   .navbar {
@@ -383,10 +392,12 @@
     margin-top: 20px;
   }
   
-  footer {
-      height: auto;
-      padding: 10px 20px;
-  }
+footer {
+  background-color: #e0ba20c7;
+  padding: 25px;
+  font-size: 24px;
+  font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
+}
   
   .footer-image {
     display: grid;

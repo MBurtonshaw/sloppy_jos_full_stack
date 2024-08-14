@@ -119,8 +119,10 @@ export default {
 
 <style scoped>
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
   background-color: #a9a9a9;
+  font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
+    font-size: 24px;
 }
 
 .navbar {
@@ -158,7 +160,7 @@ body {
   background-color: #daa520;
 }
 
-#page-footer {
+/* #page-footer {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   padding-left: 10px;
   padding-right: 10px;
@@ -167,7 +169,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #e0ba20c1;
-}
+} */
 
 .resize-image {
   max-width: 200px;
@@ -179,16 +181,10 @@ footer {
   background-color: #e0ba20c7;
   padding: 25px;
   font-size: 24px;
-  
+  font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
 }
 
 
-.inline-footer-links {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  column-gap: 50px;
-  justify-content: center;
-}
 /* nav  ///////////////////////////////////////// */
 .nav-link {
   display: flex;
