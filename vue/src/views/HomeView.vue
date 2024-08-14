@@ -15,9 +15,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
           </button>
-          <!-- <a class="navbar-brand">
+          <a class="navbar-brand">
             <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-          </a> -->
+          </a>
         </div>
 
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -86,22 +86,17 @@ export default {
 
 <style scoped>
   .navbar {
-    font-size: 24px;
-    margin-bottom: 0;
-    border-radius: 0;
-    
-  }
+      font-size: 24px;
+      margin-bottom: 0;
+      border-radius: 0;
+      color: #e0ba20c7;
+    }
 
-  .navbar-brand {
-    height: auto;
-    ;
-  }
-  
-  .navbar-logo {
+    .navbar-logo {
     max-height: 100px; /* Adjust the max height as needed */
     width: auto; /* Maintain aspect ratio */
     margin-top: -25px;
-  }
+   }
       @media (max-width: 768px) {
       .navbar-logo {
         max-height: 40px; /* Adjust size for smaller screens */
