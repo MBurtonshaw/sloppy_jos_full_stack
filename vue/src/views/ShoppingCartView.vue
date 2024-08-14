@@ -54,7 +54,13 @@
         </thead>
         <tbody v-if="$store.state.shoppingCart.length > 0">
           <tr v-for="(food, i) in $store.state.shoppingCart" v-bind:key="i">
+<<<<<<< HEAD
             <td width="300">{{ food.obj.id }}</td>
+=======
+            <td width="300">
+              {{ food.obj.name }}
+            </td>
+>>>>>>> 31e34b1d54d8b8c50d0736a9157fadba2718f181
             <td>${{ food.obj.price }}</td>
             <td>
               <input type="button" value="+" @click="addToCart(food)">

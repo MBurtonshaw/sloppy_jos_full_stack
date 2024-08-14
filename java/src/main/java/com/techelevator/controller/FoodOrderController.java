@@ -142,15 +142,24 @@ public class FoodOrderController {
         }
     }
 
-    @RequestMapping(path="api/orders/{id}", method = RequestMethod.GET)
-    public FoodOrder checkoutOrder(@RequestBody FoodOrder order) {
-
-    }
+//    @RequestMapping(path="api/orders/{id}", method = RequestMethod.GET)
+//    public FoodOrder checkoutOrder(@RequestBody FoodOrder order) {
+//
+//    }
 
     @RequestMapping(path = "/api/orders/{orderId}/specialty", method = RequestMethod.POST)
     public void addSpecialtyPizzaToOrder(@PathVariable int orderId, @RequestBody SpecialtyDTO specialtyDTO) {
         try {
             foodOrderDao.addSpecialtyPizzaToOrder(orderId, specialtyDTO.getId());
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
+        }
+    }
+
+    @RequestMapping(path = "/api/orders/{orderId}/side", method = RequestMethod.POST)
+    public void addSideToOrder(@PathVariable int orderId, @RequestBody SideDTO sideDTO) {
+        try {
+            foodOrderDao.addSideToOrder(orderId, sideDTO.getId());
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
         }
