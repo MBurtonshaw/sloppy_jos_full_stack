@@ -12,6 +12,7 @@ import OrderView from '../views/OrderView.vue';
 import ContactUsView from '../views/ContactUsView.vue';
 import ShoppingCartView from '../views/ShoppingCartView.vue';
 import AboutUsView from '../views/AboutUsView.vue';
+import ToppingsView from '../views/ToppingsView.vue';
 
 
 
@@ -85,6 +86,14 @@ const routes = [
     path: "/about-us",
     name: "about-us",
     component: AboutUsView,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
+    path: "/custom-pizza",
+    name: "custom",
+    component: ToppingsView,
     meta: {
       requiresAuth: false
     }

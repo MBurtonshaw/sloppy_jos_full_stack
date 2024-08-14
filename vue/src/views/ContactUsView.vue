@@ -75,6 +75,11 @@
 </script>
 
 <style scoped>
+body {
+    font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
+    font-size: 24px;
+  }
+  
   .navbar {
     font-size: 24px;
     margin-bottom: 0;
@@ -94,11 +99,11 @@
     }
     
 
-  footer {
-      background-color: #e0ba20c7;
+    footer {
+      background-color: #e0ba20c1;
       padding: 25px;
       font-size: 24px;
-      
+      font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
     }
     
   .carousel-inner img {
