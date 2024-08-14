@@ -53,7 +53,7 @@
         <tbody v-if="$store.state.shoppingCart.length > 0">
           <tr v-for="(food, i) in $store.state.shoppingCart" v-bind:key="i">
             <td width="300">
-              {{ food.obj.id }}
+              {{ food.obj.name }}
             </td>
             <td>${{ food.obj.price }}</td>
 

@@ -14,6 +14,19 @@ export function createStore(currentToken, currentUser) {
       orders: [],
     },
     mutations: {
+      ADD_TOPPING(state, topping) {
+        // Check if the topping is already in the array
+        if (!state.pizzas.toppings.includes(topping)) {
+            state.pizzas.toppings.push(topping);
+        }
+      },
+      REMOVE_TOPPING(state, topping) {
+          // Remove the topping if it exists
+          const index = state.pizzas.toppings.indexOf(topping);
+          if (index !== -1) {
+              state.pizzas.toppings.splice(index, 1);
+          }
+      },
       SET_SPECIALTY_PIZZAS(state, specialtyPizzas) {
         state.specialtyPizzas = specialtyPizzas;
       },
@@ -28,8 +41,8 @@ export function createStore(currentToken, currentUser) {
       },
       CHECKOUT(state) {
         let order = {
-          "user" : state.user.id,
-          "customer" : state.user.id
+          "user": state.user.id,
+          "customer": state.user.id
         };
         foodService.addOrder(order).then(response => {
           // Iterate over the shopping cart to add specialty pizzas
@@ -38,11 +51,22 @@ export function createStore(currentToken, currentUser) {
               foodService.addSpecialtyPizza(response.data.order, item.obj).catch(error => {
                 console.error('Error adding specialty pizza:', error);
               });
+            } else if (item.type === 'Custom') {
+              foodService.addCustomPizza(response.data.order, item.obj).catch(error => {
+                console.error('Error adding custom pizza:', error);
+              });
+            } else if (item.type === 'Side') {
+              console.log(`Order = ${response.data.order}`);
+              foodService.addSide(response.data.order, item.obj).catch(error => {
+                console.error('Error adding side order:', error);
+              });
             }
           });
+
         }).catch(error => {
           console.error('Error adding order:', error); // Handle error from addOrder
         });
+
       },
       SET_NOTIFICATION(state, notification) {
         // Clear the current notification if one exists
@@ -94,41 +118,9 @@ export function createStore(currentToken, currentUser) {
         state.user = {};
         axios.defaults.headers.common = {};
       },
-      // ADD_TO_CART(state, product) {
-      //   let thisProduct = state.shoppingCart.find((sp) => {
-      //     return sp.productId == product.productId;
-      //   });
-      //   if (thisProduct) {
-      //     thisProduct.qty++;
-      //   }
-      //   else {
-      //     let newShoppingProduct = {
-      //       productId: product.productId,
-      //       qty: 1
-      //     };
-      //     state.shoppingCart.push(newShoppingProduct);
 
-      //   }
-      // },
-      // REMOVE_FROM_CART(state, product) {
-      //   let thisProduct = state.shoppingCart.find((sp) => {
-      //     return sp.productId == product.productId;
-      //   });
-
-      //   if (thisProduct) {
-      //     if (thisProduct.qty <= 1) {
-      //       state.shoppingCart.pop(thisProduct);
-      //     }
-      //     else {
-      //       thisProduct.qty--;
-      //     }
-      //   }
-      // },
-      // EMPTY_CART(state) {
-      //     state.shoppingCart = [];
-      // }
     },
-    
+
   });
-  return store; 
+  return store;
 }
