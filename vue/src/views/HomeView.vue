@@ -38,13 +38,13 @@
     </nav>
 
   <div class="container mt-4">
-    <div class="embed-responsive embed-responsive-16by9">
+    <div class="embed-responsive embed-responsive-16by9 custom-video-size">
         <video class="embed-responsive-item" autoplay loop muted>
             <source src="@/assets/fullPizza.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
-</div>
+  </div>
     
   <div class="container text-center">    
     <h1><strong>Pizza Extra Sloppy is What We Do</strong></h1><br>
@@ -115,6 +115,11 @@ export default {
     font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
     font-size: 24px;
   }
+
+  .custom-video-size {
+        max-width: 1024px; /* Adjust width as needed */
+        margin: 0 auto; /* Horizontally center the container */
+    }
   
 
 

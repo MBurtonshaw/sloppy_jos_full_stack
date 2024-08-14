@@ -1,22 +1,15 @@
 <template>
-
-  <head>
-    <title>Sloppy Joe's Menu</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  </head>
-
-  <body>
-    <!-- header -->
-    <nav class="navbar navbar-inverse">
+    <head>
+      <title>Sloppy Joe's Menu</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+      <!-- header -->
+      <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand">
             <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
           </a>
@@ -39,90 +32,92 @@
         </div>
       </div>
     </nav>
+  
+      <!-- custom pizza grid -->
+      <div class="container">
+        <h2 class="text-center">Create Your Custom Pizza</h2>
+        
+  
+     
+<!-- Size Selection -->
+  <div class="form-group">
+      <h4>Choose Your Pizza Size</h4>
+      <div class="row justify-content-center">
+          <div class="col-xs-6 col-sm-2 text-center">
+              <label>
+                  <input type="radio" name="size" value="Small" v-model="selectedSize">
+                  <img src="@/assets/smallPizza.png" alt="Small Size" class="img-responsive pizza-size-img">
+                  <div>Small</div>
+              </label>
+          </div>
+          <div class="col-xs-6 col-sm-2 text-center">
+              <label>
+                  <input type="radio" name="size" value="Medium" v-model="selectedSize">
+                  <img src="@/assets/mediumPizza.png" alt="Medium Size" class="img-responsive pizza-size-img">
+                  <div>Medium</div>
+              </label>
+          </div>
+          <div class="col-xs-6 col-sm-2 text-center">
+              <label>
+                  <input type="radio" name="size" value="Large" v-model="selectedSize">
+                  <img src="@/assets/largePizza.png" alt="Large Size" class="img-responsive pizza-size-img">
+                  <div>Large</div>
+              </label>
+          </div>
+          <div class="col-xs-6 col-sm-2 text-center">
+              <label>
+                  <input type="radio" name="size" value="Half-Sheet" v-model="selectedSize">
+                  <img src="@/assets/halfSheetPizza.png" alt="Half-Sheet Size" class="img-responsive pizza-size-img">
+                  <div>Half-Sheet</div>
+              </label>
+          </div>
+          <div class="col-xs-6 col-sm-2 text-center">
+              <label>
+                  <input type="radio" name="size" value="Full-Sheet" v-model="selectedSize">
+                  <img src="@/assets/fullSheetPizza.png" alt="Full-Sheet Size" class="img-responsive pizza-size-img">
+                  <div>Full-Sheet</div>
+              </label>
+          </div>
+      </div>
+  </div>
 
-    <!-- custom pizza grid -->
-    <div class="container">
-      <h2 class="text-center">Create Your Custom Pizza</h2>
-      <form>
 
-        <!-- Size Selection -->
-        <div class="form-group">
-          <h4>Choose Your Pizza Size</h4>
-          <div class="row">
-            <div class="col-xs-6 col-sm-4">
-              <label>
-                <input type="radio" name="size" value="Small" v-model="selectedSize">
-                <img src="@/assets/smallPizza.png" alt="Small Size" class="img-responsive">
-                Small
-              </label>
-            </div>
-            <div class="col-xs-6 col-sm-4">
-              <label>
-                <input type="radio" name="size" value="Medium" v-model="selectedSize">
-                <img src="@/assets/mediumPizza.png" alt="Medium Size" class="img-responsive">
-                Medium
-              </label>
-            </div>
-            <div class="col-xs-6 col-sm-4">
-              <label>
-                <input type="radio" name="size" value="Large" v-model="selectedSize">
-                <img src="@/assets/largePizza.png" alt="Large Size" class="img-responsive">
-                Large
-              </label>
-            </div>
-            <div class="col-xs-6 col-sm-6">
-              <label>
-                <input type="radio" name="size" value="Half-Sheet" v-model="selectedSize">
-                <img src="@/assets/halfSheet.png" alt="Half-Sheet Size" class="img-responsive">
-                Sheet
-              </label>
-            </div>
-            <div class="col-xs-6 col-sm-6">
-              <label>
-                <input type="radio" name="size" value="Full-Sheet" v-model="selectedSize">
-                <img src="@/assets/fullSheetPizza.png" alt="Full-Sheet Size" class="img-responsive">
-                Half-Sheet
-              </label>
+  
+          <!-- Crust Selection -->
+          <div class="form-group">
+            <h4>Choose Your Crust</h4>
+            <select class="form-control" v-model="selectedCrust">
+              <option>Regular</option>
+              <option>Thin  </option>
+              <option>Pan</option>
+            </select>
+          </div>
+  
+          <!-- Sauce Selection -->
+          <div class="form-group">
+            <h4>Choose Your Sauce</h4>
+            <select class="form-control" v-model="selectedSauce">
+              <option>Traditional</option>
+              <option>Basil-Pesto</option>
+              <option>Garlic Parmesean</option>
+            </select>
+          </div>
+  
+          <!-- Toppings Selection -->
+          <div class="form-group">
+            <h4>Choose Your Toppings</h4>
+            <div class="row">
+              <div class="col-xs-6 col-sm-4" v-for="(topping, index) in toppings" :key="index">
+                <label>
+                  <input type="checkbox" v-model="selectedToppings" :value="topping">
+                  {{ topping.name }}
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Crust Selection -->
-        <div class="form-group">
-          <h4>Choose Your Crust</h4>
-          <select class="form-control" v-model="selectedCrust">
-            <option>Regular</option>
-            <option>Thin </option>
-            <option>Pan</option>
-          </select>
-        </div>
-
-        <!-- Sauce Selection -->
-        <div class="form-group">
-          <h4>Choose Your Sauce</h4>
-          <select class="form-control" v-model="selectedSauce">
-            <option>Traditional</option>
-            <option>Basil-Pesto</option>
-            <option>Garlic Parmesean</option>
-          </select>
-        </div>
-
-
-        <div class="form-group">
-          <h4>Choose Your Toppings</h4>
-          <div class="row">
-            <div class="col-xs-6 col-sm-4" v-for="topping in toppings" :key="topping.id">
-              <label>
-                <input type="checkbox" :value="topping.id" v-model="selectedToppings" />
-                {{ topping.name }}
-              </label>
-            </div>
-          </div>
-        </div>
         <button type="button" @click="makePizza()">Make Pizza (temporary button)</button>
         <!-- Add to Cart Button -->
         <button type="button" class="btn btn-primary" @click="addCustomPizzaToCart()">Add to Cart</button>
-      </form>
     </div>
 
     <footer class="container-fluid text-center">
@@ -264,31 +259,6 @@ footer {
 }
 
 
-.nav-link {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-link li {
-  margin-right: 50px;
-  font-size: 35px;
-}
-
-.nav-link li:last-child {
-  margin-right: 50px;
-}
-
-.nav-link a {
-  text-decoration: none;
-  color: black;
-}
-
-.nav-link a:hover {
-  color: #0000ff;
-}
-
 h4 {
   font-size: 24px;
   padding-left: 5%;
@@ -318,4 +288,11 @@ button {
   display: block;
   margin: 20px auto;
 }
+
+.pizza-size-img {
+    width: 150px;  /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+}
+
 </style>

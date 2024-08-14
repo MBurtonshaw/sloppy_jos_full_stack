@@ -38,7 +38,7 @@
     </nav>
 
     <div class="text-center">
-      <h2>~Order Now~</h2>
+      <h1>~Order Now~</h1>
       <h3>Check to See if you are in Our Delivery Area!</h3>
     </div>
 
@@ -71,7 +71,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderSloppyPizza.png" alt="Sloppy Joe Special" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Joe Special -  Dive into savory nostalgia with this pizza, loaded with seasoned ground beef, tangy tomato sauce, and a melty cheese blend that brings the classic Sloppy Joe to your plate</p>
+          <p class="card-text description">Sloppy Joe Special<br>Loaded with seasoned ground beef, tangy tomato sauce, and a melty cheese blend that brings the classic Sloppy Joe to your plate</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(1, 'Sloppy Joe Special', 25.00)">Add to Cart</button>
         </div>
       </div>
@@ -80,7 +80,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderSupreme.png" alt="Supreme Pizza" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">The Sloppy Supreme - A feast of flavors with pepperoni, sausage, bell peppers, onions, and black olives, all layered over a rich tomato base and gooey mozzarella</p>
+          <p class="card-text description">The Sloppy Supreme<br>Pepperoni, sausage, bell peppers, onions, and black olives, all layered over a rich tomato base and gooey mozzarella</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(2, 'The Sloppy Supreme', 23.00)">Add to Cart</button>
         </div>
       </div>
@@ -89,7 +89,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderZestyTrio.png" alt="Zesty Trio" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Jo's Zesty Trio - A bold combo of spicy pepperoni, earthy mushrooms, and fiery jalapeños, all on a bed of rich tomato sauce and bubbling cheese</p>
+          <p class="card-text description">Jo's Zesty Trio<br>A bold combo of spicy pepperoni, earthy mushrooms, and fiery jalapeños, all on a bed of rich tomato sauce and bubbling cheese</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(4, 'The Zesty Trio', 23.50)">Add to Cart</button>
         </div>
       </div>
@@ -98,7 +98,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderMeatlovers.png" alt="Meatlover's Pizza" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy's Carnivore Delight - Piled high with pepperoni, sausage, ham, and bacon, all perfectly balanced by a hearty tomato sauce and melted cheese</p>
+          <p class="card-text description">Sloppy's Carnivore Delight<br>Piled high with pepperoni, sausage, ham, and bacon, all perfectly balanced by a hearty tomato sauce and melted cheese</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(3, 'Sloppy\'s Carnivore Delight', 22.00)">Add to Cart</button>
         </div>
       </div>
@@ -163,7 +163,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderMozzSticks.png" alt="Mozzarella Sticks" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Jo's Mozz Sticks - A hearty pizza topped with seasoned beef, onions, and cheese</p>
+          <p class="card-text description">Jo's Mozz Sticks<br>A hearty pizza topped with seasoned beef, onions, and cheese</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(4, 'Jo\'s Mozz Sticks', 10.00)">Add to Cart</button>
         </div>
       </div>
@@ -172,7 +172,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
+          <p class="card-text description">Sloppy Buff Wings<br>Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(5, 'Sloppy Buff Wings - 6pc', 10.00)">Add to Cart</button>
         </div>
       </div>
@@ -181,7 +181,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderWings2.png" alt="Buffalo Wings" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Buff Wings - Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
+          <p class="card-text description">Sloppy Buff Wings<br>Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(6, 'Sloppy Buff Wings - 12pc', 16.00)">Add to Cart</button>
         </div>
       </div>
@@ -190,7 +190,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderCheeseBread.png" alt="Cheesy Bread" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Cheesy Bread - Soft, cheesy perfection with a crisp, golden crust and a gooey, melted center</p>
+          <p class="card-text description">Cheesy Bread<br>Soft, cheesy perfection with a crisp, golden crust and a gooey, melted center</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(2, 'Cheesy Bread', 10.00)">Add to Cart</button>
         </div>
       </div>
@@ -199,7 +199,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderGarlicBread.png" alt="Garlic Bread" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Garlic Bread - Warm, golden breadsticks infused with rich garlic butter and sprinkled with Parmesan cheese—perfect for dipping</p>
+          <p class="card-text description">Garlic Bread<br>Warm, golden breadsticks infused with rich garlic butter and sprinkled with Parmesan cheese—perfect for dipping</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(1, 'Garlic Bread', 7.00)">Add to Cart</button>
         </div>
       </div>
@@ -208,7 +208,7 @@
       <div class="card grid-item">
         <img src="@/assets/orderSalad.png" alt="Salad" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Salad - Crisp romaine lettuce, shaved Parmesan, and crunchy croutons tossed in a creamy Caesar dressing</p>
+          <p class="card-text description">Sloppy Salad<br>Crisp romaine lettuce, shaved Parmesan, and crunchy croutons tossed in a creamy Caesar dressing</p>
           <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(3, 'Sloppy Salad', 10.00)">Add to Cart</button>
         </div>
       </div>
@@ -337,17 +337,15 @@
   </script>
   
   <style scoped>
-  body {
-    font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
-    
-  }
 
   .navbar {
       font-size: 24px;
       margin-bottom: 0;
       border-radius: 0;
       color: #e0ba20c7;
-    }
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 
     .navbar-logo {
     max-height: 100px; /* Adjust the max height as needed */
@@ -541,6 +539,11 @@ footer {
 h4 {
   font-size: 24px;
   padding-left: 5%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h1, h3 {
+  
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
   
