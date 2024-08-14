@@ -30,8 +30,8 @@
             <li><router-link v-bind:to="{ name: 'contact' }">Contact Us</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img"
-                style="width: 85px; height: auto;"></li>
+            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
+                  style="width: 65px; height: 65px;"></router-link></li>
             <li><router-link v-bind:to="{ name: 'login' }">Login</router-link></li>
             <li><router-link v-bind:to="{ name: 'register' }">Register</router-link></li>
           </ul>
@@ -39,51 +39,52 @@
       </div>
     </nav>
 
-    <div class="col-12">
-      <h2 class="text-center">Cart Summary</h2>
-    </div>
-
-    <div class="container">
-      <table class="table table-bordered mx-auto" style="width: 100%;">
+  <div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="text-left">Cart Summary</h2>
+      <h2 class="text-right">Total: ${{ cartTotal }}</h2>
+      <table class="table table-bordered">
         <thead>
-          <th>Product</th>
-          <th>Price</th>
-          <th>Actions</th>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody v-if="$store.state.shoppingCart.length > 0">
           <tr v-for="(food, i) in $store.state.shoppingCart" v-bind:key="i">
-            <td width="300">
-              {{ food.obj.id }}
-            </td>
+            <td width="300">{{ food.obj.id }}</td>
             <td>${{ food.obj.price }}</td>
-
-            <td><input type="button" value="+" @click="addToCart(food)">
+            <td>
+              <input type="button" value="+" @click="addToCart(food)">
               <input type="button" value="-" @click="removeFromCart(food)">
             </td>
           </tr>
-          <tr className="text-center"> Total: ${{ cartTotal }}</tr>
         </tbody>
         <tbody v-else>
           <tr>
-            <td colspan="5">Your Cart is Empty</td>
+            <td colspan="3">Your Cart is Empty</td>
           </tr>
         </tbody>
       </table>
-      <button v-on:click="checkout()">Checkout</button>
     </div>
 
 
 
-    <div class="img-responsive text-center">
-      <router-link v-bind:to="{ name: 'home' }">
-        <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" />
-      </router-link>
+    <div class="col-md-4 text-center d-flex flex-column align-items-center">
+      <button v-on:click="checkout()" style="border: none; background: none; padding: 0;">
+        <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" class="img-fluid" />
+      </button>
+      <p>Click Me to Checkout!</p>
     </div>
+  </div>
+</div>
 
 
-    <footer class="container-fluid text-center">
-      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
-    </footer>
+<footer class="container-fluid text-center">
+  <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
+</footer>
   </body>
 </template>
 
@@ -142,17 +143,7 @@ body {
   }
 }
 
-div.container {
-  display: grid;
-  grid-template-columns: 300px 1fr 250px;
-  grid-template-rows: 100px 1fr 1fr;
-  gap: 15px;
-  background-color: #a9a9a9;
-  grid-template-areas:
-    "header header header"
-    "main main main"
-    "footer footer footer";
-}
+
 
 #page-header {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
@@ -183,14 +174,12 @@ div.container {
 }
 
 footer {
-  height: auto;
-  padding: 10px 20px;
+  background-color: #e0ba20c7;
+  padding: 25px;
+  font-size: 24px;
+  
 }
 
-.footer-image {
-  display: grid;
-  place-items: center;
-}
 
 .inline-footer-links {
   display: grid;
@@ -198,7 +187,7 @@ footer {
   column-gap: 50px;
   justify-content: center;
 }
-
+/* nav  ///////////////////////////////////////// */
 .nav-link {
   display: flex;
   list-style: none;
@@ -223,5 +212,10 @@ footer {
 
 .nav-link a:hover {
   color: #0000ff;
+}
+
+/* table //////////////////////// */
+table {
+  font-size: 24px;
 }
 </style>
