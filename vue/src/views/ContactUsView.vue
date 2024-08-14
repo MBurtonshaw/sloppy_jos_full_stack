@@ -40,21 +40,16 @@
     <div class="container">    
       <h3 class="text-center"><strong>Pizza Extra Sloppy is What We Do</strong></h3><br>
       <div class="row">
-        <div class="col-sm-4 float-start">
+        <div class="col-sm-4">
           <router-link v-bind:to="{ name: 'home' }">
-      <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" />
-       </router-link>
-          <p><strong></strong></p>
-        </div>
-        <div class="col-sm-4"> 
-          <img src="@/assets/Pizzas2.png" class="img-responsive" style="width:100%" alt="Pizza">
-          <p><strong>We are here to serve you</strong></p>
-        </div>
+           <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" />
+          </router-link>
+        </div> 
         <div class="col-sm-4">
             <iframe float-right src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2987.979148375994!2d-81.64315672653612!3d41.50472667128512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8830fbae42fdaa89%3A0xb4f58c976afcbb42!2s7001%20Euclid%20Ave%2C%20Cleveland%2C%20OH%2044103!5e0!3m2!1sen!2sus!4v1722952925730!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <p class="text-right"><strong>Find us at 7001 Euclid Ave. Cleveland, OH 44103</strong></p>
         </div>
+            <p class="text-right"><strong>Find us at 7001 Euclid Ave. Cleveland, OH 44103</strong></p>
+      </div>     
     </div><br>
 
     <footer class="container-fluid text-center">
