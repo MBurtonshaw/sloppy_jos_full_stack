@@ -39,6 +39,9 @@ export function createStore(currentToken, currentUser) {
           state.shoppingCart.splice(index, 1);
         }
       },
+      CLEAR_CART(state) {
+        state.shoppingCart = [];
+      },
       CHECKOUT(state) {
         let order = {
           "user": state.user.id,
