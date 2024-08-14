@@ -112,6 +112,12 @@ export default {
     },
     checkout() {
       this.$store.commit('CHECKOUT');
+      //loop thru all objects in store and remove_from_cart upon submission
+      this.$store.commit('CLEAR_CART');
+      window.alert(
+        `Order Submitted`
+      );
+      this.$router.push('/');
     }
   }
 

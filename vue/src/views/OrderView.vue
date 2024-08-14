@@ -318,9 +318,6 @@
       addSpecialtyPizzaToCart(id, name, price) {
           this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id: id, name: name, price: price}});
       },
-      // addCustomPizzaToCart(id, name, price) {
-      //     this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id: id, name: name, price: price}});
-      // },
       addSideToCart(id, name, price) {
           this.$store.commit('ADD_TO_CART', {type: 'Side', obj: {id: id, name: name, price: price}});
       }
