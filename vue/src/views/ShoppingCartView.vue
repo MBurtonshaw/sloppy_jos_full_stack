@@ -70,7 +70,7 @@
           </tr>
         </tbody>
       </table>
-      
+
     </div>
 
 
@@ -118,7 +118,7 @@ export default {
         `Order Submitted`
       );
       this.$router.push('/');
-    }
+    },
   }
 
 }
