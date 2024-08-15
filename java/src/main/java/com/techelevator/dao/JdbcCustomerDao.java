@@ -1,12 +1,9 @@
 
 package com.techelevator.dao;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.RegisterUserDto;
+import com.techelevator.model.User;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +11,9 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.techelevator.model.User;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Component
 public abstract class JdbcCustomerDao extends CustomerDao {
@@ -24,7 +23,6 @@ public abstract class JdbcCustomerDao extends CustomerDao {
     public JdbcCustomerDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
     @Override
     public User getCustomerById(int customerId) {
         User user = null;
@@ -39,7 +37,6 @@ public abstract class JdbcCustomerDao extends CustomerDao {
         }
         return user;
     }
-
     @Override
     public List<User> getCustomers() {
         List<User> users = new ArrayList<>();
@@ -55,7 +52,6 @@ public abstract class JdbcCustomerDao extends CustomerDao {
         }
         return users;
     }
-
     @Override
     public User getUserByUsername(String username) {
         if (username == null)
@@ -72,7 +68,6 @@ public abstract class JdbcCustomerDao extends CustomerDao {
         }
         return user;
     }
-
     @Override
     public User createUser(RegisterUserDto user) {
         User newUser = null;
@@ -91,7 +86,6 @@ public abstract class JdbcCustomerDao extends CustomerDao {
         }
         return newUser;
     }
-
     public abstract User getUserById(int newUserId);
 
     private User mapRowToUser(SqlRowSet rs) {

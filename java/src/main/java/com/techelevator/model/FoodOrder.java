@@ -2,8 +2,6 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
 public class FoodOrder {
 
     @JsonProperty("order")
@@ -34,6 +32,8 @@ public class FoodOrder {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+
 
     public int getFood_order_id() {
         return food_order_id;
