@@ -31,8 +31,9 @@
           <ul class="nav navbar-nav navbar-right">
             <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
                   style="width: 65px; height: 65px;"></router-link></li>
-            <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
-            <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
+            <li v-if="!isAuthenticated"><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
+            <li v-if="!isAuthenticated"><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
+            <li v-if="isAuthenticated"><router-link to="/" @click.prevent="logout">Logout</router-link></li>
           </ul>
         </div>
       </div>
@@ -111,6 +112,10 @@ export default {
             this.invalidCredentials = true;
           }
         });
+    },
+    logout() {
+      this.$store.commit("CLEAR_AUTH_TOKEN"); 
+      this.$router.push("/login"); 
     }
   }
 };

@@ -57,12 +57,40 @@
           <p>Come visit us and experience the mouthwatering taste of our Sloppy Joe Pizza – a one-of-a-kind creation that embodies Joe's lifelong 
             passion for pizza.</p>
         </div>
+      </div>
+      <!-- Brick Oven and Developer Text Row -->
+      <div class="row">
+        <!-- Brick Oven Image Column -->
+        <div class="col-md-4 text-center">
+          <img src="@/assets/joe.png" alt="oven" class="img-fluid brick-img" />
+          <p>The actual Joe Peloso</p>
+        </div>
 
-        <div class="col-md-4 text-right">
-          <img src="@/assets/founderPic.png" alt="Joe in a cape" class="img-fluid founder-img" />
+        <!-- Developer Text Column -->
+        <div class="col-md-8 founder-text">
+          <h2>Sloppy Jo's Developed By:</h2>
+          <div class="row">
+            <div class="col-xs-6 col-sm-3 text-center">
+              <img src="@/assets/armour.png" alt="Developer 1" class="img-fluid dev-img" />
+              <p>Matthew Armour</p>
+            </div>
+            <div class="col-xs-6 col-sm-3 text-center">
+              <img src="@/assets/matt.png" alt="Developer 2" class="img-fluid dev-img" />
+              <p>Matt Burtonshaw</p>
+            </div>
+            <div class="col-xs-6 col-sm-3 text-center">
+              <img src="@/assets/andrew.png" alt="Developer 3" class="img-fluid dev-img" />
+              <p>Andrew Le</p>
+            </div>
+            <div class="col-xs-6 col-sm-3 text-center">
+              <img src="@/assets/bryan.png" alt="Developer 4" class="img-fluid dev-img" />
+              <p>Bryan Stewart</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    
 
     <footer class="container-fluid text-center">
       <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
@@ -137,4 +165,20 @@ footer {
     display: none; 
   }
 }
+
+.dev-img {
+  max-width: 100%; /* Make sure the image scales properly */
+  height: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.brick-img {
+  width: 100%; /* Ensure image scales properly within the column */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Prevent the image from exceeding the column size */
+  max-height: 500px; /* Limit the maximum height */
+  margin-bottom: 20px; /* Add margin at the bottom to prevent overlap */
+}
+
 </style>
