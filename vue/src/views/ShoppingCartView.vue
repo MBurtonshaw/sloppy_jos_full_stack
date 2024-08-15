@@ -65,11 +65,11 @@
                   <tr>
                     <td>
                       <label for="delivery">Delivery</label>
-                      <input name='delivery' type="radio" style="margin-left: 0.5em;" />
+                      <input name='delivery' type="radio" style="margin-left: 0.5em;"/>
                     </td>
                     <td>
-                      <label for="takeout">Takeout</label>
-                      <input name='takeout' type="radio" style="margin-left: 0.5em;" />
+                      <label for="takeout" >Takeout</label>
+                      <input name='takeout' type="radio" style="margin-left: 0.5em;"/>
                     </td>
                   </tr>
                   <tr>
@@ -135,22 +135,18 @@
 
         <!-- jo photo /////////////////////////////////////// -->
         <div class="submit" style="display: flex; justify-content: center; width: 100%; margin: auto;">
-          <p style="margin-top: 1.25em;">{{ checkoutButtonText }}</p>
+          <p style="margin-top: 1.25em;">Click Me to Checkout!</p>
           <button v-on:click="checkout()" style="border: none; background: none;">
-            <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" class="img-fluid custom-img"
-              style="width:12.5em; padding: 0;" />
+            <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" class="img-fluid custom-img" style="width:12.5em; padding: 0; "/>
           </button>
         </div>
       </div>
     </div>
 
 
-
-
-<footer class="container-fluid text-center">
-  <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
-</footer>
->>>>>>> a8aabb3262f5afecbacd992b3e7d1c21a7249013
+    <footer class="container-fluid text-center">
+      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
+    </footer>
   </body>
 </template>
 
@@ -179,24 +175,13 @@ export default {
       this.$store.commit('REMOVE_FROM_CART', product);
     },
     checkout() {
-      const elements = document.getElementsByClassName('form-control');
-      let allFilled = true;
-
-      for (let i = 0; i < elements.length; i++) {
-        if (!elements[i].value) {
-          allFilled = false;
-          break;
-        }
-      }
-
-      if (!allFilled) {
-        this.checkoutButtonText = 'Please fill out all fields';
-      } else {
         this.$store.commit('CHECKOUT');
-        this.$store.commit('CLEAR_CART');
-        window.alert('Order Submitted');
-        this.$router.push('/');
-      }
+      //loop thru all objects in store and remove_from_cart upon submission
+      this.$store.commit('CLEAR_CART');
+      window.alert(
+        `Order Submitted`
+      );
+      this.$router.push('/');
     },
   }
 }
@@ -248,8 +233,7 @@ body {
 
 .custom-img {
   width: 12.5em;
-  margin: -40px;
-  /* Adjust this value as needed */
+  margin: -40px; /* Adjust this value as needed */
   margin-top: -50px;
   padding: 0;
 }
