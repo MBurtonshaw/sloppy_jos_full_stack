@@ -12,6 +12,7 @@ export function createStore(currentToken, currentUser) {
 
       shoppingCart: [],
       orders: [],
+      orderId: ''
     },
     mutations: {
       ADD_TOPPING(state, topping) {
@@ -31,6 +32,7 @@ export function createStore(currentToken, currentUser) {
         state.specialtyPizzas = specialtyPizzas;
       },
       ADD_TO_CART(state, item) {
+        console.log(item)
         state.shoppingCart.push(item);
       },
       REMOVE_FROM_CART(state, item) {

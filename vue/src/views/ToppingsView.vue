@@ -188,13 +188,10 @@ export default {
       this.customPizza.price = 15.00;
       this.customPizza.size = this.selectedSize;
       if (this.customPizza.size == 'Medium') {
-        this.customPizza.price += 1.50;
+        this.customPizza.price += 2.50;
       }
       if (this.customPizza.size == 'Large') {
-        this.customPizza.price += 3.00;
-      }
-      if (this.customPizza.size == 'Large') {
-        this.customPizza.price += 3.00;
+        this.customPizza.price += 4.00;
       }
       if (this.customPizza.size == 'Half-Sheet') {
         this.customPizza.price += 7.00

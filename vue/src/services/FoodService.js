@@ -6,10 +6,6 @@ const http = axios.create({
 
 export default {
 
-  getProducts() {
-    return http.get('/order');
-  },
-
   addSpecialtyPizza(orderId, data) {
     return http.post(`/api/orders/${orderId}/specialty`, data);
   },
@@ -24,6 +20,10 @@ export default {
 
   addSide(orderId, data) {
     return http.post(`/api/orders/${orderId}/side`, data);
+  },
+
+  getOrder(orderId) {
+    return http.get(`/api/orders/${orderId}`);
   }
 
   // getProduct(productId) {

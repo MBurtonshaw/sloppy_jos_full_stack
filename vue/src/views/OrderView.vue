@@ -306,23 +306,6 @@
     beforeUnmount() {
       document.removeEventListener('click', this.handleClickOutside);
     },
-    getSpecialtyPizzas() {
-            foodService.getProducts()
-                .then(response => {
-                    this.$store.commit('SET_SPECIALTY_PIZZAS', response.data);
-                    this.isLoading = false;
-                })
-                .catch(error => {
-                    if (error.response) {
-                        this.$store.commit('SET_NOTIFICATION',
-                        "Error getting products. Response received was '" + error.response.statusText + "'.");
-                    } else if (error.request) {
-                        this.$store.commit('SET_NOTIFICATION', "Error getting products. Server could not be reached.");
-                    } else {
-                        this.$store.commit('SET_NOTIFICATION', "Error getting products. Request could not be created.");
-                    }
-                });
-            }, 
       addSpecialtyPizzaToCart(id, name, price) {
           this.$store.commit('ADD_TO_CART', {type: 'Specialty', obj: {id: id, name: name, price: price}});
       },
@@ -330,9 +313,6 @@
           this.$store.commit('ADD_TO_CART', {type: 'Side', obj: {id: id, name: name, price: price}});
       }
   },        
-  created() {
-        this.getSpecialtyPizzas();
-    },
 };
   </script>
   

@@ -124,10 +124,10 @@ public class FoodOrderController {
 //        }
 //    }
 
-    @RequestMapping(path = "api/orders/{id}", method = RequestMethod.GET)
-    public FoodOrder getOrder(@PathVariable int id) {
+    @RequestMapping(path = "api/orders/{orderId}", method = RequestMethod.GET)
+    public FoodOrder getOrder(@PathVariable int orderId) {
         try {
-            return foodOrderDao.getOrder(id);
+            return foodOrderDao.getOrder(orderId);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found", e);
         }

@@ -30,7 +30,8 @@
             <li><router-link v-bind:to="{ name: 'contact' }">Contact Us</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
+            <li><router-link v-bind:to="{ name: 'shopping-cart' }"><img class="navbar-brand"
+                  src="@/assets/shopping-cart2.png" alt="shopping cart img"
                   style="width: 65px; height: 65px;"></router-link></li>
             <li><router-link v-bind:to="{ name: 'login' }">Login</router-link></li>
             <li><router-link v-bind:to="{ name: 'register' }">Register</router-link></li>
@@ -39,100 +40,114 @@
       </div>
     </nav>
 
-  <div class="container mt-4">
-    <div class="row">
-    <!-- Left Column: Customer Table and Cart Table -->
-      <div class="col-md-8">
+    <div class="container mt-4">
+      <div class="">
+        <!-- Left Column: Customer Table and Cart Table -->
+        <div class="">
           <div class="mb-4">
-              <h2 class="text-left">Customer Information</h2>
-              <form>
-                  <table class="table">
-                      <tbody>
-                          <tr>
-                              <td><label for="customerName">Name:</label></td>
-                              <td><input type="text" class="form-control" id="customerName" placeholder="Enter your name"></td>
-                          </tr>
-                          <tr>
-                              <td><label for="customerEmail">Email:</label></td>
-                              <td><input type="email" class="form-control" id="customerEmail" placeholder="Enter your email"></td>
-                          </tr>
-                          <tr>
-                              <td><label for="customerPhone">Phone Number:</label></td>
-                              <td><input type="tel" class="form-control" id="customerPhone" placeholder="Enter your phone number"></td>
-                          </tr>
-                          <tr>
-                              <td><label for="customerAddress">Address:</label></td>
-                              <td><textarea class="form-control" id="customerAddress" rows="3" placeholder="Enter your address"></textarea></td>
-                          </tr>
-                          <tr>
-                              <td><label for="creditCardNumber">Credit Card Number:</label></td>
-                              <td><input type="text" class="form-control" id="creditCardNumber" placeholder="Enter your credit card number"></td>
-                          </tr>
-                          <tr>
-                              <td><label for="creditCardExpiry">Expiry Date:</label></td>
-                              <td><input type="text" class="form-control" id="creditCardExpiry" placeholder="MM/YY"></td>
-                          </tr>
-                          <tr>
-                              <td><label for="creditCardCVV">CVV:</label></td>
-                              <td><input type="text" class="form-control" id="creditCardCVV" placeholder="Enter CVV"></td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </form>
+            <h1 class="customer-information">Customer Information</h1>
+            <form>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><label for="customerName">Name:</label></td>
+                    <td><input type="text" class="form-control" id="customerName" placeholder="Enter your name"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="customerEmail">Email:</label></td>
+                    <td><input type="email" class="form-control" id="customerEmail" placeholder="Enter your email"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="customerPhone">Phone Number:</label></td>
+                    <td><input type="tel" class="form-control" id="customerPhone" placeholder="Enter your phone number">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label for="delivery">Delivery</label>
+                      <input name='delivery' type="radio" style="margin-left: 0.5em;" />
+                    </td>
+                    <td>
+                      <label for="takeout">Takeout</label>
+                      <input name='takeout' type="radio" style="margin-left: 0.5em;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><label for="customerAddress">Address:</label></td>
+                    <td><textarea class="form-control" id="customerAddress" rows="3"
+                        placeholder="Enter your address"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td><label for="creditCardNumber">Credit Card Number:</label></td>
+                    <td><input type="text" class="form-control" id="creditCardNumber"
+                        placeholder="Enter your credit card number"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="creditCardExpiry">Expiry Date:</label></td>
+                    <td><input type="text" class="form-control" id="creditCardExpiry" placeholder="MM/YY"></td>
+                  </tr>
+                  <tr>
+                    <td><label for="creditCardCVV">CVV:</label></td>
+                    <td><input type="text" class="form-control" id="creditCardCVV" placeholder="Enter CVV"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
           </div>
-</div>
+        </div>
 
 
-    <!-- Cart Table //////////////////////////////////////////////// -->
-  
-  <div class="row">
-    <div class="col-md-8">
-      <h2 class="text-left">Cart Summary</h2>
-      <h2 class="text-right">Total: ${{ cartTotal }}</h2>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody v-if="$store.state.shoppingCart.length > 0">
-          <tr v-for="(food, i) in $store.state.shoppingCart" v-bind:key="i">
-            <td width="300">
-              {{ food.obj.name }}
-            </td>
-            <td>${{ food.obj.price }}</td>
-            <td>
-              <input type="button" value="+" @click="addToCart(food)">
-              <input type="button" value="-" @click="removeFromCart(food)">
-            </td>
-          </tr>
-        </tbody>
-        <tbody v-else>
-          <tr>
-            <td colspan="3">Your Cart is Empty</td>
-          </tr>
-        </tbody>
-      </table>
+        <!-- Cart Table //////////////////////////////////////////////// -->
+
+        <div class="">
+          <div class="">
+            <h1 class="text-left cart-summary">Cart Summary</h1>
+            <h2 class="text-right total">Total: ${{ cartTotal }}</h2>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody v-if="$store.state.shoppingCart.length > 0">
+                <tr v-for="(food, i) in $store.state.shoppingCart" v-bind:key="i">
+                  <td width="300">
+                    {{ food.obj.name }}
+                  </td>
+                  <td>${{ food.obj.price }}</td>
+                  <td>
+                    <input type="button" value="+" @click="addToCart(food)">
+                    <input type="button" value="-" @click="removeFromCart(food)">
+                  </td>
+                </tr>
+              </tbody>
+              <tbody v-else>
+                <tr>
+                  <td colspan="3">Your Cart is Empty</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <!-- jo photo /////////////////////////////////////// -->
+        <div class="submit" style="display: flex; justify-content: center; width: 100%; margin: auto;">
+          <p style="margin-top: 1.25em;">{{ checkoutButtonText }}</p>
+          <button v-on:click="checkout()" style="border: none; background: none;">
+            <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" class="img-fluid custom-img"
+              style="width:12.5em; padding: 0;" />
+          </button>
+        </div>
       </div>
     </div>
 
 
-    <!-- jo photo /////////////////////////////////////// -->
-    <div class="col-md-4 d-flex justify-content-end align-items-start">
-      <button v-on:click="checkout()" style="border: none; background: none; padding: 0;">
-        <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" class="img-fluid" />
-      </button>
-      <p>Click Me to Checkout!</p>
-    </div>
-  </div>
-</div>
-
-
-<footer class="container-fluid text-center">
-  <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
-</footer>
+    <footer class="container-fluid text-center">
+      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
+    </footer>
   </body>
 </template>
 
@@ -141,12 +156,17 @@ import ShoppingCart from '../components/ShoppingCart.vue';
 
 export default {
   components: ShoppingCart,
+  data() {
+    return {
+      checkoutButtonText: 'Click Me to Checkout!',
+    };
+  },
   computed: {
     cartTotal() {
       return this.$store.state.shoppingCart.reduce((total, food) => {
-        return total + food.obj.price; // Assuming food.obj.price is the price of each item
-      }, 0).toFixed(2); // Fixed to 2 decimal places for currency format
-    }
+        return total + food.obj.price;
+      }, 0).toFixed(2);
+    },
   },
   methods: {
     addToCart(product) {
@@ -156,16 +176,26 @@ export default {
       this.$store.commit('REMOVE_FROM_CART', product);
     },
     checkout() {
-      this.$store.commit('CHECKOUT');
-      //loop thru all objects in store and remove_from_cart upon submission
-      this.$store.commit('CLEAR_CART');
-      window.alert(
-        `Order Submitted`
-      );
-      this.$router.push('/');
+      const elements = document.getElementsByClassName('form-control');
+      let allFilled = true;
+
+      for (let i = 0; i < elements.length; i++) {
+        if (!elements[i].value) {
+          allFilled = false;
+          break;
+        }
+      }
+
+      if (!allFilled) {
+        this.checkoutButtonText = 'Please fill out all fields';
+      } else {
+        this.$store.commit('CHECKOUT');
+        this.$store.commit('CLEAR_CART');
+        window.alert('Order Submitted');
+        this.$router.push('/');
+      }
     },
   }
-
 }
 </script>
 
@@ -174,7 +204,7 @@ body {
 
   background-color: #a9a9a9;
   font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .navbar {
@@ -192,6 +222,20 @@ body {
   margin-top: -25px;
 }
 
+.cart-summary {
+  margin-top: 2em;
+  letter-spacing: 2px;
+  padding-left: 1em;
+}
+
+.total {
+  margin-right: 1.5em;
+}
+
+.submit {
+  padding-top: 0.5em;
+}
+
 @media (max-width: 768px) {
   .navbar-logo {
     max-height: 40px;
@@ -199,6 +243,17 @@ body {
   }
 }
 
+.custom-img {
+  width: 12.5em;
+  margin: -40px;
+  /* Adjust this value as needed */
+  margin-top: -50px;
+  padding: 0;
+}
+
+.customer-information {
+  padding: 1em;
+}
 
 .resize-image {
   max-width: 200px;
@@ -240,6 +295,4 @@ footer {
 .nav-link a:hover {
   color: #0000ff;
 }
-
-
 </style>
