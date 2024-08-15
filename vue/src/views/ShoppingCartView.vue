@@ -39,7 +39,52 @@
       </div>
     </nav>
 
-  <div class="container">
+  <div class="container mt-4">
+    <div class="row">
+    <!-- Left Column: Customer Table and Cart Table -->
+      <div class="col-md-8">
+          <div class="mb-4">
+              <h2 class="text-left">Customer Information</h2>
+              <form>
+                  <table class="table">
+                      <tbody>
+                          <tr>
+                              <td><label for="customerName">Name:</label></td>
+                              <td><input type="text" class="form-control" id="customerName" placeholder="Enter your name"></td>
+                          </tr>
+                          <tr>
+                              <td><label for="customerEmail">Email:</label></td>
+                              <td><input type="email" class="form-control" id="customerEmail" placeholder="Enter your email"></td>
+                          </tr>
+                          <tr>
+                              <td><label for="customerPhone">Phone Number:</label></td>
+                              <td><input type="tel" class="form-control" id="customerPhone" placeholder="Enter your phone number"></td>
+                          </tr>
+                          <tr>
+                              <td><label for="customerAddress">Address:</label></td>
+                              <td><textarea class="form-control" id="customerAddress" rows="3" placeholder="Enter your address"></textarea></td>
+                          </tr>
+                          <tr>
+                              <td><label for="creditCardNumber">Credit Card Number:</label></td>
+                              <td><input type="text" class="form-control" id="creditCardNumber" placeholder="Enter your credit card number"></td>
+                          </tr>
+                          <tr>
+                              <td><label for="creditCardExpiry">Expiry Date:</label></td>
+                              <td><input type="text" class="form-control" id="creditCardExpiry" placeholder="MM/YY"></td>
+                          </tr>
+                          <tr>
+                              <td><label for="creditCardCVV">CVV:</label></td>
+                              <td><input type="text" class="form-control" id="creditCardCVV" placeholder="Enter CVV"></td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </form>
+          </div>
+</div>
+
+
+    <!-- Cart Table //////////////////////////////////////////////// -->
+  
   <div class="row">
     <div class="col-md-8">
       <h2 class="text-left">Cart Summary</h2>
@@ -70,12 +115,12 @@
           </tr>
         </tbody>
       </table>
-      
+      </div>
     </div>
 
 
-
-    <div class="col-md-4 text-center d-flex flex-column align-items-center">
+    <!-- jo photo /////////////////////////////////////// -->
+    <div class="col-md-4 d-flex justify-content-end align-items-start">
       <button v-on:click="checkout()" style="border: none; background: none; padding: 0;">
         <img src="@/assets/spLogo.png" alt="Joe's Sloppy Head" class="img-fluid" />
       </button>
@@ -119,7 +164,7 @@ export default {
         `Order Submitted`
       );
       this.$router.push('/');
-    }
+    },
   }
 
 }
@@ -155,29 +200,6 @@ body {
   }
 }
 
-
-
-#page-header {
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  padding-left: 10px;
-  padding-right: 10px;
-  grid-area: header;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #daa520;
-}
-
-/* #page-footer {
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  padding-left: 10px;
-  padding-right: 10px;
-  grid-area: footer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #e0ba20c1;
-} */
 
 .resize-image {
   max-width: 200px;
@@ -220,8 +242,5 @@ footer {
   color: #0000ff;
 }
 
-/* table //////////////////////// */
-table {
-  font-size: 24px;
-}
+
 </style>

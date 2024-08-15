@@ -57,11 +57,15 @@
           <p>Come visit us and experience the mouthwatering taste of our Sloppy Joe Pizza – a one-of-a-kind creation that embodies Joe's lifelong 
             passion for pizza.</p>
         </div>
+
+        <div class="col-md-4 text-right">
+          <img src="@/assets/founderPic.png" alt="Joe in a cape" class="img-fluid founder-img" />
+        </div>
       </div>
     </div>
 
     <footer class="container-fluid text-center">
-      <p>&copy; 2024 Sloppy Joe's Pizza. All rights reserved.</p>
+      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
     </footer>
 
   </body>
@@ -126,13 +130,6 @@ footer {
   padding: 25px;
   font-size: 24px;
   font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
-}
-
-.carousel-inner img {
-  width: 100%; 
-  margin: auto;
-  min-height: 200px;
-  max-height: fit-content;
 }
 
 @media (max-width: 600px) {
