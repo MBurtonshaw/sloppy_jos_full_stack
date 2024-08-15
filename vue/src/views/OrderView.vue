@@ -71,8 +71,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderSloppyPizza.png" alt="Sloppy Joe Special" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Joe Special<br>Loaded with seasoned ground beef, tangy tomato sauce, and a melty cheese blend that brings the classic Sloppy Joe to your plate</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(1, 'Sloppy Joe Special', 25.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Sloppy Joe Special</strong><br><strong>$25</strong><br>Loaded with seasoned ground beef, tangy tomato sauce, and a melty cheese blend that brings the classic Sloppy Joe to your plate</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(1, 'Sloppy Joe Special', 25.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -80,8 +80,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderSupreme.png" alt="Supreme Pizza" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">The Sloppy Supreme<br>Pepperoni, sausage, bell peppers, onions, and black olives, all layered over a rich tomato base and gooey mozzarella</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(2, 'The Sloppy Supreme', 23.00)">Add to Cart</button>
+          <p class="card-text description"><strong>The Sloppy Supreme</strong><br><strong>$23</strong><br>Pepperoni, sausage, bell peppers, onions, and black olives, all layered over a rich tomato base and gooey mozzarella</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(2, 'The Sloppy Supreme', 23.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -89,8 +89,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderZestyTrio.png" alt="Zesty Trio" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Jo's Zesty Trio<br>A bold combo of spicy pepperoni, earthy mushrooms, and fiery jalapeños, all on a bed of rich tomato sauce and bubbling cheese</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(4, 'The Zesty Trio', 23.50)">Add to Cart</button>
+          <p class="card-text description"><strong>Jo's Zesty Trio</strong><br><strong>$23.50</strong><br>A bold combo of spicy pepperoni, earthy mushrooms, and fiery jalapeños, all on a bed of rich tomato sauce and bubbling cheese</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(4, 'The Zesty Trio', 23.50)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -98,8 +98,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderMeatlovers.png" alt="Meatlover's Pizza" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy's Carnivore Delight<br>Piled high with pepperoni, sausage, ham, and bacon, all perfectly balanced by a hearty tomato sauce and melted cheese</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(3, 'Sloppy\'s Carnivore Delight', 22.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Sloppy's Carnivore Delight</strong><br><strong>$22</strong><br>Piled high with pepperoni, sausage, ham, and bacon, all perfectly balanced by a hearty tomato sauce and melted cheese</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSpecialtyPizzaToCart(3, 'Sloppy\'s Carnivore Delight', 22.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -115,7 +115,7 @@
         <div class="card-body">
           <p class="card-text description">Create Your Own Sloppy Pizza!</p>
         <router-link v-bind:to="{name: 'custom'}">
-          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+          <button class="btn btn-primary add-to-cart-btn"><strong>Build Now</strong></button>
         </router-link>
         </div>
       </div>
@@ -126,7 +126,7 @@
         <div class="card-body">
           <p class="card-text description">All of Our Pizzas are Made to Order</p>
           <router-link v-bind:to="{name: 'custom'}">
-          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+            <button class="btn btn-primary add-to-cart-btn"><strong>Build Now</strong></button>
         </router-link>
         </div>
       </div>
@@ -137,7 +137,7 @@
         <div class="card-body">
           <p class="card-text description">Click on the Button Below to Start Building!</p>
           <router-link v-bind:to="{name: 'custom'}">
-          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+            <button class="btn btn-primary add-to-cart-btn"><strong>Build Now</strong></button>
         </router-link>
         </div>
       </div>
@@ -148,7 +148,7 @@
         <div class="card-body">
           <p class="card-text description">Make it Extra Sloppy!</p>
           <router-link v-bind:to="{name: 'custom'}">
-          <button class="btn btn-primary add-to-cart-btn">Build Now</button>
+            <button class="btn btn-primary add-to-cart-btn"><strong>Build Now</strong></button>
         </router-link>
         </div>
       </div>
@@ -163,8 +163,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderMozzSticks.png" alt="Mozzarella Sticks" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Jo's Mozz Sticks<br>A hearty pizza topped with seasoned beef, onions, and cheese</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(4, 'Jo\'s Mozz Sticks', 10.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Jo's Mozz Sticks</strong><br><strong>$10</strong><br>Crispy on the outside, gooey on the inside, served with a side of marinara for dipping</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(4, 'Jo\'s Mozz Sticks', 10.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -172,8 +172,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderBuffaloWings.png" alt="Buffalo Wings" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Buff Wings<br>Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(5, 'Sloppy Buff Wings - 6pc', 10.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Sloppy Buff Wings</strong><br><strong>$10</strong><br><strong>6</strong> Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(5, 'Sloppy Buff Wings - 6pc', 10.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -181,8 +181,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderWings2.png" alt="Buffalo Wings" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Buff Wings<br>Juicy chicken wings coated in a tangy, spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(6, 'Sloppy Buff Wings - 12pc', 16.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Sloppy Buff Wings</strong><br><strong>$16</strong><br>Oooooweee let's make it a <strong>12 piece!</strong> Spicy Buffalo sauce, served with a cooling side of ranch or blue cheese dressing</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(6, 'Sloppy Buff Wings - 12pc', 16.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -190,8 +190,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderCheeseBread.png" alt="Cheesy Bread" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Cheesy Bread<br>Soft, cheesy perfection with a crisp, golden crust and a gooey, melted center</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(2, 'Cheesy Bread', 10.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Cheesy Bread</strong><br><strong>$10</strong><br>Soft, cheesy perfection with a crisp, golden crust and a gooey, melted center</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(2, 'Cheesy Bread', 10.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -199,8 +199,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderGarlicBread.png" alt="Garlic Bread" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Garlic Bread<br>Warm, golden breadsticks infused with rich garlic butter and sprinkled with Parmesan cheese—perfect for dipping</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(1, 'Garlic Bread', 7.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Garlic Bread</strong><br><strong>$7</strong><br>Warm, golden breadsticks infused with rich garlic butter and sprinkled with Parmesan cheese—perfect for dipping</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(1, 'Garlic Bread', 7.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>
@@ -208,8 +208,8 @@
       <div class="card grid-item">
         <img src="@/assets/orderSalad.png" alt="Salad" class="card-img-top">
         <div class="card-body">
-          <p class="card-text description">Sloppy Salad<br>Crisp romaine lettuce, shaved Parmesan, and crunchy croutons tossed in a creamy Caesar dressing</p>
-          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(3, 'Sloppy Salad', 10.00)">Add to Cart</button>
+          <p class="card-text description"><strong>Sloppy Salad</strong><br><strong>$10</strong><br>Crisp romaine lettuce, shaved Parmesan, and crunchy croutons tossed in a creamy Caesar dressing</p>
+          <button class="btn btn-primary add-to-cart-btn" v-on:click="addSideToCart(3, 'Sloppy Salad', 10.00)"><strong>Add to Cart</strong></button>
         </div>
       </div>
     </div>

@@ -35,13 +35,13 @@
   
       <!-- custom pizza grid -->
       <div class="container">
-        <h2 class="text-center">Create Your Custom Pizza</h2>
+        <h2 class="text-center">Create Your Custom Sloppy Pizza</h2>
         
   
      
 <!-- Size Selection -->
-  <div class="form-group">
-      <h4>Choose Your Pizza Size</h4>
+  <!-- <div class="form-group">
+      <h4>Choose Your Sloppy Pizza Size</h4>
       <div class="row justify-content-center">
           <div class="col-xs-6 col-sm-2 text-center">
               <label>
@@ -79,13 +79,89 @@
               </label>
           </div>
       </div>
+  </div> -->
+
+  <div class="container text-center">
+  <h4 class="text-left">Choose Your Sloppy Pizza Size</h4>
+  <div class="row justify-content-center">
+    <div class="col-xs-6 col-sm-2 grid-item">
+      <div class="card">
+        <label>
+          <input type="radio" name="size" value="Small" v-model="selectedSize">
+          <img src="@/assets/smallPizza.png" alt="Small Size" class="card-img-top">
+          <div class="card-body text-center">
+            <h5 class="card-title">Small</h5>
+          </div>
+        </label>
+        <div class="description">
+          $15<br>A small pizza is perfect for 1-2 people.
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-2 grid-item">
+      <div class="card">
+        <label>
+          <input type="radio" name="size" value="Medium" v-model="selectedSize">
+          <img src="@/assets/mediumPizza.png" alt="Medium Size" class="card-img-top">
+          <div class="card-body text-center">
+            <h5 class="card-title">Medium</h5>
+          </div>
+        </label>
+        <div class="description">
+          $17.50<br>A medium pizza is ideal for 2-3 people.
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-2 grid-item">
+      <div class="card">
+        <label>
+          <input type="radio" name="size" value="Large" v-model="selectedSize">
+          <img src="@/assets/largePizza.png" alt="Large Size" class="card-img-top">
+          <div class="card-body text-center">
+            <h5 class="card-title">Large</h5>
+          </div>
+        </label>
+        <div class="description">
+          $21<br>A large pizza serves 3-4 people.
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-2 grid-item">
+      <div class="card">
+        <label>
+          <input type="radio" name="size" value="Half-Sheet" v-model="selectedSize">
+          <img src="@/assets/halfSheetPizza.png" alt="Half-Sheet Size" class="card-img-top">
+          <div class="card-body text-center">
+            <h5 class="card-title">Half-Sheet</h5>
+          </div>
+        </label>
+        <div class="description">
+          $22<br>A half-sheet pizza is great for a small gathering.
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-2 grid-item">
+      <div class="card">
+        <label>
+          <input type="radio" name="size" value="Full-Sheet" v-model="selectedSize">
+          <img src="@/assets/fullSheetPizza.png" alt="Full-Sheet Size" class="card-img-top">
+          <div class="card-body text-center">
+            <h5 class="card-title">Full-Sheet</h5>
+          </div>
+        </label>
+        <div class="description">
+          $24<br>A full-sheet pizza is perfect for larger groups.
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
 
   
           <!-- Crust Selection -->
           <div class="form-group">
-            <h4>Choose Your Crust</h4>
+            <h4>Choose Your Sloppy Crust</h4>
             <select class="form-control" v-model="selectedCrust">
               <option>Regular</option>
               <option>Thin  </option>
@@ -95,7 +171,7 @@
   
           <!-- Sauce Selection -->
           <div class="form-group">
-            <h4>Choose Your Sauce</h4>
+            <h4>Choose Your Sloppy Sauce</h4>
             <select class="form-control" v-model="selectedSauce">
               <option>Traditional</option>
               <option>Basil-Pesto</option>
@@ -105,7 +181,7 @@
   
           <!-- Toppings Selection -->
           <div class="form-group">
-            <h4>Choose Your Toppings</h4>
+            <h4>Choose Your Sloppy Toppings - Only $1 Per Topping!</h4>
             <div class="row">
               <div class="col-xs-6 col-sm-4" v-for="(topping, index) in toppings" :key="index">
                 <label>
@@ -115,7 +191,7 @@
               </div>
             </div>
           </div>
-        <button type="button" @click="makePizza()">Make Pizza (temporary button)</button>
+
         <!-- Add to Cart Button -->
         <button type="button" class="btn btn-primary" @click="addCustomPizzaToCart()">Add to Cart</button>
     </div>
@@ -256,7 +332,7 @@ footer {
 }
 
 
-h4 {
+h4, h5, option {
   font-size: 24px;
   padding-left: 5%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -264,13 +340,11 @@ h4 {
 
 /* grid for custom pizza ///////////// */
 
-.container {
-  margin-top: 20px;
-}
 
 h2 {
   text-align: center;
   margin-bottom: 30px;
+  font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
 }
 
 .form-group {
@@ -284,12 +358,60 @@ h2 {
 button {
   display: block;
   margin: 20px auto;
+  font-weight: bold;
+  font-size: 24px;
 }
 
-.pizza-size-img {
-    width: 150px;  /* Adjust width as needed */
-    height: 150px; /* Adjust height as needed */
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+
+/* grid for photos /////////////////////////////////////////////////////////////////// */
+.container {
+  padding-bottom: 40px;
 }
+
+.row {
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  margin: 0 15px;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  transition: transform 0.3s ease;
+  height: 200px;
+  object-fit: cover;
+}
+
+.grid-item:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+.description {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.grid-item:hover .description {
+  opacity: 1;
+}
+
 
 </style>
