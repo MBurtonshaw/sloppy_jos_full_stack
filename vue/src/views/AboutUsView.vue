@@ -1,42 +1,5 @@
 <template>
-  <head>
-    <title>Sloppy Joe's</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  </head>
-  <body>
-
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-          <a class="navbar-brand">
-            <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-          </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><router-link v-bind:to="{name: 'home'}">Home</router-link></li>
-            <li><router-link v-bind:to="{name: 'about-us'}">About Us</router-link></li>
-            <li><router-link v-bind:to="{name: 'order'}">Order Now</router-link></li>
-            <li><router-link v-bind:to="{name: 'contact'}">Contact Us</router-link></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><router-link v-bind:to="{name: 'shopping-cart'}"><img class="navbar-brand" src="@/assets/shopping-cart2.png" alt="shopping cart img" 
-              style="width: 65px; height: 65px;"></router-link></li>
-            <li><router-link v-bind:to="{name: 'login'}">Login</router-link></li>
-            <li><router-link v-bind:to="{name: 'register'}">Register</router-link></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    <navbar />
     <div class="container">
       <div class="row">
         <!-- Image Column -->
@@ -75,8 +38,10 @@
               <p>Matthew Armour</p>
             </div>
             <div class="col-xs-6 col-sm-3 text-center">
-              <img src="@/assets/matt.png" alt="Developer 2" class="img-fluid dev-img" />
-              <p>Matt Burtonshaw</p>
+              <a class="nonchalant" href="https://verdant-cranachan-f205b0.netlify.app/">
+                <img src="@/assets/matt.png" alt="Developer 2" class="img-fluid dev-img" />
+                <p>Matt Burtonshaw</p>
+              </a>
             </div>
             <div class="col-xs-6 col-sm-3 text-center">
               <img src="@/assets/andrew.png" alt="Developer 3" class="img-fluid dev-img" />
@@ -90,18 +55,19 @@
         </div>
       </div>
     </div>
-    
 
-    <footer class="container-fluid text-center">
-      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
-    </footer>
+    <pizza-footer />
 
-  </body>
 </template>
 
 <script>
+  import Navbar from '../components/Navbar.vue';
+  import PizzaFooter from '../components/PizzaFooter.vue';
 export default {
-    
+    components: {
+      Navbar,
+      PizzaFooter
+    }
 }
 </script>
 
@@ -153,12 +119,7 @@ body {
   margin-bottom: 20px;
 }
 
-footer {
-  background-color: #e0ba20c7;
-  padding: 25px;
-  font-size: 24px;
-  font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
-}
+
 
 @media (max-width: 600px) {
   .carousel-caption {
@@ -179,6 +140,11 @@ footer {
   max-width: 100%; /* Prevent the image from exceeding the column size */
   max-height: 500px; /* Limit the maximum height */
   margin-bottom: 20px; /* Add margin at the bottom to prevent overlap */
+}
+
+.nonchalant {
+  text-decoration: none;
+  color: rgb(33, 37, 41);
 }
 
 </style>

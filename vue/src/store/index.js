@@ -18,15 +18,15 @@ export function createStore(currentToken, currentUser) {
       ADD_TOPPING(state, topping) {
         // Check if the topping is already in the array
         if (!state.pizzas.toppings.includes(topping)) {
-            state.pizzas.toppings.push(topping);
+          state.pizzas.toppings.push(topping);
         }
       },
       REMOVE_TOPPING(state, topping) {
-          // Remove the topping if it exists
-          const index = state.pizzas.toppings.indexOf(topping);
-          if (index !== -1) {
-              state.pizzas.toppings.splice(index, 1);
-          }
+        // Remove the topping if it exists
+        const index = state.pizzas.toppings.indexOf(topping);
+        if (index !== -1) {
+          state.pizzas.toppings.splice(index, 1);
+        }
       },
       SET_SPECIALTY_PIZZAS(state, specialtyPizzas) {
         state.specialtyPizzas = specialtyPizzas;
@@ -45,32 +45,32 @@ export function createStore(currentToken, currentUser) {
         state.shoppingCart = [];
       },
       CHECKOUT(state) {
-        let order = {
-          "user": state.user.id,
-          "customer": state.user.id
-        };
-        foodService.addOrder(order).then(response => {
-          // Iterate over the shopping cart to add specialty pizzas
-          state.shoppingCart.forEach(item => {
-            if (item.type === 'Specialty') {
-              foodService.addSpecialtyPizza(response.data.order, item.obj).catch(error => {
-                console.error('Error adding specialty pizza:', error);
-              });
-            } else if (item.type === 'Custom') {
-              foodService.addCustomPizza(response.data.order, item.obj).catch(error => {
-                console.error('Error adding custom pizza:', error);
-              });
-            } else if (item.type === 'Side') {
-              console.log(`Order = ${response.data.order}`);
-              foodService.addSide(response.data.order, item.obj).catch(error => {
-                console.error('Error adding side order:', error);
-              });
-            }
-          });
+        // let order = {
+        //   "user": state.user.id,
+        //   "customer": state.user.id
+        // };
+        // foodService.addOrder(order).then(response => {
+        //   // Iterate over the shopping cart to add specialty pizzas
+        //   state.shoppingCart.forEach(item => {
+        //     if (item.type === 'Specialty') {
+        //       foodService.addSpecialtyPizza(response.data.order, item.obj).catch(error => {
+        //         console.error('Error adding specialty pizza:', error);
+        //       });
+        //     } else if (item.type === 'Custom') {
+        //       foodService.addCustomPizza(response.data.order, item.obj).catch(error => {
+        //         console.error('Error adding custom pizza:', error);
+        //       });
+        //     } else if (item.type === 'Side') {
+        //       console.log(`Order = ${response.data.order}`);
+        //       foodService.addSide(response.data.order, item.obj).catch(error => {
+        //         console.error('Error adding side order:', error);
+        //       });
+        //     }
+        //   });
 
-        }).catch(error => {
-          console.error('Error adding order:', error); // Handle error from addOrder
-        });
+        // }).catch(error => {
+        //   console.error('Error adding order:', error); // Handle error from addOrder
+        // });
 
       },
       SET_NOTIFICATION(state, notification) {

@@ -1,214 +1,142 @@
 <template>
-    <head>
-      <title>Sloppy Joe's Menu</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    </head>
-    <body>
-      <!-- header -->
-      <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand">
-            <img class="navbar-logo" src="@/assets/spLogo.png" alt="Joe's Sloppy Pizza" />
-          </a>
-        </div>
 
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <li class="active"><router-link v-bind:to="{ name: 'home' }">Home</router-link></li>
-            <li><router-link v-bind:to="{ name: 'about-us' }">About Us</router-link></li>
-            <li><router-link v-bind:to="{ name: 'order' }">Order Now</router-link></li>
-            <li><router-link v-bind:to="{ name: 'contact' }">Contact Us</router-link></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><router-link v-bind:to="{ name: 'shopping-cart' }"><img class="navbar-brand"
-                  src="@/assets/shopping-cart2.png" alt="shopping cart img"
-                  style="width: 65px; height: 65px;"></router-link></li>
-            <li><router-link v-bind:to="{ name: 'login' }">Login</router-link></li>
-            <li><router-link v-bind:to="{ name: 'register' }">Register</router-link></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  
-      <!-- custom pizza grid -->
-      <div class="container">
-        <h2 class="text-center">Create Your Custom Sloppy Pizza</h2>
-        
-  
-     
-<!-- Size Selection -->
-  <!-- <div class="form-group">
-      <h4>Choose Your Sloppy Pizza Size</h4>
-      <div class="row justify-content-center">
-          <div class="col-xs-6 col-sm-2 text-center">
-              <label>
-                  <input type="radio" name="size" value="Small" v-model="selectedSize">
-                  <img src="@/assets/smallPizza.png" alt="Small Size" class="img-responsive pizza-size-img">
-                  <div>Small</div>
-              </label>
-          </div>
-          <div class="col-xs-6 col-sm-2 text-center">
-              <label>
-                  <input type="radio" name="size" value="Medium" v-model="selectedSize">
-                  <img src="@/assets/mediumPizza.png" alt="Medium Size" class="img-responsive pizza-size-img">
-                  <div>Medium</div>
-              </label>
-          </div>
-          <div class="col-xs-6 col-sm-2 text-center">
-              <label>
-                  <input type="radio" name="size" value="Large" v-model="selectedSize">
-                  <img src="@/assets/largePizza.png" alt="Large Size" class="img-responsive pizza-size-img">
-                  <div>Large</div>
-              </label>
-          </div>
-          <div class="col-xs-6 col-sm-2 text-center">
-              <label>
-                  <input type="radio" name="size" value="Half-Sheet" v-model="selectedSize">
-                  <img src="@/assets/halfSheetPizza.png" alt="Half-Sheet Size" class="img-responsive pizza-size-img">
-                  <div>Half-Sheet</div>
-              </label>
-          </div>
-          <div class="col-xs-6 col-sm-2 text-center">
-              <label>
-                  <input type="radio" name="size" value="Full-Sheet" v-model="selectedSize">
-                  <img src="@/assets/fullSheetPizza.png" alt="Full-Sheet Size" class="img-responsive pizza-size-img">
-                  <div>Full-Sheet</div>
-              </label>
-          </div>
-      </div>
-  </div> -->
+  <body>
 
-  <div class="container text-center">
-  <h4 class="text-left">Choose Your Sloppy Pizza Size</h4>
-  <div class="row justify-content-center">
-    <div class="col-xs-6 col-sm-2 grid-item">
-      <div class="card">
-        <label>
-          <input type="radio" name="size" value="Small" v-model="selectedSize">
-          <img src="@/assets/smallPizza.png" alt="Small Size" class="card-img-top">
-          <div class="card-body text-center">
-            <h5 class="card-title">Small</h5>
-          </div>
-        </label>
-        <div class="description">
-          $15<br>A small pizza is perfect for 1-2 people.
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6 col-sm-2 grid-item">
-      <div class="card">
-        <label>
-          <input type="radio" name="size" value="Medium" v-model="selectedSize">
-          <img src="@/assets/mediumPizza.png" alt="Medium Size" class="card-img-top">
-          <div class="card-body text-center">
-            <h5 class="card-title">Medium</h5>
-          </div>
-        </label>
-        <div class="description">
-          $17.50<br>A medium pizza is ideal for 2-3 people.
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6 col-sm-2 grid-item">
-      <div class="card">
-        <label>
-          <input type="radio" name="size" value="Large" v-model="selectedSize">
-          <img src="@/assets/largePizza.png" alt="Large Size" class="card-img-top">
-          <div class="card-body text-center">
-            <h5 class="card-title">Large</h5>
-          </div>
-        </label>
-        <div class="description">
-          $21<br>A large pizza serves 3-4 people.
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6 col-sm-2 grid-item">
-      <div class="card">
-        <label>
-          <input type="radio" name="size" value="Half-Sheet" v-model="selectedSize">
-          <img src="@/assets/halfSheetPizza.png" alt="Half-Sheet Size" class="card-img-top">
-          <div class="card-body text-center">
-            <h5 class="card-title">Half-Sheet</h5>
-          </div>
-        </label>
-        <div class="description">
-          $22<br>A half-sheet pizza is great for a small gathering.
-        </div>
-      </div>
-    </div>
-    <div class="col-xs-6 col-sm-2 grid-item">
-      <div class="card">
-        <label>
-          <input type="radio" name="size" value="Full-Sheet" v-model="selectedSize">
-          <img src="@/assets/fullSheetPizza.png" alt="Full-Sheet Size" class="card-img-top">
-          <div class="card-body text-center">
-            <h5 class="card-title">Full-Sheet</h5>
-          </div>
-        </label>
-        <div class="description">
-          $24<br>A full-sheet pizza is perfect for larger groups.
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <navbar />
+
+    <!-- custom pizza grid -->
+    <div class="container mt-5">
+      <h2 class="text-center">Create Your Custom Sloppy Pizza</h2>
 
 
-  
-          <!-- Crust Selection -->
-          <div class="form-group">
-            <h4>Choose Your Sloppy Crust</h4>
-            <select class="form-control" v-model="selectedCrust">
-              <option>Regular</option>
-              <option>Thin  </option>
-              <option>Pan</option>
-            </select>
-          </div>
-  
-          <!-- Sauce Selection -->
-          <div class="form-group">
-            <h4>Choose Your Sloppy Sauce</h4>
-            <select class="form-control" v-model="selectedSauce">
-              <option>Traditional</option>
-              <option>Basil-Pesto</option>
-              <option>Garlic Parmesean</option>
-            </select>
-          </div>
-  
-          <!-- Toppings Selection -->
-          <div class="form-group">
-            <h4>Choose Your Sloppy Toppings - Only $1 Per Topping!</h4>
-            <div class="row">
-              <div class="col-xs-6 col-sm-4" v-for="(topping, index) in toppings" :key="index">
-                <label>
-                  <input type="checkbox" v-model="selectedToppings" :value="topping">
-                  {{ topping.name }}
-                </label>
+
+      <!-- Size Selection -->
+      <div class="container text-center">
+        <h4 class="text-left my-4 mt-5">Choose Your Sloppy Pizza Size</h4>
+        <div class="row justify-content-center">
+          <div class="col-xs-6 col-sm-2 grid-item">
+            <div class="card">
+              <label>
+                <input type="radio" name="size" value="Small" v-model="selectedSize">
+                <img src="@/assets/smallPizza.png" alt="Small Size" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Small</h5>
+                </div>
+              </label>
+              <div class="description">
+                $15<br>A small pizza is perfect for 1-2 people.
               </div>
             </div>
           </div>
+          <div class="col-xs-6 col-sm-2 grid-item">
+            <div class="card">
+              <label>
+                <input type="radio" name="size" value="Medium" v-model="selectedSize">
+                <img src="@/assets/mediumPizza.png" alt="Medium Size" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Medium</h5>
+                </div>
+              </label>
+              <div class="description">
+                $18.00<br>A medium pizza is ideal for 2-3 people.
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-2 grid-item">
+            <div class="card">
+              <label>
+                <input type="radio" name="size" value="Large" v-model="selectedSize">
+                <img src="@/assets/largePizza.png" alt="Large Size" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Large</h5>
+                </div>
+              </label>
+              <div class="description">
+                $22.00<br>A large pizza serves 3-4 people.
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-2 grid-item">
+            <div class="card">
+              <label>
+                <input type="radio" name="size" value="Half-Sheet" v-model="selectedSize">
+                <img src="@/assets/halfSheetPizza.png" alt="Half-Sheet Size" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Half-Sheet</h5>
+                </div>
+              </label>
+              <div class="description">
+                $30.00<br>A half-sheet pizza is great for a small gathering.
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-2 grid-item">
+            <div class="card">
+              <label>
+                <input type="radio" name="size" value="Full-Sheet" v-model="selectedSize">
+                <img src="@/assets/fullSheetPizza.png" alt="Full-Sheet Size" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Full-Sheet</h5>
+                </div>
+              </label>
+              <div class="description">
+                $37.50<br>A full-sheet pizza is perfect for larger groups.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Add to Cart Button -->
-        <button type="button" class="btn btn-primary" @click="addCustomPizzaToCart()">Add to Cart</button>
+      <!-- Crust Selection -->
+      <div class="form-group">
+        <h4 class="py-2">Choose Your Sloppy Crust</h4>
+        <select class="form-control" v-model="selectedCrust">
+          <option>Regular</option>
+          <option>Thin </option>
+          <option>Pan</option>
+        </select>
+      </div>
+
+      <!-- Sauce Selection -->
+      <div class="form-group">
+        <h4 class="mt-4 py-2">Choose Your Sloppy Sauce</h4>
+        <select class="form-control" v-model="selectedSauce">
+          <option>Traditional</option>
+          <option>Basil-Pesto</option>
+          <option>Garlic Parmesean</option>
+        </select>
+      </div>
+
+      <!-- Toppings Selection -->
+      <div class="form-group">
+        <h4 class="mb-3 mt-5">Choose Your Sloppy Toppings - Only $1 Per Topping!</h4>
+        <div class="row">
+          <div class="col-xs-6 col-sm-4" v-for="(topping, index) in toppings" :key="index">
+            <label>
+              <input type="checkbox" v-model="selectedToppings" :value="topping">
+              {{ topping.name }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" @click="addCustomPizzaToCart()">Add to Cart</button>
     </div>
-
-    <footer class="container-fluid text-center">
-      <p>&copy; 2024 Sloppy Jo's Pizza. All rights reserved.</p>
-    </footer>
+    <pizza-footer />
   </body>
 </template>
 
 
 <script>
 import axios from 'axios';
-import Order from '../components/Order.vue';
 import foodService from '../services/FoodService';
+import PizzaFooter from '../components/PizzaFooter.vue';
+import Navbar from '../components/Navbar.vue';
 
 export default {
+  components: {
+    PizzaFooter,
+    Navbar
+  },
   data() {
     return {
       crusts: ['Regular', 'Thin', 'Pan'],
@@ -236,9 +164,9 @@ export default {
         { id: 20, name: 'Ground Beef', price: 1.00 },
         { id: 21, name: 'Sloppy Joe Sauce', price: 1.00 }
       ],
-      selectedCrust: '',
-      selectedSauce: '',
-      selectedSize: '',
+      selectedCrust: 'Regular',
+      selectedSauce: 'Traditional',
+      selectedSize: 'Small',
       selectedToppings: [],
       customPizza: {
 
@@ -264,16 +192,16 @@ export default {
       this.customPizza.price = 15.00;
       this.customPizza.size = this.selectedSize;
       if (this.customPizza.size == 'Medium') {
-        this.customPizza.price += 2.50;
+        this.customPizza.price += 3.00;
       }
       if (this.customPizza.size == 'Large') {
-        this.customPizza.price += 4.00;
+        this.customPizza.price += 7.00;
       }
       if (this.customPizza.size == 'Half-Sheet') {
-        this.customPizza.price += 7.00
+        this.customPizza.price += 15.00
       }
       if (this.customPizza.size == 'Full-Sheet') {
-        this.customPizza.price += 9.00
+        this.customPizza.price += 22.50
       }
       this.customPizza.price += (1.00 * this.customPizza.toppings.length);
       console.log(this.customPizza);
@@ -281,7 +209,7 @@ export default {
     },
     addCustomPizzaToCart() {
       let newPizza = this.makePizza();
-      this.$store.commit('ADD_TO_CART', {type: 'Custom', obj: {id: this.customPizza.id, name: 'Custom', price: this.customPizza.price}});
+      this.$store.commit('ADD_TO_CART', { type: 'Custom', obj: { id: this.customPizza.id, name: 'Custom', price: this.customPizza.price } });
     },
   },
 };
@@ -292,7 +220,6 @@ body {
   font-family: 'Arial', sans-serif;
   font-size: 24px;
 }
-
 .navbar {
   font-size: 24px;
   margin-bottom: 0;
@@ -301,7 +228,6 @@ body {
   font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
 
 }
-
 .navbar-logo {
   max-height: 100px;
   /* Adjust the max height as needed */
@@ -309,91 +235,71 @@ body {
   /* Maintain aspect ratio */
   margin-top: -25px;
 }
-
 @media (max-width: 768px) {
   .navbar-logo {
     max-height: 40px;
     /* Adjust size for smaller screens */
   }
 }
-
-
 .resize-image {
   max-width: 200px;
   max-height: auto;
   margin-top: 20px;
 }
-
 footer {
   background-color: #e0ba20c7;
   padding: 25px;
   font-size: 24px;
   font-family: Impact, Haettenschweiler, 'Arial Bold', sans-serif;
 }
-
-
-h4, h5, option {
+h4,
+h5,
+option {
   font-size: 24px;
   padding-left: 5%;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
-/* grid for custom pizza ///////////// */
-
-
 h2 {
   text-align: center;
   margin-bottom: 30px;
   font-family: Impact, Haettenschweiler, 'Arial', sans-serif;
 }
-
 .form-group {
   margin-bottom: 15px;
 }
-
 .checkbox label {
   font-size: 16px;
 }
-
 button {
   display: block;
   margin: 20px auto;
   font-weight: bold;
   font-size: 24px;
 }
-
-
-/* grid for photos /////////////////////////////////////////////////////////////////// */
 .container {
   padding-bottom: 40px;
 }
-
 .row {
   margin-bottom: 40px;
   justify-content: center;
 }
-
 .grid-item {
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease;
   margin: 0 15px;
 }
-
 .grid-item:hover {
   transform: scale(1.05);
 }
-
 .card-img-top {
   transition: transform 0.3s ease;
   height: 200px;
   object-fit: cover;
 }
-
 .grid-item:hover .card-img-top {
   transform: scale(1.1);
 }
-
 .description {
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -408,10 +314,7 @@ button {
   transform: translateX(-50%);
   width: 100%;
 }
-
 .grid-item:hover .description {
   opacity: 1;
 }
-
-
 </style>

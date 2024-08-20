@@ -13,6 +13,7 @@ import ContactUsView from '../views/ContactUsView.vue';
 import ShoppingCartView from '../views/ShoppingCartView.vue';
 import AboutUsView from '../views/AboutUsView.vue';
 import ToppingsView from '../views/ToppingsView.vue';
+import CustomerInfoView from '../views/CustomerInfoView.vue';
 
 
 
@@ -98,6 +99,14 @@ const routes = [
       requiresAuth: false
     }
   },
+  {
+    path: "/customerInfo",
+    name: "customerInfo",
+    component: CustomerInfoView,
+    meta: {
+      requiresAuth: false
+    }
+  }
 
 ];
 
