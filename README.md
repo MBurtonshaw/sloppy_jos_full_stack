@@ -2,8 +2,14 @@
 
 # To Run:
 
-in /Java, start the main application file to run the backend server
+in the terminal, navigate to /Java/database
 
-in /Vue, in the terminal, run 'npm install' then 'npm run dev' to run
+run './create.sh'
 
-navigate to the localhost port indicated in the Vue terminal
+in a code editor, run the main application file in /Java
+
+while the Java application is running, back in the terminal, navigate to /Vue
+
+run 'npm install' then 'npm run dev' to start
+
+then in the browser, navigate to the localhost port indicated in the Vue terminal
