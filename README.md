@@ -1,6 +1,7 @@
 <h3 align="center">A full-stack app to manage a pizza shop's orders</h3>
 
-- To run: **in the terminal, navigate to /Java/database run './create.sh' in a code editor, run the main application file in /Java while the Java application is running, back in the terminal, navigate to /Vue run 'npm install' then 'npm run dev' to start then in the browser, navigate to the localhost port indicated in the Vue terminal**
+#To run: **in the terminal, navigate to /Java/database run './create.sh'
+in a code editor, run the main application file in /Java while the Java application is running, back in the terminal, navigate to /Vue run 'npm install' then 'npm run dev' to start then in the browser, navigate to the localhost port indicated in the Vue terminal**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
