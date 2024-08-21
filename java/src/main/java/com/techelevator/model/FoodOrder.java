@@ -2,6 +2,8 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class FoodOrder {
 
     @JsonProperty("order")
@@ -10,8 +12,12 @@ public class FoodOrder {
     private int user_id;
     @JsonProperty("customer")
     private int customer_id;
-
-    // getters
+    @JsonProperty("specialty_pizzas")
+    private List<String> specialtyPizzas;
+    @JsonProperty("custom_pizzas")
+    private List<Integer> customPizzas;
+    @JsonProperty("sides")
+    private List<String> sides;
 
 
     public int getCustomer_id() {
@@ -41,5 +47,29 @@ public class FoodOrder {
 
     public void setFood_order_id(int food_order_id) {
         this.food_order_id = food_order_id;
+    }
+
+    public List<String> getSpecialtyPizzas() {
+        return specialtyPizzas;
+    }
+
+    public void setSpecialtyPizzas(List<String> specialtyPizzas) {
+        this.specialtyPizzas = specialtyPizzas;
+    }
+
+    public List<Integer> getCustomPizzas() {
+        return customPizzas;
+    }
+
+    public void setCustomPizzas(List<Integer> customPizzas) {
+        this.customPizzas = customPizzas;
+    }
+
+    public List<String> getSides() {
+        return sides;
+    }
+
+    public void setSides(List<String> sides) {
+        this.sides = sides;
     }
 }

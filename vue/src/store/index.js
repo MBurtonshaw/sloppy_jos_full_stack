@@ -9,20 +9,22 @@ export function createStore(currentToken, currentUser) {
     state: {
       token: currentToken || '',
       user: currentUser || {},
-
       shoppingCart: [],
       orders: [],
-      orderId: ''
+      orderId: '',
+      pizzas: {
+        toppings: []
+      },
+      specialtyPizzas: [],
+      notification: null
     },
     mutations: {
       ADD_TOPPING(state, topping) {
-        // Check if the topping is already in the array
         if (!state.pizzas.toppings.includes(topping)) {
           state.pizzas.toppings.push(topping);
         }
       },
       REMOVE_TOPPING(state, topping) {
-        // Remove the topping if it exists
         const index = state.pizzas.toppings.indexOf(topping);
         if (index !== -1) {
           state.pizzas.toppings.splice(index, 1);
@@ -32,7 +34,7 @@ export function createStore(currentToken, currentUser) {
         state.specialtyPizzas = specialtyPizzas;
       },
       ADD_TO_CART(state, item) {
-        console.log(item)
+        console.log(item);
         state.shoppingCart.push(item);
       },
       REMOVE_FROM_CART(state, item) {
@@ -44,66 +46,89 @@ export function createStore(currentToken, currentUser) {
       CLEAR_CART(state) {
         state.shoppingCart = [];
       },
-      CHECKOUT(state) {
-        // let order = {
-        //   "user": state.user.id,
-        //   "customer": state.user.id
-        // };
-        // foodService.addOrder(order).then(response => {
-        //   // Iterate over the shopping cart to add specialty pizzas
-        //   state.shoppingCart.forEach(item => {
-        //     if (item.type === 'Specialty') {
-        //       foodService.addSpecialtyPizza(response.data.order, item.obj).catch(error => {
-        //         console.error('Error adding specialty pizza:', error);
-        //       });
-        //     } else if (item.type === 'Custom') {
-        //       foodService.addCustomPizza(response.data.order, item.obj).catch(error => {
-        //         console.error('Error adding custom pizza:', error);
-        //       });
-        //     } else if (item.type === 'Side') {
-        //       console.log(`Order = ${response.data.order}`);
-        //       foodService.addSide(response.data.order, item.obj).catch(error => {
-        //         console.error('Error adding side order:', error);
-        //       });
-        //     }
-        //   });
+      async CHECKOUT(state) {
+        try {
+          // Add the order
+          const order = { user: 1, customer: 1 };
+          const response = await foodService.addOrder(order);
 
-        // }).catch(error => {
-        //   console.error('Error adding order:', error); // Handle error from addOrder
-        // });
+          // Add items to the order
+          const orderId = response.data.order;
 
+          for (const item of state.shoppingCart) {
+            if (item.type === 'Specialty') {
+              try {
+                await foodService.addSpecialtyPizza(orderId, item.obj);
+              } catch (error) {
+                console.error('Error adding specialty pizza:', error);
+                state.notification = {
+                  message: 'Failed to add specialty pizza.',
+                  type: 'error',
+                  timeout: NOTIFICATION_TIMEOUT
+                };
+              }
+            } else if (item.type === 'Custom') {
+              try {
+                await foodService.addCustomPizza(orderId, item.obj);
+              } catch (error) {
+                console.error('Error adding custom pizza:', error);
+                state.notification = {
+                  message: 'Failed to add custom pizza.',
+                  type: 'error',
+                  timeout: NOTIFICATION_TIMEOUT
+                };
+              }
+            } else if (item.type === 'Side') {
+              try {
+                await foodService.addSide(orderId, item.obj);
+              } catch (error) {
+                console.error('Error adding side order:', error);
+                state.notification = {
+                  message: 'Failed to add side order.',
+                  type: 'error',
+                  timeout: NOTIFICATION_TIMEOUT
+                };
+              }
+            }
+          }
+          
+          // Clear the cart after successful checkout
+          state.shoppingCart = [];
+
+        } catch (error) {
+          console.error('Error during checkout:', error);
+          state.notification = {
+            message: 'Checkout failed, please try again.',
+            type: 'error',
+            timeout: NOTIFICATION_TIMEOUT
+          };
+        }
       },
       SET_NOTIFICATION(state, notification) {
-        // Clear the current notification if one exists
-        if (state.notification) {
-          this.commit('CLEAR_NOTIFICATION');
+        if (state.notification && state.notification.timer) {
+          clearTimeout(state.notification.timer);
         }
 
         if (typeof notification === 'string') {
-          // If only a string was sent, create a notification object with defaults
           notification = {
             message: notification,
             type: 'error',
             timeout: NOTIFICATION_TIMEOUT
-          }
+          };
         } else {
-          // Else add default values if needed
           notification.type = notification.type || 'error';
           notification.timeout = notification.timeout || NOTIFICATION_TIMEOUT;
         }
 
-        // Set the notification in state
         state.notification = notification;
 
-        // Clear the message after timeout (see https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
-        notification.timer = window.setTimeout(() => {
-          this.commit('CLEAR_NOTIFICATION');
+        notification.timer = setTimeout(() => {
+          state.notification = null;
         }, notification.timeout);
       },
-
       CLEAR_NOTIFICATION(state) {
         if (state.notification && state.notification.timer) {
-          window.clearTimeout(state.notification.timer);
+          clearTimeout(state.notification.timer);
         }
         state.notification = null;
       },
@@ -123,9 +148,7 @@ export function createStore(currentToken, currentUser) {
         state.user = {};
         axios.defaults.headers.common = {};
       },
-
     },
-
   });
   return store;
 }

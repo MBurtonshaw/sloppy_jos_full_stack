@@ -6,7 +6,7 @@
 
 
     <div class="container">
-      <h3 class="text-center p-4"><strong>Pizza Extra Sloppy is What We Do</strong></h3><br>
+      <h3 class="text-center pt-4"><strong>Pizza Extra Sloppy is What We Do</strong></h3><br>
       <div class="">
         <div class="Hours">
           <p class="text-right">
@@ -14,6 +14,10 @@
             <span>Monday-Thursday: 11:00 AM - 10:30 PM</span><br>
             <span>Friday-Saturday: 11:00 AM - 2:00 AM</span><br>
           </p>
+        </div>
+        <div class="phone text-center mt-4">
+          <strong>Phone</strong><br>
+          <span>1-216-SLOPPY-J</span>
         </div>
         <div class="text-center p-4">
           <iframe

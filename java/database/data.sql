@@ -7,6 +7,8 @@ COMMIT TRANSACTION;
 
 BEGIN TRANSACTION;
 
+INSERT INTO customer(customer_id) VALUES(1);
+
 INSERT INTO topping (topping_id, topping_name)
 VALUES (1, 'Pepperoni'), (2, 'Bacon'), (3, 'Ham'), (4, 'Mushrooms'), (5, 'Black Olives'), (6, 'Green Olives'), (7, 'Bell Pepper'),
 		(8, 'Italian Sausage'), (9, 'Onions'), (10, 'Pineapple'), (11, 'Extra Cheese'), (12, 'Prosciutto'), (13, 'Meatballs'),

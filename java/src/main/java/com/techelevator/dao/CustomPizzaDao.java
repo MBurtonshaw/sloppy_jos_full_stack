@@ -22,11 +22,11 @@ import java.util.List;
  */
 
 public interface CustomPizzaDao {
-    Item getPizzaById(int id);
+    Item getCustomPizzaById(int id);
+    Item getCustomPizzaByOrder(int orderId, int id);
+    int addCustomPizza(Item pizza);
 
-    int addPizza(Item pizza);
+    Item updateCustomPizza(Item pizza, int id);
 
-    Item updatePizza(Item pizza, int id);
-
-    void deletePizza(int id);
+    void deleteCustomPizza(int id);
 }

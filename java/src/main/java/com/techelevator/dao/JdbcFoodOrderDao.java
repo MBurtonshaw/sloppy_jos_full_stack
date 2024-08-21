@@ -25,11 +25,19 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     }
 
     @Override
-    public FoodOrder getOrder(int id) {
+    public FoodOrder getOrder(int orderId) {
         FoodOrder order = null;
-        String sql = "SELECT food_order_id, user_id, customer_id FROM food_order WHERE food_order_id = ?;";
+        //join specialty
+        //join custom
+        //join sides
+        String sql = "SELECT food_order.food_order_id, food_order.user_id, food_order.customer_id, specialty_pizza.specialty_pizza_name, food_order_item.item_id, side.side_name FROM food_order " +
+                "JOIN food_order_specialty ON food_order.food_order_id = food_order_specialty.food_order_id " +
+                "JOIN specialty_pizza ON food_order_specialty.specialty_pizza_id = specialty_pizza.specialty_pizza_id " +
+                "JOIN food_order_item ON food_order.food_order_id = food_order_item.food_order_id " +
+                "JOIN food_order_side ON food_order.food_order_id = food_order_side.food_order_id " +
+                "JOIN side ON food_order_side.side_id = side.side_id WHERE food_order.food_order_id = ?;";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, orderId);
             if (results.next()) {
                 order = mapRowToOrder(results);
             }
@@ -37,6 +45,21 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return order;
+    }
+
+    @Override
+    public List<FoodOrder> getOrders() {
+        List<FoodOrder> orders = new ArrayList<>();
+        String sql = "SELECT food_order_id, user_id, customer_id FROM food_order;";
+        try {
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+            while (results.next()) {
+                orders.add(mapRowToOrder(results));
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return orders;
     }
 
      @Override
@@ -124,10 +147,42 @@ public class JdbcFoodOrderDao implements FoodOrderDao {
     }
 
     private FoodOrder mapRowToOrder(SqlRowSet rowSet) {
-        FoodOrder newOrder = new FoodOrder();
-        newOrder.setFood_order_id(rowSet.getInt("food_order_id"));
-        newOrder.setUser_id(rowSet.getInt("user_id"));
-        newOrder.setCustomer_id(rowSet.getInt("customer_id"));
+        FoodOrder newOrder = null;
+        List<String> specialtyPizzas = new ArrayList<>();
+        List<Integer> customPizzas = new ArrayList<>();
+        List<String> sides = new ArrayList<>();
+
+        while (rowSet.next()) {
+            if (newOrder == null) {
+                // Initialize the FoodOrder object once
+                newOrder = new FoodOrder();
+                newOrder.setFood_order_id(rowSet.getInt("food_order_id"));
+                newOrder.setUser_id(rowSet.getInt("user_id"));
+                newOrder.setCustomer_id(rowSet.getInt("customer_id"));
+
+                // Set empty lists
+                newOrder.setSpecialtyPizzas(specialtyPizzas);
+                newOrder.setCustomPizzas(customPizzas);
+                newOrder.setSides(sides);
+            }
+
+            // Only add unique items to the lists
+            String pizzaName = rowSet.getString("specialty_pizza_name");
+            if (pizzaName != null && !specialtyPizzas.contains(pizzaName)) {
+                specialtyPizzas.add(pizzaName);
+            }
+
+            int itemId = rowSet.getInt("item_id");
+            if (itemId != 0 && !customPizzas.contains(itemId)) {
+                customPizzas.add(itemId);
+            }
+
+            String sideName = rowSet.getString("side_name");
+            if (sideName != null && !sides.contains(sideName)) {
+                sides.add(sideName);
+            }
+        }
+
         return newOrder;
     }
 

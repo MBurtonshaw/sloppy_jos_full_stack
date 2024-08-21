@@ -27,7 +27,7 @@
           </router-link>
         </div>
         <div class="col-sm">
-          <router-link class="nonchalant" v-bind:to="{ name: 'order' }">
+          <router-link class="nonchalant" v-bind:to="{ name: 'about-us' }">
             <img src="@/assets/founderPic.png" class="img-responsive" style="width:100%" alt="Pizza">
             <p>About Us</p>
           </router-link>

@@ -21,7 +21,7 @@ public class JdbcCustomPizzaDao implements CustomPizzaDao {
     }
 
     @Override
-    public Item getPizzaById(int id) {
+    public Item getCustomPizzaById(int id) {
         Item customPizza = null;
         String sql = "SELECT item_id, sauce_name, crust_name, size_name FROM item WHERE item_id = ?;";
         try {
@@ -49,7 +49,36 @@ public class JdbcCustomPizzaDao implements CustomPizzaDao {
     }
 
     @Override
-    public Item updatePizza(Item pizza, int id) {
+    public Item getCustomPizzaByOrder(int orderId, int id) {
+        Item customPizza = null;
+        String sql = "SELECT food_order_item.food_order_id, item.item_id, item.sauce_name, item.crust_name, item.size_name FROM item " +
+                "JOIN food_order_item ON item.item_id = food_order_item.item_id WHERE food_order_item.food_order_id = ? AND item.item_id = ?;";
+        try {
+            // Execute the query and fetch the results
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, orderId, id);
+            while (results.next()) {
+                customPizza = mapRowToCustomPizza(results);
+
+                // Retrieving toppingIds for custom pizza
+                List<Integer> newToppings = new ArrayList<>();
+                String sql2 = "SELECT * FROM item_topping WHERE item_id = ?;";
+                SqlRowSet results2 = jdbcTemplate.queryForRowSet(sql2, id);
+                while (results2.next()) {
+                    newToppings.add(results2.getInt("topping_id"));
+                }
+                // Setting toppingIds for custom pizza
+                customPizza.setToppingIds(newToppings);
+            }
+            return customPizza; // Return the specialty pizza or null if not found
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        } catch (DataAccessException e) {
+            throw new DaoException("Database access error", e); // Catch other DB-related exceptions
+        }
+    }
+
+    @Override
+    public Item updateCustomPizza(Item pizza, int id) {
         Item updatedPizza = null;
         List<Integer> newToppingIds = new ArrayList<>();
         String sql = "UPDATE item SET sauce_name = ?, crust_name = ?, size_name = ? WHERE item_id = ?;";
@@ -64,7 +93,7 @@ public class JdbcCustomPizzaDao implements CustomPizzaDao {
             }
 
             // Get the updated pizza
-            updatedPizza = getPizzaById(id);
+            updatedPizza = getCustomPizzaById(id);
 
             // Clear existing toppings for the pizza
             String deleteToppingsSql = "DELETE FROM item_topping WHERE item_id = ?;";
@@ -93,7 +122,7 @@ public class JdbcCustomPizzaDao implements CustomPizzaDao {
     }
 
     @Override
-    public void deletePizza(int id) {
+    public void deleteCustomPizza(int id) {
         String sql = "DELETE FROM item_topping WHERE item_id = ?;";
         String sql2 = "DELETE FROM item WHERE item_id = ?;";
         try {
@@ -109,7 +138,7 @@ public class JdbcCustomPizzaDao implements CustomPizzaDao {
     }
 
     @Override
-    public int addPizza(Item pizza) {
+    public int addCustomPizza(Item pizza) {
         // Inserting custom pizza into db through sql string
         // Using pizza object in parameters
         String sql = "INSERT INTO item (sauce_name, crust_name, size_name) VALUES (?, ?, ?) RETURNING item_id";
