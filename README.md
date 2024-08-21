@@ -1,6 +1,6 @@
 <h3 align="center">A full-stack app to manage a pizza shop's orders</h3>
 
-<h4>To run: </h4><br></br>
+<h4>To run: </h4>
 **in the terminal, navigate to /Java/database run './create.sh'<br></br>
 in a code editor, run the main application file in /Java while the Java application is running<br></br>
 back in the terminal, navigate to /Vue run 'npm install' then 'npm run dev' to start<br></br>
