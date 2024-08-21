@@ -8,4 +8,4 @@ in the terminal, navigate to /Java/database run './create.sh'<br></br>
 in a code editor, run the main application file in /Java<br></br>
 while the Java application is still running, back in the terminal, navigate to /Vue<br></br>
 run 'npm install' then 'npm run dev' to start<br></br>
-then in the browser, navigate to the localhost port indicated in the Vue terminal**
+then in the browser, navigate to the localhost port indicated in the Vue terminal
